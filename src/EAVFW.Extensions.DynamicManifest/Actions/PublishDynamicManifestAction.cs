@@ -103,7 +103,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
             await _database.SaveChangesAsync(
                 new ClaimsPrincipal(new ClaimsIdentity(new Claim[] {
-                                   new Claim("sub","1b714972-8d0a-4feb-b166-08d93c6ae328")
+                                   new Claim("sub", runContext.PrincipalId ?? "1b714972-8d0a-4feb-b166-08d93c6ae328")
                                 }, DotNetDevOps.Extensions.EAVFramework.Constants.DefaultCookieAuthenticationScheme)));
 
 
