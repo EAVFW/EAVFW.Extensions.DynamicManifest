@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+
+		<Title>EAVFW.Extensions.DynamicManifest</Title>
+		<Authors>Poul Kjeldager</Authors>
+		<Description>Dynamic Manifest Support for runtime models</Description>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/EAVFW/EAVFW.Extensions.DynamicManifest</RepositoryUrl>
+
+	</PropertyGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\README.md" Link="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DotNetDevOps.Extensions.EAVFramework" Version="1.0.155" />
+		<PackageReference Include="EAVFW.Extensions.Documents" Version="1.0.0" />
+		<PackageReference Include="EAVFW.Extensions.SecurityModel" Version="1.1.2-dev.1" />
+		<PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="1.1.2" />
+		<PackageReference Include="Semver" Version="2.2.0" />
+	</ItemGroup>
+
+</Project>
