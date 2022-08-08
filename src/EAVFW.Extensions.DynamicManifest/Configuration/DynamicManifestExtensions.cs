@@ -197,7 +197,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
            
            where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
-           where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+           where TDocument : DynamicEntity, IDocumentEntity, IAuditFields,new()
         {
             return services.AddDynamicManifest<DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>,  TModel, TDocument>();
 
@@ -213,33 +213,33 @@ namespace Microsoft.Extensions.DependencyInjection
         //}
         public static IServiceCollection AddDynamicManifest<TDynamicManifestContextFeature, TModel, TDocument>(this IServiceCollection services)
 
-        where TDynamicManifestContextFeature : class, IExtendedFormContextFeature<TModel>, IFormContextFeature<DynamicManifestContext<TModel, TDocument>>
+        where TDynamicManifestContextFeature : DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>
          where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
-         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields,new()
         {
             return services.AddDynamicManifest<DynamicManifestContext<TModel, TDocument>, TDynamicManifestContextFeature, TModel, TDocument>();
 
         }
 
         public static IServiceCollection AddDynamicManifest<TDynamicContext, TDynamicManifestContextFeature,TModel, TDocument>(this IServiceCollection services)
-        where TDynamicManifestContextFeature : class, IExtendedFormContextFeature<TModel>, IFormContextFeature<TDynamicContext>
+        where TDynamicManifestContextFeature : DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>
         where TDynamicContext : DynamicManifestContext<TModel, TDocument>
         where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
-        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields,new()
         {
             return services.AddDynamicManifest<DynamicContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>();
 
         }
 
         public static IServiceCollection AddDynamicManifest<TStaticContext,TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>(this IServiceCollection services)
-        where TDynamicManifestContextFeature : class,IExtendedFormContextFeature<TModel>, IFormContextFeature<TDynamicContext>
+        where TDynamicManifestContextFeature : DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>
         where TDynamicContext : DynamicManifestContext<TModel, TDocument>
          where TStaticContext: DynamicContext
         where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
-        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields,new()
         {
-            services.AddAction<PublishDynamicManifestAction<DynamicContext>>(nameof(PublishDynamicManifestAction<DynamicContext>));
-            services.AddWorkflow<PublishDynamicManifestWorkflow<DynamicContext, TModel, TDocument>>();
+            services.AddAction<PublishDynamicManifestAction<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>>("PublishDynamicManifestAction");
+            services.AddWorkflow<PublishDynamicManifestWorkflow<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>>();
 
             services.AddScoped<TDynamicManifestContextFeature>();
             services.AddScoped<IExtendedFormContextFeature<TModel>>(sp => sp.GetService<TDynamicManifestContextFeature>());

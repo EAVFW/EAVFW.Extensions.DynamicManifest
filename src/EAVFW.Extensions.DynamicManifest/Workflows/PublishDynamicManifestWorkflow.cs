@@ -1,5 +1,6 @@
 ﻿using DotNetDevOps.Extensions.EAVFramework;
 using DotNetDevOps.Extensions.EAVFramework.Shared;
+using EAVFW.Extensions.Documents;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -9,8 +10,12 @@ using WorkflowEngine.Core;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
-    public class PublishDynamicManifestWorkflow<TStaticContext, TModel, TDocument> : Workflow
+    public class PublishDynamicManifestWorkflow<TStaticContext, TDynamicContext, TDynamicManifestContextFeature,TModel, TDocument> : Workflow
         where TStaticContext : DynamicContext
+        where TDynamicManifestContextFeature : DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>
+        where TDynamicContext : DynamicManifestContext<TModel, TDocument>
+        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields,new()
     {
         public static Guid CalculateId()
         {
@@ -68,7 +73,7 @@ namespace EAVFW.Extensions.DynamicManifest
                    // },
                    ["PublishDynamicManifestAction"] = new ActionMetadata
                     {
-                        Type = nameof(PublishDynamicManifestAction<TStaticContext>),
+                        Type = nameof(PublishDynamicManifestAction<TStaticContext, TDynamicContext, TDynamicManifestContextFeature,TModel, TDocument>),
                         Inputs =
                         {
                             ["entityName"] = "@triggerBody()?['entityName']",

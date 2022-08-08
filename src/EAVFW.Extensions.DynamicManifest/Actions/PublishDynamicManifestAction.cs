@@ -17,17 +17,21 @@ using WorkflowEngine.Core;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
-    public class PublishDynamicManifestAction<TStaticContext> : IActionImplementation
-      where TStaticContext : DynamicContext
+    public class PublishDynamicManifestAction<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument> : IActionImplementation
+     where TStaticContext : DynamicContext
+        where TDynamicManifestContextFeature : DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>
+        where TDynamicContext : DynamicManifestContext<TModel, TDocument>
+        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields,new()
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly EAVDBContext<TStaticContext> _database;
-        private readonly ILogger<PublishDynamicManifestAction<TStaticContext>> _logger;
+        private readonly ILogger<PublishDynamicManifestAction<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>> _logger;
         private readonly IExpressionEngine _expressionEngine;
 
-        static MethodInfo _propertyInfo = typeof(PublishDynamicManifestAction<TStaticContext>).GetMethod(nameof(PublishAsync));
+//        static MethodInfo _propertyInfo = typeof(PublishDynamicManifestAction<TContext>).GetMethod(nameof(PublishAsync));
 
-        public PublishDynamicManifestAction(IServiceProvider serviceProvider, EAVDBContext<TStaticContext> database, ILogger<PublishDynamicManifestAction<TStaticContext>> logger, IExpressionEngine expressionEngine)
+        public PublishDynamicManifestAction(IServiceProvider serviceProvider, EAVDBContext<TStaticContext> database, ILogger<PublishDynamicManifestAction<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>> logger, IExpressionEngine expressionEngine)
         {
             _serviceProvider = serviceProvider;
             _database = database ?? throw new ArgumentNullException(nameof(database));
@@ -35,12 +39,11 @@ namespace EAVFW.Extensions.DynamicManifest
             _expressionEngine = expressionEngine;
         }
 
-        public async ValueTask PublishAsync<TModel, TDocument>(IRunContext runContext,Guid id)
-            where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
-            where TDocument : DynamicEntity, IDocumentEntity, IAuditFields, new()
+        public async ValueTask PublishAsync(IRunContext runContext,Guid id)
+           
         {
 
-            var (feat, context) = await _serviceProvider.GetDynamicManifestContext<TModel, TDocument>(id, true);
+            var (feat, context) = await _serviceProvider.GetDynamicManifestContext<TStaticContext,TDynamicContext,TDynamicManifestContextFeature,TModel, TDocument>(id, true);
 
 
             var latest_version = await _database.Set<TDocument>().Where(d => d.Path.StartsWith($"/{feat.EntityId}/manifests/manifest."))
@@ -118,13 +121,13 @@ namespace EAVFW.Extensions.DynamicManifest
             var dynamicManifestEntityName = inputs["dynamicManifestEntityCollectionSchemaName"]?.ToString() ?? "DataModelProjects";
             var documentEntityName = inputs["documentEntityCollectionSchemaName"]?.ToString() ?? "Documents";
 
-            var method = _propertyInfo.MakeGenericMethod(_database.Context.GetEntityType(dynamicManifestEntityName), _database.Context.GetEntityType(documentEntityName));
+         //   var method = _propertyInfo.MakeGenericMethod(_database.Context.GetEntityType(dynamicManifestEntityName), _database.Context.GetEntityType(documentEntityName));
 
-            var valueTask = (ValueTask)method.Invoke(this, new object[] { context,recordId });
+           // var valueTask = (ValueTask)method.Invoke(this, new object[] { context,recordId });
 
 
 
-            await valueTask;
+            await PublishAsync(context, recordId);
 
 
 
