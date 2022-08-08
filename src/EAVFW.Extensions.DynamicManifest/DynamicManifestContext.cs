@@ -1,6 +1,7 @@
 ﻿using DotNetDevOps.Extensions.EAVFramework;
 using EAVFW.Extensions.Documents;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
@@ -18,6 +19,17 @@ namespace EAVFW.Extensions.DynamicManifest
             IExtendedFormContextFeature<TModel> feature,
             Microsoft.Extensions.Logging.ILogger<DynamicManifestContext<TModel, TDocument>> logger)
             : base(options, feature.CreateOptions(), feature.CreateMigrationManager(), logger)
+        {
+            _feature = feature;
+
+            ChangeTracker.LazyLoadingEnabled = false;
+        }
+
+        protected DynamicManifestContext(
+          DbContextOptions options,
+          IExtendedFormContextFeature<TModel> feature,
+          ILogger logger)
+          : base(options, feature.CreateOptions(), feature.CreateMigrationManager(), logger)
         {
             _feature = feature;
 
