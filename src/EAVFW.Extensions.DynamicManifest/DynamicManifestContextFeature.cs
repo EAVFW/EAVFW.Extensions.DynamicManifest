@@ -33,12 +33,12 @@ namespace EAVFW.Extensions.DynamicManifest
         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
 
     {
-        public Guid EntityId { get; private set; }
-        public JToken Manifest { get; private set; }
-        public JToken[] Manifests { get; private set; } = Array.Empty<JToken>();
-        public string SchemaName { get; private set; }
-        public SemVersion Version { get; private set; }
-        public string ConnectionString { get; private set; }
+        public Guid EntityId { get; protected set; }
+        public JToken Manifest { get; protected set; }
+        public JToken[] Manifests { get; protected set; } = Array.Empty<JToken>();
+        public string SchemaName { get; protected set; }
+        public SemVersion Version { get; protected set; }
+        public string ConnectionString { get; protected set; }
 
 
 
