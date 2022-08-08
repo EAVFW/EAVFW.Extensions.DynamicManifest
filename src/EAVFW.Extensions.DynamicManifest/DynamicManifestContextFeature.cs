@@ -79,7 +79,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
 
         }
-        internal IOptions<DynamicContextOptions> CreateOptions()
+        public IOptions<DynamicContextOptions> CreateOptions()
         {
             return Options.Create(new DynamicContextOptions
             {
@@ -96,7 +96,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
 
         private static ConcurrentDictionary<string, IMigrationManager> _managers = new ConcurrentDictionary<string, IMigrationManager>();
-        internal IMigrationManager CreateMigrationManager()
+        public IMigrationManager CreateMigrationManager()
         {
             //  return new MigrationManager(_loggerFactory.CreateLogger<MigrationManager>());
             return _managers.GetOrAdd(EntityId.ToString() + SchemaName, (entry) =>
@@ -116,7 +116,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
         public ValueTask<JToken> GetManifestAsync()
         {
-            throw new NotImplementedException();
+            return new ValueTask<JToken>(Manifest);
         }
     }
 }
