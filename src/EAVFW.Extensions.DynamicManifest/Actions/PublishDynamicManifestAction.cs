@@ -17,17 +17,17 @@ using WorkflowEngine.Core;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
-    public class PublishDynamicManifestAction<TContext> : IActionImplementation
-      where TContext : DynamicContext
+    public class PublishDynamicManifestAction<TStaticContext> : IActionImplementation
+      where TStaticContext : DynamicContext
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly EAVDBContext<TContext> _database;
-        private readonly ILogger<PublishDynamicManifestAction<TContext>> _logger;
+        private readonly EAVDBContext<TStaticContext> _database;
+        private readonly ILogger<PublishDynamicManifestAction<TStaticContext>> _logger;
         private readonly IExpressionEngine _expressionEngine;
 
-        static MethodInfo _propertyInfo = typeof(PublishDynamicManifestAction<TContext>).GetMethod(nameof(PublishAsync));
+        static MethodInfo _propertyInfo = typeof(PublishDynamicManifestAction<TStaticContext>).GetMethod(nameof(PublishAsync));
 
-        public PublishDynamicManifestAction(IServiceProvider serviceProvider, EAVDBContext<TContext> database, ILogger<PublishDynamicManifestAction<TContext>> logger, IExpressionEngine expressionEngine)
+        public PublishDynamicManifestAction(IServiceProvider serviceProvider, EAVDBContext<TStaticContext> database, ILogger<PublishDynamicManifestAction<TStaticContext>> logger, IExpressionEngine expressionEngine)
         {
             _serviceProvider = serviceProvider;
             _database = database ?? throw new ArgumentNullException(nameof(database));

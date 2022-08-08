@@ -9,8 +9,8 @@ using WorkflowEngine.Core;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
-    public class PublishDynamicManifestWorkflow<TContext, TModel, TDocument> : Workflow
-        where TContext : DynamicContext
+    public class PublishDynamicManifestWorkflow<TStaticContext, TModel, TDocument> : Workflow
+        where TStaticContext : DynamicContext
     {
         public static Guid CalculateId()
         {
@@ -68,7 +68,7 @@ namespace EAVFW.Extensions.DynamicManifest
                    // },
                    ["PublishDynamicManifestAction"] = new ActionMetadata
                     {
-                        Type = nameof(PublishDynamicManifestAction<TContext>),
+                        Type = nameof(PublishDynamicManifestAction<TStaticContext>),
                         Inputs =
                         {
                             ["entityName"] = "@triggerBody()?['entityName']",

@@ -10,12 +10,12 @@ namespace EAVFW.Extensions.DynamicManifest
         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
     {
 
-        private readonly DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument> _feature;
+        private readonly IExtendedFormContextFeature<TModel> _feature;
         public string ModelCacheKey => _feature.EntityId.ToString() + _feature.SchemaName;
 
         public DynamicManifestContext(
             DbContextOptions<DynamicManifestContext<TModel, TDocument>> options,
-            DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument> feature,
+            IExtendedFormContextFeature<TModel> feature,
             Microsoft.Extensions.Logging.ILogger<DynamicManifestContext<TModel, TDocument>> logger)
             : base(options, feature.CreateOptions(), feature.CreateMigrationManager(), logger)
         {

@@ -85,65 +85,172 @@ namespace Microsoft.Extensions.DependencyInjection
 
             return endpoints;
         }
-        public static async Task<(DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>, EAVDBContext<DynamicManifestContext<TModel, TDocument>>)> GetDynamicManifestContext<TModel, TDocument>(this IServiceProvider serviceProvider, Guid id, bool loadAllversions = false)
-       where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
-         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+
+        public static async Task<(TDynamicManifestContextFeature, EAVDBContext<TDynamicContext>)> 
+            GetDynamicManifestContext<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>(this IServiceProvider serviceProvider, Guid id, bool loadAllversions = false)
+            where TStaticContext : DynamicContext
+            where TDynamicContext : DynamicManifestContext<TModel, TDocument>
+            where TDynamicManifestContextFeature : class, IExtendedFormContextFeature<TModel>, IFormContextFeature<TDynamicContext>
+            where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+            where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
         {
-            var feat = serviceProvider.GetService<DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>>();
-            await feat.LoadAsync(serviceProvider.GetService<DynamicContext>(), id, loadAllversions);
-            var test = serviceProvider.GetService<EAVDBContext<DynamicManifestContext<TModel, TDocument>>>();
+            var feat = serviceProvider.GetService<TDynamicManifestContextFeature>();
+            await feat.LoadAsync(serviceProvider.GetService<TStaticContext>(), id, loadAllversions);
+            var test = serviceProvider.GetService<EAVDBContext<TDynamicContext>>();
 
             return (feat, test);
 
         }
 
-        public static Task<(DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>, EAVDBContext<DynamicManifestContext<TModel, TDocument>>)> GetDynamicManifestContext<TModel, TDocument>(this HttpContext context, Guid id)
-        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
-          where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        public static Task<(TDynamicManifestContextFeature, EAVDBContext<TDynamicContext>)>
+            GetDynamicManifestContext<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>(this HttpContext context, Guid id)
+           where TStaticContext : DynamicContext
+            where TDynamicContext : DynamicManifestContext<TModel, TDocument>
+            where TDynamicManifestContextFeature : class, IExtendedFormContextFeature<TModel>, IFormContextFeature<TDynamicContext>
+            where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+            where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
         {
-            return context.RequestServices.GetDynamicManifestContext<TModel, TDocument>(id);
+            return context.RequestServices.GetDynamicManifestContext<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>(id);
 
         }
 
-
-        public static IServiceCollection AddDynamicManifest<TModel, TDocument>(this IServiceCollection services)
-
-          where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
-          where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
-        {
-            services.AddAction<PublishDynamicManifestAction<DynamicContext>>(nameof(PublishDynamicManifestAction<DynamicContext>));
-            services.AddWorkflow<PublishDynamicManifestWorkflow<DynamicContext, TModel, TDocument>>();
-            services.AddDynamicManifest<DynamicManifestContext<TModel, TDocument>, DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>, TModel, TDocument>();
-
-
-            return services;
-        }
-
-        public static IServiceCollection AddDynamicManifest<TContext, TModel, TDocument>(this IServiceCollection services)
-
-           where TContext : DynamicContext
+        public static Task<(TDynamicManifestContextFeature, EAVDBContext<TDynamicContext>)>
+           GetDynamicManifestContext<TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>(this IServiceProvider serviceProvider, Guid id, bool loadAllversions = false)
+           
+           where TDynamicContext : DynamicManifestContext<TModel, TDocument>
+           where TDynamicManifestContextFeature : class, IExtendedFormContextFeature< TModel>, IFormContextFeature<TDynamicContext>
            where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
            where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
         {
-            return services.AddDynamicManifest<TContext, DynamicManifestContextFeature<TContext, TModel, TDocument>, TModel, TDocument>();
+            return serviceProvider.GetDynamicManifestContext<DynamicContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>(id,loadAllversions);
 
         }
 
-        public static IServiceCollection AddDynamicManifest<TContext, TDynamicManifestContextFeature, TModel, TDocument>(this IServiceCollection services)
-        where TDynamicManifestContextFeature : DynamicManifestContextFeature<TContext, TModel, TDocument>
-        where TContext : DynamicContext
+        public static Task<(TDynamicManifestContextFeature, EAVDBContext<TDynamicContext>)>
+            GetDynamicManifestContext<TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>(this HttpContext context, Guid id)
+           
+            where TDynamicContext : DynamicManifestContext<TModel, TDocument>
+            where TDynamicManifestContextFeature : class, IExtendedFormContextFeature< TModel>, IFormContextFeature<TDynamicContext>
+            where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+            where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        {
+            return context.RequestServices.GetDynamicManifestContext<DynamicContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>(id);
+
+        }
+
+        public static Task<(TDynamicManifestContextFeature, EAVDBContext<DynamicManifestContext<TModel, TDocument>>)>
+           GetDynamicManifestContext<TDynamicManifestContextFeature, TModel, TDocument>(this IServiceProvider serviceProvider, Guid id, bool loadAllversions = false)
+
+         
+           where TDynamicManifestContextFeature : class, IExtendedFormContextFeature<TModel>, IFormContextFeature<DynamicManifestContext<TModel, TDocument>>
+           where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+           where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        {
+            return serviceProvider.GetDynamicManifestContext<DynamicContext, DynamicManifestContext<TModel, TDocument>, TDynamicManifestContextFeature, TModel, TDocument>(id, loadAllversions);
+
+        }
+
+        public static Task<(TDynamicManifestContextFeature, EAVDBContext<DynamicManifestContext<TModel, TDocument>>)>
+            GetDynamicManifestContext< TDynamicManifestContextFeature, TModel, TDocument>(this HttpContext context, Guid id)
+
+           
+            where TDynamicManifestContextFeature : class, IExtendedFormContextFeature<TModel>, IFormContextFeature<DynamicManifestContext<TModel, TDocument>>
+            where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+            where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        {
+            return context.RequestServices.GetDynamicManifestContext<DynamicContext, DynamicManifestContext<TModel, TDocument>, TDynamicManifestContextFeature, TModel, TDocument>(id);
+
+        }
+
+        public static Task<(DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>, EAVDBContext<DynamicManifestContext<TModel, TDocument>>)>
+          GetDynamicManifestContext< TModel, TDocument>(this IServiceProvider serviceProvider, Guid id, bool loadAllversions = false)
+
+
+        
+          where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+          where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        {
+            return serviceProvider.GetDynamicManifestContext<DynamicContext, DynamicManifestContext<TModel, TDocument>, DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>, TModel, TDocument>(id, loadAllversions);
+
+        }
+
+        public static Task<(DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>, EAVDBContext<DynamicManifestContext<TModel, TDocument>>)>
+            GetDynamicManifestContext< TModel, TDocument>(this HttpContext context, Guid id)
+
+
+           
+            where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+            where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        {
+            return context.RequestServices.GetDynamicManifestContext<DynamicContext, DynamicManifestContext<TModel, TDocument>, DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>, TModel, TDocument>(id);
+
+        }
+
+
+
+
+
+
+ 
+
+        public static IServiceCollection AddDynamicManifest< TModel, TDocument>(this IServiceCollection services)
+
+           
+           where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+           where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        {
+            return services.AddDynamicManifest<DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>,  TModel, TDocument>();
+
+        }
+        //public static IServiceCollection AddDynamicManifest<TDynamicContext, TModel, TDocument>(this IServiceCollection services)
+
+        //  where TDynamicContext : DynamicManifestContext<TModel, TDocument>
+        //  where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+        //  where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        //{
+        //    return services.AddDynamicManifest<DynamicContext, TDynamicContext, DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>, TModel, TDocument>();
+
+        //}
+        public static IServiceCollection AddDynamicManifest<TDynamicManifestContextFeature, TModel, TDocument>(this IServiceCollection services)
+
+        where TDynamicManifestContextFeature : class, IExtendedFormContextFeature<TModel>, IFormContextFeature<DynamicManifestContext<TModel, TDocument>>
+         where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        {
+            return services.AddDynamicManifest<DynamicManifestContext<TModel, TDocument>, TDynamicManifestContextFeature, TModel, TDocument>();
+
+        }
+
+        public static IServiceCollection AddDynamicManifest<TDynamicContext, TDynamicManifestContextFeature,TModel, TDocument>(this IServiceCollection services)
+        where TDynamicManifestContextFeature : class, IExtendedFormContextFeature<TModel>, IFormContextFeature<TDynamicContext>
+        where TDynamicContext : DynamicManifestContext<TModel, TDocument>
         where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
         {
+            return services.AddDynamicManifest<DynamicContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>();
 
-            services.AddScoped<DynamicManifestContextFeature<TContext, TModel, TDocument>>();
-            services.AddScoped<IFormContextFeature<TContext>>(sp => sp.GetService<DynamicManifestContextFeature<TContext, TModel, TDocument>>());
+        }
 
-            services.AddDbContext<TContext>((sp, optionsBuilder) =>
+        public static IServiceCollection AddDynamicManifest<TStaticContext,TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>(this IServiceCollection services)
+        where TDynamicManifestContextFeature : class,IExtendedFormContextFeature<TModel>, IFormContextFeature<TDynamicContext>
+        where TDynamicContext : DynamicManifestContext<TModel, TDocument>
+         where TStaticContext: DynamicContext
+        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+        {
+            services.AddAction<PublishDynamicManifestAction<DynamicContext>>(nameof(PublishDynamicManifestAction<DynamicContext>));
+            services.AddWorkflow<PublishDynamicManifestWorkflow<DynamicContext, TModel, TDocument>>();
+
+            services.AddScoped<TDynamicManifestContextFeature>();
+            services.AddScoped<IExtendedFormContextFeature<TModel>>(sp => sp.GetService<TDynamicManifestContextFeature>());
+            services.AddScoped<IFormContextFeature<TDynamicContext>>(sp => sp.GetService<TDynamicManifestContextFeature>());
+
+
+            services.AddDbContext<TDynamicContext>((sp, optionsBuilder) =>
             {
                 var config = sp.GetService<IConfiguration>();
                 var connStr = config.GetValue<string>("ConnectionStrings:ApplicationDb");
-                var feature = sp.GetService<DynamicManifestContextFeature<TContext, TModel, TDocument>>();
+                var feature = sp.GetService<DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>>();
 
                 optionsBuilder.UseSqlServer(feature.ConnectionString ?? connStr,
                     x => x.MigrationsHistoryTable("__MigrationsHistory", feature.SchemaName).EnableRetryOnFailure()
@@ -153,7 +260,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 optionsBuilder.EnableSensitiveDataLogging();
                 optionsBuilder.EnableDetailedErrors();
                 optionsBuilder.ReplaceService<IMigrationsAssembly, DbSchemaAwareMigrationAssembly>();
-                optionsBuilder.ReplaceService<IModelCacheKeyFactory, DynamicModelCacheKeyFactory<TDynamicManifestContextFeature, TContext, TModel, TDocument>>();
+                optionsBuilder.ReplaceService<IModelCacheKeyFactory, DynamicModelCacheKeyFactory< TDynamicContext,TDynamicManifestContextFeature, TModel, TDocument>>();
 
 
 

@@ -17,8 +17,18 @@ using System.Threading.Tasks;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
-    public class DynamicManifestContextFeature<TContext, TModel, TDocument> : IFormContextFeature<TContext>
-        where TContext : DynamicContext
+    public interface IExtendedFormContextFeature<TModel> 
+        where TModel : DynamicEntity      
+    {
+        IOptions<DynamicContextOptions> CreateOptions();
+        IMigrationManager CreateMigrationManager();
+        Guid EntityId { get;  }
+        string SchemaName { get; }
+        string ConnectionString { get; }
+        Task LoadAsync(DynamicContext database, Guid entityid, bool loadAllVersions = false);
+    }
+    public class DynamicManifestContextFeature<TDynamicContext, TModel, TDocument> : IFormContextFeature<TDynamicContext>, IExtendedFormContextFeature<TModel>
+        where TDynamicContext : DynamicManifestContext<TModel,TDocument>
         where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
 
@@ -40,7 +50,7 @@ namespace EAVFW.Extensions.DynamicManifest
             _loggerFactory = loggerFactory;
             _memoryCache = memoryCache;
         }
-        public async Task LoadAsync(DynamicContext database, Guid entityid, bool loadAllVersions = false)
+        public virtual async Task LoadAsync(DynamicContext database, Guid entityid, bool loadAllVersions = false)
         {
             var record = await database.Set<TModel>().FindAsync(entityid);
             var document = record.Manifest ?? await database.Set<TDocument>().FindAsync(record.ManifestId);
