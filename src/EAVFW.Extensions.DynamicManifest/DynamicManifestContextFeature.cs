@@ -50,6 +50,10 @@ namespace EAVFW.Extensions.DynamicManifest
             _loggerFactory = loggerFactory;
             _memoryCache = memoryCache;
         }
+        public virtual void OnDataLoaded(TModel data)
+        {
+
+        }
         public virtual async Task LoadAsync(DynamicContext database, Guid entityid, bool loadAllVersions = false)
         {
             var record = await database.Set<TModel>().FindAsync(entityid);
@@ -86,7 +90,7 @@ namespace EAVFW.Extensions.DynamicManifest
                 Manifests = new[] { Manifest };
             }
 
-
+            OnDataLoaded(record);
 
         }
         public IOptions<DynamicContextOptions> CreateOptions()
