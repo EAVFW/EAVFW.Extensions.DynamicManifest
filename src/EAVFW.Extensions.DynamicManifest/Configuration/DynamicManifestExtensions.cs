@@ -27,64 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class DynamicManifestExtensions
     {
 
-        public static IEndpointRouteBuilder MapWorkFlowEndpoints(this IEndpointRouteBuilder endpoints)
-        {
-            endpoints.MapGet("/api/workflows", async x =>
-            {
-                var workflows = x.RequestServices.GetService<IEnumerable<IWorkflow>>()
-                .Select(x => new { name = x.GetType().Name, id = x.Id })
-                .ToArray();
-                await x.Response.WriteJsonAsync(new { value = workflows });
-            });
-            endpoints.MapPost("/api/entities/{entityName}/records/{recordId}/workflows/{workflowId}/runs", async (httpcontext) =>
-            {
-                //Run custom workflow
-                var backgroundJobClient = httpcontext.RequestServices.GetRequiredService<IBackgroundJobClient>();
-                var record = await JToken.ReadFromAsync(new JsonTextReader(new StreamReader(httpcontext.Request.BodyReader.AsStream())));
-                var workflowname = httpcontext.GetRouteValue("workflowId") as string;
-                var inputs = new Dictionary<string, object>
-                {
-
-                    ["entityName"] = httpcontext.GetRouteValue("entityName") as string,
-                    ["recordId"] = httpcontext.GetRouteValue("recordId") as string,
-                    ["data"] = record
-
-                };
-
-                var workflows = httpcontext.RequestServices.GetRequiredService<IEnumerable<IWorkflow>>();
-
-
-
-                var workflow = workflows.FirstOrDefault(n => n.Id.ToString() == workflowname || string.Equals(n.GetType().Name, workflowname, StringComparison.OrdinalIgnoreCase));
-
-
-                if (workflow == null)
-                {
-                    httpcontext.Response.StatusCode = 404;
-                    return;
-
-                }
-
-
-                var job = backgroundJobClient.Enqueue<IHangfireWorkflowExecutor>((executor) => executor.TriggerAsync(
-                   new TriggerContext
-                   {
-                       Workflow = workflow,
-                       Trigger = new Trigger
-                       {
-                           Inputs = inputs,
-                           ScheduledTime = DateTimeOffset.UtcNow,
-                           Type = workflow.Manifest.Triggers.FirstOrDefault().Value.Type,
-                           Key = workflow.Manifest.Triggers.FirstOrDefault().Key
-                       },
-                   }));
-
-                await httpcontext.Response.WriteJsonAsync(new { id = job });
-
-            });
-
-            return endpoints;
-        }
+       
 
         public static async Task<(TDynamicManifestContextFeature, EAVDBContext<TDynamicContext>)> 
             GetDynamicManifestContext<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>(this IServiceProvider serviceProvider, Guid id, bool loadAllversions = false)
@@ -250,7 +193,7 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 var config = sp.GetService<IConfiguration>();
                 var connStr = config.GetValue<string>("ConnectionStrings:ApplicationDb");
-                var feature = sp.GetService<DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>>();
+                var feature = sp.GetRequiredService<TDynamicManifestContextFeature>();
 
                 optionsBuilder.UseSqlServer(feature.ConnectionString ?? connStr,
                     x => x.MigrationsHistoryTable("__MigrationsHistory", feature.SchemaName).EnableRetryOnFailure()
