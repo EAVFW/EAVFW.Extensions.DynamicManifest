@@ -70,14 +70,21 @@ namespace EAVFW.Extensions.DynamicManifest
             await conn.OpenAsync();
 
 
-            ///Fix old
+            try
             {
-                if (latest_version == null)
+                ///Fix old
                 {
-                    using var cmd = conn.CreateCommand();
-                    cmd.CommandText = $"UPDATE [{feat.SchemaName}].[__MigrationsHistory] SET [MigrationId] = '{feat.SchemaName}_1_0_0' WHERE[MigrationId] = '{feat.SchemaName}_Initial'";
-                    var r = await cmd.ExecuteNonQueryAsync();
+
+                    if (latest_version == null)
+                    {
+                        using var cmd = conn.CreateCommand();
+                        cmd.CommandText = $"UPDATE [{feat.SchemaName}].[__MigrationsHistory] SET [MigrationId] = '{feat.SchemaName}_1_0_0' WHERE[MigrationId] = '{feat.SchemaName}_Initial'";
+                        var r = await cmd.ExecuteNonQueryAsync();
+                    }
                 }
+            }catch(Exception ex)
+            {
+                //Swallow for none existing 
             }
 
             foreach (var sql in sqlscript.Split("GO"))
