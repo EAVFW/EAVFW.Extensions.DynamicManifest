@@ -39,7 +39,7 @@ namespace EAVFW.Extensions.DynamicManifest
             _expressionEngine = expressionEngine;
         }
 
-        public async ValueTask PublishAsync(IRunContext runContext,Guid id)
+        public async ValueTask PublishAsync(Guid id, string identityid)
            
         {
 
@@ -75,7 +75,7 @@ namespace EAVFW.Extensions.DynamicManifest
                 ///Fix old
                 {
 
-                    if (latest_version == null)
+                    if (latest_version == null && !string.IsNullOrEmpty(feat.SchemaName))
                     {
                         using var cmd = conn.CreateCommand();
                         cmd.CommandText = $"UPDATE [{feat.SchemaName}].[__MigrationsHistory] SET [MigrationId] = '{feat.SchemaName}_1_0_0' WHERE[MigrationId] = '{feat.SchemaName}_Initial'";
@@ -124,7 +124,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
             await _database.SaveChangesAsync(
                 new ClaimsPrincipal(new ClaimsIdentity(new Claim[] {
-                                   new Claim("sub", runContext.PrincipalId ?? "1b714972-8d0a-4feb-b166-08d93c6ae328")
+                                   new Claim("sub", identityid ?? "1b714972-8d0a-4feb-b166-08d93c6ae328")
                                 }, DotNetDevOps.Extensions.EAVFramework.Constants.DefaultCookieAuthenticationScheme)));
 
 
@@ -145,7 +145,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
 
 
-            await PublishAsync(context, recordId);
+            await PublishAsync( recordId,context.PrincipalId);
 
 
 

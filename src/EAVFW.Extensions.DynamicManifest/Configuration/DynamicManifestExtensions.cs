@@ -38,7 +38,14 @@ namespace Microsoft.Extensions.DependencyInjection
             where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
         {
             var feat = serviceProvider.GetService<TDynamicManifestContextFeature>();
-            await feat.LoadAsync(serviceProvider.GetService<TStaticContext>(), id, loadAllversions);
+            try
+            {
+                await feat.LoadAsync(serviceProvider.GetService<TStaticContext>(), id, loadAllversions);
+            }catch(Exception ex)
+            {
+                throw new Exception("Failed to load", ex);
+            }
+          
             var test = serviceProvider.GetService<EAVDBContext<TDynamicContext>>();
 
             return (feat, test);
