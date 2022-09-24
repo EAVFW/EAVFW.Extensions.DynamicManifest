@@ -18,6 +18,38 @@ using System.Threading.Tasks;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
+    public interface IDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument>    
+        where TDynamicContext : DynamicManifestContext<TModel,TDocument>
+        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+    {
+        public DynamicContextOptions CreateOptions(IExtendedFormContextFeature<TModel> feature);
+    }
+
+    public class DefaultDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument> 
+        : IDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument> 
+        where TDynamicContext : DynamicManifestContext<TModel,TDocument>
+        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+    {
+        public virtual DynamicContextOptions CreateOptions(IExtendedFormContextFeature<TModel> feature)
+        {
+            {
+                return new DynamicContextOptions
+                {
+                    Manifests = feature.Manifests,
+                    PublisherPrefix = feature.SchemaName,
+                    EnableDynamicMigrations = true,
+                    Namespace = $"EAVFW.Extensions.DynamicManifest.{feature.SchemaName?.Replace("-", "_")}.Model",
+                    UseOnlyExpliciteExternalDTOClases = true,
+                    DTOAssembly = typeof(TModel).Assembly,
+                    DTOBaseClasses = new[] {typeof(BaseOwnerEntity<>), typeof(BaseIdEntity<>)},
+                    DisabledPlugins = new[] {typeof(RequiredPlugin)}
+                };
+            }
+        }
+    } 
+
     public interface IExtendedFormContextFeature<TModel> 
         where TModel : DynamicEntity      
     {
@@ -27,6 +59,7 @@ namespace EAVFW.Extensions.DynamicManifest
         string SchemaName { get; }
         string ConnectionString { get; }
         Task LoadAsync(DynamicContext database, Guid entityid, bool loadAllVersions = false);
+        JToken[] Manifests { get; }
     }
     public static class AuditFieldsExtensions
     {
@@ -65,12 +98,15 @@ namespace EAVFW.Extensions.DynamicManifest
         private readonly ILogger<DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>> logger;
         private readonly ILoggerFactory _loggerFactory;
         private readonly IMemoryCache _memoryCache;
+        private readonly IDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument> _dynamicManifestContextOptionFactory;
 
-        public DynamicManifestContextFeature(ILogger<DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>> logger, ILoggerFactory loggerFactory, IMemoryCache memoryCache)
+        public DynamicManifestContextFeature(ILogger<DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>> logger, ILoggerFactory loggerFactory, IMemoryCache memoryCache,
+            IDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument> dynamicManifestContextOptionFactory)
         {
             this.logger = logger;
             _loggerFactory = loggerFactory;
             _memoryCache = memoryCache;
+            _dynamicManifestContextOptionFactory = dynamicManifestContextOptionFactory;
         }
         public virtual void OnDataLoaded(TModel data)
         {
@@ -156,17 +192,7 @@ namespace EAVFW.Extensions.DynamicManifest
         }
         public IOptions<DynamicContextOptions> CreateOptions()
         {
-            return Options.Create(new DynamicContextOptions
-            {
-                Manifests = Manifests,
-                PublisherPrefix = SchemaName,
-                EnableDynamicMigrations = true,
-                Namespace = $"EAVFW.Extensions.DynamicManifest.{SchemaName?.Replace("-", "_")}.Model",
-                UseOnlyExpliciteExternalDTOClases = true,
-                DTOAssembly = typeof(TModel).Assembly,
-                DTOBaseClasses = new[] { typeof(BaseOwnerEntity<>), typeof(BaseIdEntity<>) },
-                DisabledPlugins = new[] { typeof(RequiredPlugin) }
-            });
+            return Options.Create(_dynamicManifestContextOptionFactory.CreateOptions(this));
         }
 
 

@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using WorkflowEngine;
 using WorkflowEngine.Core;
 
@@ -195,6 +196,9 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IExtendedFormContextFeature<TModel>>(sp => sp.GetService<TDynamicManifestContextFeature>());
             services.AddScoped<IFormContextFeature<TDynamicContext>>(sp => sp.GetService<TDynamicManifestContextFeature>());
 
+            services
+                .TryAddSingleton<IDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument>,
+                    DefaultDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument>>();
 
             services.AddDbContext<TDynamicContext>((sp, optionsBuilder) =>
             {
