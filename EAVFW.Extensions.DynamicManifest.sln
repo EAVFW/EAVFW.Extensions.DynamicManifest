@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EAVFW.Extensions.DynamicManifest", "src\EAVFW.Extensions.DynamicManifest\EAVFW.Extensions.DynamicManifest.csproj", "{589E06AE-B7F6-4519-A1E8-6BE99123124E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{F2B305AF-8F24-4831-B489-21252277A864}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{D32AE147-3D63-4259-B0A7-5995271FCCED}"
 	ProjectSection(SolutionItems) = preProject
