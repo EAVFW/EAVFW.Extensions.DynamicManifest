@@ -18,7 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DotNetDevOps.Extensions.EAVFramework" Version="1.0.155" />
+		<PackageReference Include="DotNetDevOps.Extensions.EAVFramework" Version="1.0.164" />
 		<PackageReference Include="EAVFW.Extensions.Documents" Version="1.0.0" />
 		<PackageReference Include="EAVFW.Extensions.SecurityModel" Version="1.1.2-dev.1" />
 		<PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="1.1.3" />
