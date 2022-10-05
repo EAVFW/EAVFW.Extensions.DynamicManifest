@@ -153,15 +153,7 @@ namespace Microsoft.Extensions.DependencyInjection
             return services.AddDynamicManifest<DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>,  TModel, TDocument>();
 
         }
-        //public static IServiceCollection AddDynamicManifest<TDynamicContext, TModel, TDocument>(this IServiceCollection services)
-
-        //  where TDynamicContext : DynamicManifestContext<TModel, TDocument>
-        //  where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
-        //  where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
-        //{
-        //    return services.AddDynamicManifest<DynamicContext, TDynamicContext, DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>, TModel, TDocument>();
-
-        //}
+         
         public static IServiceCollection AddDynamicManifest<TDynamicManifestContextFeature, TModel, TDocument>(this IServiceCollection services)
 
         where TDynamicManifestContextFeature : DynamicManifestContextFeature<DynamicManifestContext<TModel, TDocument>, TModel, TDocument>
