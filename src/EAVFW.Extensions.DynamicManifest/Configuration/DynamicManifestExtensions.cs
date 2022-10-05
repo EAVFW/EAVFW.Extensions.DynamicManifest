@@ -1,6 +1,6 @@
-﻿using DotNetDevOps.Extensions.EAVFramework;
-using DotNetDevOps.Extensions.EAVFramework.Endpoints;
-using DotNetDevOps.Extensions.EAVFramework.Extensions;
+﻿using EAVFramework;
+using EAVFramework.Endpoints;
+using EAVFramework.Extensions;
 using EAVFW.Extensions.Documents;
 using EAVFW.Extensions.DynamicManifest;
 using Hangfire;

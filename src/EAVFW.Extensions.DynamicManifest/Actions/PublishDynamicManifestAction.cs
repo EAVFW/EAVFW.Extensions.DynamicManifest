@@ -1,5 +1,5 @@
-﻿using DotNetDevOps.Extensions.EAVFramework;
-using DotNetDevOps.Extensions.EAVFramework.Endpoints;
+﻿using EAVFramework;
+using EAVFramework.Endpoints;
 using EAVFW.Extensions.Documents;
 using ExpressionEngine;
 using Microsoft.EntityFrameworkCore;
@@ -125,7 +125,7 @@ namespace EAVFW.Extensions.DynamicManifest
             await _database.SaveChangesAsync(
                 new ClaimsPrincipal(new ClaimsIdentity(new Claim[] {
                                    new Claim("sub", runContext.PrincipalId ?? "1b714972-8d0a-4feb-b166-08d93c6ae328")
-                                }, DotNetDevOps.Extensions.EAVFramework.Constants.DefaultCookieAuthenticationScheme)));
+                                }, EAVFramework.Constants.DefaultCookieAuthenticationScheme)));
 
 
 
