@@ -1,5 +1,5 @@
-﻿using DotNetDevOps.Extensions.EAVFramework;
-using DotNetDevOps.Extensions.EAVFramework.Validation;
+﻿using EAVFramework;
+using EAVFramework.Validation;
 using EAVFW.Extensions.Documents;
 using EAVFW.Extensions.SecurityModel;
 using Microsoft.EntityFrameworkCore;

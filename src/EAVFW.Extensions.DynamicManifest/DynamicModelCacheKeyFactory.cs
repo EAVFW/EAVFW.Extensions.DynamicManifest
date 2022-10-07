@@ -1,8 +1,8 @@
-﻿using DotNetDevOps.Extensions.EAVFramework;
-using DotNetDevOps.Extensions.EAVFramework.Endpoints;
-using DotNetDevOps.Extensions.EAVFramework.Extensions;
-using DotNetDevOps.Extensions.EAVFramework.Shared;
-using DotNetDevOps.Extensions.EAVFramework.Validation;
+﻿using EAVFramework;
+using EAVFramework.Endpoints;
+using EAVFramework.Extensions;
+using EAVFramework.Shared;
+using EAVFramework.Validation;
 using EAVFW.Extensions.Documents;
 using EAVFW.Extensions.SecurityModel;
 using ExpressionEngine;
