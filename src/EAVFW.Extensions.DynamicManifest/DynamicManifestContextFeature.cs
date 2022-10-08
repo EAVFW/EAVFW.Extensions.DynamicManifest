@@ -47,7 +47,9 @@ namespace EAVFW.Extensions.DynamicManifest
                     UseOnlyExpliciteExternalDTOClases = true,
                     DTOAssembly = typeof(TModel).Assembly,
                     DTOBaseClasses = new[] { typeof(BaseOwnerEntity<>), typeof(BaseIdEntity<>) },
-                    DisabledPlugins = new[] { typeof(RequiredPlugin) }
+                    DisabledPlugins = new[] { typeof(RequiredPlugin) },
+                    DTOBaseInterfaces = new[] {typeof(IAuditFields),typeof(IHasAdminEmail) } 
+                   
                 };
             }
         }
@@ -237,8 +239,8 @@ namespace EAVFW.Extensions.DynamicManifest
                     Options.Create(new MigrationManagerOptions
                     {
                         SkipValidateSchemaNameForRemoteTypes = false,
-                        RequiredSupport = false
-
+                        RequiredSupport = false,
+                       
                     }));
             });
         }

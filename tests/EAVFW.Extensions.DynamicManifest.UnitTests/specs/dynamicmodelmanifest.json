@@ -700,6 +700,7 @@
 							"column": "COLUMN_First",
 							"section": "SECTION_General"
 						}
+						
 					}
 				}
 			},
@@ -717,6 +718,14 @@
 					"displayName": "Name",
 					"schemaName": "Name",
 					"logicalName": "name",
+					"type": {
+						"type": "string"
+					}
+				},
+				"Admin Email": {
+					"logicalName": "adminemail",
+					"schemaName": "AdminEmail",
+					"displayName": "Admin Email",
 					"type": {
 						"type": "string"
 					}

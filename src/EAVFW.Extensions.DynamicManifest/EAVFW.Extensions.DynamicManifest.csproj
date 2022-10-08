@@ -18,9 +18,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EAVFramework" Version="2.1.0-dev.2" />
+		<PackageReference Include="EAVFramework" Version="2.1.0-dev.5" />
 		<PackageReference Include="EAVFW.Extensions.Documents" Version="2.0.0" />
-		<PackageReference Include="EAVFW.Extensions.Manifest.SDK" Version="2.0.0" />
+		<PackageReference Include="EAVFW.Extensions.Manifest.SDK" Version="2.0.9" />
 		<PackageReference Include="EAVFW.Extensions.SecurityModel" Version="2.0.1" />
 		<PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="2.0.0" />
 		<PackageReference Include="Semver" Version="2.2.0" />

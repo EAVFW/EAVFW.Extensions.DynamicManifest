@@ -190,7 +190,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IExtendedFormContextFeature<TStaticContext, TModel>>(sp => sp.GetService<TDynamicManifestContextFeature>());
             services.AddScoped<IFormContextFeature<TDynamicContext>>(sp => sp.GetService<TDynamicManifestContextFeature>());
           
-            services.AddManifestEnricher();
+            services.AddManifestSDK<DataClientParameterGenerator>();
             services
                 .TryAddSingleton<IDynamicManifestContextOptionFactory<TStaticContext, TDynamicContext, TModel, TDocument>,
                     DefaultDynamicManifestContextOptionFactory<TStaticContext, TDynamicContext, TModel, TDocument>>();

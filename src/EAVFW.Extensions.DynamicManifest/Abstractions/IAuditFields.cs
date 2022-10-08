@@ -12,4 +12,10 @@ namespace EAVFW.Extensions.DynamicManifest
         public DateTime? ModifiedOn { get; set; }
         public byte[] RowVersion { get; set; }
     }
+
+    [EntityInterface(EntityKey = "*")]
+    public interface IHasAdminEmail
+    {
+       public string AdminEmail { get; set; }
+    }
 }

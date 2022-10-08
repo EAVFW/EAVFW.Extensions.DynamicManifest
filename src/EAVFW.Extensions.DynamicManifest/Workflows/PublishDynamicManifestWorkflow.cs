@@ -65,6 +65,13 @@ namespace EAVFW.Extensions.DynamicManifest
                                                 type="boolean",
                                                 description= "Should run manifest enrichment",
                                                 @default = false
+                                            },
+                                            ["runSecurityModelInitializationScript"] = new
+                                            {
+                                                title="Run securitymodel intialization script",
+                                                type="boolean",
+                                                description= "Run securitymodel intialization script",
+                                                @default = false
                                             }
                                         }
                                     }
@@ -94,6 +101,7 @@ namespace EAVFW.Extensions.DynamicManifest
                             ["dynamicManifestEntityCollectionSchemaName"] = typeof(TModel).GetCustomAttribute<EntityAttribute>().CollectionSchemaName,
                             ["documentEntityCollectionSchemaName"] = typeof(TDocument).GetCustomAttribute<EntityAttribute>().CollectionSchemaName,
                             ["enrichManifest"] = "@triggerBody()?['data']?['enrichManifest']",
+                            ["runSecurityModelInitializationScript"]= "@triggerBody()?['data']?['runSecurityModelInitializationScript']",
                         }
                     },
 

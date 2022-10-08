@@ -150,7 +150,8 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
     [Serializable()]
     [Entity(LogicalName = "form", SchemaName = "Form", CollectionSchemaName = "Forms", IsBaseClass = false)]
     [EntityDTO(LogicalName = "form", Schema = "dbo")]
-    public partial class Form : BaseOwnerEntity<Identity>, IDynamicManifestEntity<Document>, IAuditFields
+    public partial class Form : BaseOwnerEntity<Identity>, 
+        IDynamicManifestEntity<Document>, IAuditFields, IHasAdminEmail
     {
         public Form()
         {
@@ -161,9 +162,13 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
         [JsonPropertyName("name")]
         [PrimaryField()]
         public String Name { get; set; }
- 
 
-      
+        [DataMember(Name = "adminemail")]
+        [JsonProperty("adminemail")]
+        [JsonPropertyName("adminemail")]
+        
+        public String AdminEmail { get; set; }
+
 
         [DataMember(Name = "schema")]
         [JsonProperty("schema")]
@@ -262,7 +267,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
             var services = new ServiceCollection();
             services.AddSingleton<IConfiguration>(configuration);
             services.AddLogging();
-
+            services.AddManifestSDK<DataClientParameterGenerator>();
 
             services.AddSingleton<IMigrationManager, MigrationManager>();
             services.AddEAVFramework<DynamicContext>()
@@ -283,7 +288,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
                 o.Namespace = "DummyNamespace";
                 //o.DTOBaseClasses = new[] { typeof(BaseOwnerEntity<Model.Identity>), typeof(BaseIdEntity<Model.Identity>) };
                 o.DTOAssembly = typeof(UnitTest1).Assembly;
-
+                o.DTOBaseInterfaces = new[] { typeof(IAuditFields), typeof(IHasAdminEmail) }; 
             });
             //services.AddEntityFrameworkSqlServer();
             services.AddDbContext<DynamicContext>((sp, optionsBuilder) =>
@@ -376,7 +381,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
             {
                 Schema = "BK-001",
                 Name = "Test Form",
-
+                AdminEmail ="poul@kjeldager.com",
                 Manifest = new Document
                 {
                     Name = "manifest.json",
@@ -386,7 +391,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
                 }
             });
 
-            await PublishAsync(rootServiceProvider, formid,true);
+            await PublishAsync(rootServiceProvider, formid,true,true);
 
         }
            
@@ -450,7 +455,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
             }
         }
 
-        private static async Task PublishAsync(IServiceProvider rootServiceProvider, Guid? formid,bool enrich=false)
+        private static async Task PublishAsync(IServiceProvider rootServiceProvider, Guid? formid,bool enrich=false, bool initScript=false)
         {
             using (var scope = rootServiceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
@@ -460,7 +465,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
                  
                 var publisher = sp.GetRequiredService<PublishDynamicManifestAction<DynamicContext, DynamicManifestContext<DynamicContext,Form, Document>, DynamicManifestContextFeature<DynamicContext,DynamicManifestContext<DynamicContext,Form, Document>, Form, Document>, Form, Document>>();
 
-                await publisher.PublishAsync(formid.Value, null, enrich);
+                await publisher.PublishAsync(formid.Value, null, enrich, initScript);
 
             }
         }
