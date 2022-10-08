@@ -1,4 +1,5 @@
 ﻿using EAVFramework;
+using EAVFramework.Endpoints;
 using EAVFramework.Validation;
 using EAVFW.Extensions.Documents;
 using EAVFW.Extensions.SecurityModel;
@@ -18,21 +19,23 @@ using System.Threading.Tasks;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
-    public interface IDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument>    
-        where TDynamicContext : DynamicManifestContext<TModel,TDocument>
+    public interface IDynamicManifestContextOptionFactory<TStaticContext,TDynamicContext, TModel, TDocument>   
+        where TStaticContext : DynamicContext
+        where TDynamicContext : DynamicManifestContext<TStaticContext,TModel, TDocument>
         where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
     {
-        public DynamicContextOptions CreateOptions(IExtendedFormContextFeature<TModel> feature);
+        public DynamicContextOptions CreateOptions(IExtendedFormContextFeature<TStaticContext,TModel> feature);
     }
 
-    public class DefaultDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument> 
-        : IDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument> 
-        where TDynamicContext : DynamicManifestContext<TModel,TDocument>
+    public class DefaultDynamicManifestContextOptionFactory<TStaticContext,TDynamicContext, TModel, TDocument> 
+        : IDynamicManifestContextOptionFactory<TStaticContext,TDynamicContext, TModel, TDocument> 
+        where TStaticContext : DynamicContext
+        where TDynamicContext : DynamicManifestContext<TStaticContext,TModel, TDocument>
         where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
     {
-        public virtual DynamicContextOptions CreateOptions(IExtendedFormContextFeature<TModel> feature)
+        public virtual DynamicContextOptions CreateOptions(IExtendedFormContextFeature<TStaticContext,TModel> feature)
         {
             {
                 return new DynamicContextOptions
@@ -50,15 +53,16 @@ namespace EAVFW.Extensions.DynamicManifest
         }
     } 
 
-    public interface IExtendedFormContextFeature<TModel> 
-        where TModel : DynamicEntity      
+    public interface IExtendedFormContextFeature<TStaticContext,TModel> 
+        where TModel : DynamicEntity
+        where TStaticContext : DynamicContext
     {
         IOptions<DynamicContextOptions> CreateOptions();
         IMigrationManager CreateMigrationManager();
         Guid EntityId { get;  }
         string SchemaName { get; }
         string ConnectionString { get; }
-        Task LoadAsync(DynamicContext database, Guid entityid, bool loadAllVersions = false);
+        Task LoadAsync(EAVDBContext<TStaticContext> database, Guid entityid, bool loadAllVersions = false);
         JToken[] Manifests { get; }
     }
     public static class AuditFieldsExtensions
@@ -81,9 +85,10 @@ namespace EAVFW.Extensions.DynamicManifest
             return BigEndianToUInt64(auditFields.RowVersion);
         }
     }
-    public class DynamicManifestContextFeature<TDynamicContext, TModel, TDocument> : IFormContextFeature<TDynamicContext>, IExtendedFormContextFeature<TModel>
-        where TDynamicContext : DynamicManifestContext<TModel,TDocument>
-        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+    public class DynamicManifestContextFeature<TStaticContext,TDynamicContext, TModel, TDocument> : IFormContextFeature<TDynamicContext>, IExtendedFormContextFeature<TStaticContext,TModel>
+        where TStaticContext : DynamicContext
+        where TDynamicContext : DynamicManifestContext<TStaticContext,TModel, TDocument>
+        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>, IAuditFields
         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
 
     {
@@ -95,13 +100,13 @@ namespace EAVFW.Extensions.DynamicManifest
         public string ConnectionString { get; protected set; }
         public ulong DocumentVersion { get; private set; }
 
-        private readonly ILogger<DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>> logger;
+        private readonly ILogger<DynamicManifestContextFeature<TStaticContext,TDynamicContext, TModel, TDocument>> logger;
         private readonly ILoggerFactory _loggerFactory;
         private readonly IMemoryCache _memoryCache;
-        private readonly IDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument> _dynamicManifestContextOptionFactory;
+        private readonly IDynamicManifestContextOptionFactory<TStaticContext,TDynamicContext, TModel, TDocument> _dynamicManifestContextOptionFactory;
 
-        public DynamicManifestContextFeature(ILogger<DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>> logger, ILoggerFactory loggerFactory, IMemoryCache memoryCache,
-            IDynamicManifestContextOptionFactory<TDynamicContext, TModel, TDocument> dynamicManifestContextOptionFactory)
+        public DynamicManifestContextFeature(ILogger<DynamicManifestContextFeature<TStaticContext,TDynamicContext, TModel, TDocument>> logger, ILoggerFactory loggerFactory, IMemoryCache memoryCache,
+            IDynamicManifestContextOptionFactory<TStaticContext,TDynamicContext, TModel, TDocument> dynamicManifestContextOptionFactory)
         {
             this.logger = logger;
             _loggerFactory = loggerFactory;
@@ -112,7 +117,7 @@ namespace EAVFW.Extensions.DynamicManifest
         {
 
         }
-        public virtual async Task LoadAsync(DynamicContext database, Guid entityid, bool loadAllVersions = false)
+        public virtual async Task LoadAsync(EAVDBContext<TStaticContext> database, Guid entityid, bool loadAllVersions = false)
         {
           
           
@@ -121,8 +126,12 @@ namespace EAVFW.Extensions.DynamicManifest
                 var record = await database.Set<TModel>().FindAsync(entityid);
 
                 logger.LogInformation("Loading {TDocument} {record.ManifestId} from database", typeof(TDocument).Name, entityid);
-                var document = record.Manifest ?? await database.Set<TDocument>().FindAsync(record.ManifestId);
+             var document = record.Manifest ?? await database.Set<TDocument>().FindAsync(record.ManifestId);
 
+            //var document = await database.Set<TDocument>()
+            //    .Where(x => x.Container == "manifests" && x.Path.StartsWith($"/{entityid}/manifests/manifest."))
+            //    .OrderByDescending(c => c.CreatedOn)                
+            //    .FirstOrDefaultAsync();
 
                 var documentVersion = document.GetVersion();
                 if (DocumentVersion == documentVersion)
@@ -169,22 +178,30 @@ namespace EAVFW.Extensions.DynamicManifest
                         manifests.Add(await m.LoadJsonAsync());
                     }
                     Manifests = manifests.ToArray();
-
-                    //Manifests = await Task.WhenAll(latest_versions.
-                    //    OrderByDescending(k => SemVersion.Parse(k.Name.Substring(9, k.Name.Length - 9 - 7), SemVersionStyles.Strict))
-                    //    .Select(c => c.LoadJsonAsync()));
-
+  
                     Manifests = new[]
                           { Manifest
-                }.Concat(Manifests).ToArray();
-                }catch(Exception ex)
+                        }.Concat(Manifests).ToArray();
+                }
+                catch(Exception ex)
                 {
                     throw new Exception("Failed to load manifests", ex);
                 }
             }
             else
             {
-                Manifests = new[] { Manifest };
+
+                var latest = await _memoryCache.GetOrCreateAsync($"{entityid}{record.GetVersion()}",async cachekey =>
+                {
+                    cachekey.SetSize(1);
+
+                    return await database.Set<TDocument>()
+                    .Where(x => x.Container == "manifests" && x.Path.StartsWith($"/{entityid}/manifests/manifest."))
+                    .OrderByDescending(c => c.CreatedOn)
+                    .FirstOrDefaultAsync();
+                });
+
+                Manifests = new[] { await latest.LoadJsonAsync() };
             }
 
             OnDataLoaded(record);

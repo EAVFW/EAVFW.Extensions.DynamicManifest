@@ -1,6 +1,7 @@
 ﻿using EAVFramework;
 using EAVFramework.Endpoints;
 using EAVFW.Extensions.Documents;
+using EAVFW.Extensions.Manifest.SDK;
 using ExpressionEngine;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -18,10 +19,10 @@ using WorkflowEngine.Core;
 namespace EAVFW.Extensions.DynamicManifest
 {
     public class PublishDynamicManifestAction<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument> : IActionImplementation
-     where TStaticContext : DynamicContext
-        where TDynamicManifestContextFeature : DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>
-        where TDynamicContext : DynamicManifestContext<TModel, TDocument>
-        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+        where TStaticContext : DynamicContext
+        where TDynamicManifestContextFeature : DynamicManifestContextFeature<TStaticContext,TDynamicContext, TModel, TDocument>
+        where TDynamicContext : DynamicManifestContext<TStaticContext,TModel, TDocument>
+        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>, IAuditFields
         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields,new()
     {
         private readonly IServiceProvider _serviceProvider;
@@ -31,7 +32,10 @@ namespace EAVFW.Extensions.DynamicManifest
 
 //        static MethodInfo _propertyInfo = typeof(PublishDynamicManifestAction<TContext>).GetMethod(nameof(PublishAsync));
 
-        public PublishDynamicManifestAction(IServiceProvider serviceProvider, EAVDBContext<TStaticContext> database, ILogger<PublishDynamicManifestAction<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>> logger, IExpressionEngine expressionEngine)
+
+        public PublishDynamicManifestAction(
+            
+            IServiceProvider serviceProvider, EAVDBContext<TStaticContext> database, ILogger<PublishDynamicManifestAction<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument>> logger, IExpressionEngine expressionEngine)
         {
             _serviceProvider = serviceProvider;
             _database = database ?? throw new ArgumentNullException(nameof(database));
@@ -39,20 +43,24 @@ namespace EAVFW.Extensions.DynamicManifest
             _expressionEngine = expressionEngine;
         }
 
-        public async ValueTask PublishAsync(Guid id, string identityid)
+        public async ValueTask PublishAsync(Guid id, string identityid, bool enrich)
            
         {
 
             var (feat, context) = await _serviceProvider.GetDynamicManifestContext<TStaticContext,TDynamicContext,TDynamicManifestContextFeature,TModel, TDocument>(id, true);
 
+            var manifest = enrich ?
+                JToken.Parse((await _serviceProvider.GetRequiredService<IManifestEnricher>().LoadJsonDocumentAsync(feat.Manifest, "", _logger)).ToString())
+                : feat.Manifest;
 
-            var latest_version = await _database.Set<TDocument>().Where(d => d.Path.StartsWith($"/{feat.EntityId}/manifests/manifest."))
-                .OrderByDescending(c => c.CreatedOn).FirstOrDefaultAsync();
+
+            var latest_version = feat.Manifests.Skip(1).FirstOrDefault();  //await _database.Set<TDocument>().Where(d => d.Path.StartsWith($"/{feat.EntityId}/manifests/manifest."))
+               // .OrderByDescending(c => c.CreatedOn).FirstOrDefaultAsync();
 
             if (latest_version != null)
             {
-                var prior = await latest_version.LoadJsonAsync();
-                var current = feat.Manifest.DeepClone();
+                var prior = latest_version.DeepClone();  // await latest_version.LoadJsonAsync();
+                var current = manifest.DeepClone();
                 prior["version"].Parent.Remove();
                 current["version"].Parent.Remove();
                 if (JToken.DeepEquals(prior, current))
@@ -99,7 +107,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
             // await context.MigrateAsync();
 
-            var manifest = feat.Manifest;
+          
             var version = feat.Version;
 
             var doc = new TDocument
@@ -138,14 +146,14 @@ namespace EAVFW.Extensions.DynamicManifest
             var recordId = Guid.Parse(inputs["recordId"]?.ToString());
             var dynamicManifestEntityName = inputs["dynamicManifestEntityCollectionSchemaName"]?.ToString() ?? "DataModelProjects";
             var documentEntityName = inputs["documentEntityCollectionSchemaName"]?.ToString() ?? "Documents";
-
+            var enrichParsed = bool.TryParse(inputs["enrichManifest"].ToString(), out var enrich);
          //   var method = _propertyInfo.MakeGenericMethod(_database.Context.GetEntityType(dynamicManifestEntityName), _database.Context.GetEntityType(documentEntityName));
 
            // var valueTask = (ValueTask)method.Invoke(this, new object[] { context,recordId });
 
 
 
-            await PublishAsync( recordId,context.PrincipalId);
+            await PublishAsync( recordId,context.PrincipalId, enrichParsed && enrich);
 
 
 

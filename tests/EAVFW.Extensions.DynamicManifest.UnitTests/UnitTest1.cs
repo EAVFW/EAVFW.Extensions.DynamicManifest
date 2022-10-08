@@ -1,5 +1,5 @@
-using DotNetDevOps.Extensions.EAVFramework;
-using DotNetDevOps.Extensions.EAVFramework.Shared;
+using EAVFramework;
+using EAVFramework.Shared;
 using EAVFW.Extensions.Documents;
 using EAVFW.Extensions.SecurityModel;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +21,7 @@ using JsonPropertyName = System.Text.Json.Serialization.JsonPropertyNameAttribut
 using System.Data.SqlClient;
 using System.Security.Claims;
 using ExpressionEngine;
-using DotNetDevOps.Extensions.EAVFramework.Endpoints;
+using EAVFramework.Endpoints;
 
 namespace EAVFW.Extensions.DynamicManifest.UnitTests
 {
@@ -198,9 +198,9 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
     }
 
 
-    public class MyDynamicContext : DynamicManifestContext<Form, Document>
+    public class MyDynamicContext : DynamicManifestContext<DynamicContext,Form, Document>
     {
-        protected MyDynamicContext(DynamicManifestContextFeature<MyDynamicContext, Form, Document> feature,
+        protected MyDynamicContext(DynamicManifestContextFeature<DynamicContext,MyDynamicContext, Form, Document> feature,
             DbContextOptions<MyDynamicContext> options,
             IOptions<DynamicContextOptions> modelOptions,
             IMigrationManager migrationManager,
@@ -313,12 +313,12 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
             var principalId = Guid.Parse("1b714972-8d0a-4feb-b166-08d93c6ae328");
             var prinpal = new ClaimsPrincipal(new ClaimsIdentity(new Claim[] {
                                    new Claim("sub", principalId.ToString())
-                                }, DotNetDevOps.Extensions.EAVFramework.Constants.DefaultCookieAuthenticationScheme));
+                                }, EAVFramework.Constants.DefaultCookieAuthenticationScheme));
 
             using (var scope = rootServiceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var sp = scope.ServiceProvider;
-                var ctx = sp.GetRequiredService<DotNetDevOps.Extensions.EAVFramework.Endpoints.EAVDBContext<DynamicContext>>();
+                var ctx = sp.GetRequiredService<EAVFramework.Endpoints.EAVDBContext<DynamicContext>>();
 
                 var migrator = ctx.Context.Database.GetInfrastructure().GetRequiredService<IMigrator>();
                 var sql = migrator.GenerateScript(options: MigrationsSqlGenerationOptions.Idempotent);
@@ -373,6 +373,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
 
             await UpdateForm(rootServiceProvider, prinpal, formid, (form,ctx) => {
                 form.Manifest = ctx.Context.Find<Document>(form.ManifestId);
+                form.Manifest.Compressed = false;
                 form.Manifest.Data = File.ReadAllBytes("specs/dyn_form_manifest_1_0_1.json");
 
                 });
@@ -387,7 +388,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
             {
 
                 var sp = scope.ServiceProvider;
-                var ctx = sp.GetRequiredService<DotNetDevOps.Extensions.EAVFramework.Endpoints.EAVDBContext<DynamicContext>>();
+                var ctx = sp.GetRequiredService<EAVFramework.Endpoints.EAVDBContext<DynamicContext>>();
 
                 var form = await ctx.Context.FindAsync<Form>(formid.Value);
 
@@ -404,11 +405,11 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
             {
 
                 var sp = scope.ServiceProvider;
-                var ctx = sp.GetRequiredService<DotNetDevOps.Extensions.EAVFramework.Endpoints.EAVDBContext<DynamicContext>>();
+                var ctx = sp.GetRequiredService<EAVFramework.Endpoints.EAVDBContext<DynamicContext>>();
                  
-                var publisher = sp.GetRequiredService<PublishDynamicManifestAction<DynamicContext, DynamicManifestContext<Form, Document>, DynamicManifestContextFeature<DynamicManifestContext<Form, Document>, Form, Document>, Form, Document>>();
+                var publisher = sp.GetRequiredService<PublishDynamicManifestAction<DynamicContext, DynamicManifestContext<DynamicContext,Form, Document>, DynamicManifestContextFeature<DynamicContext,DynamicManifestContext<DynamicContext,Form, Document>, Form, Document>, Form, Document>>();
 
-                await publisher.PublishAsync(formid.Value, null);
+                await publisher.PublishAsync(formid.Value, null,false);
 
             }
         }
@@ -419,7 +420,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
             using (var scope = rootServiceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var sp = scope.ServiceProvider;
-                var ctx = sp.GetRequiredService<DotNetDevOps.Extensions.EAVFramework.Endpoints.EAVDBContext<DynamicContext>>();
+                var ctx = sp.GetRequiredService<EAVFramework.Endpoints.EAVDBContext<DynamicContext>>();
 
 
                 ctx.Context.Add(form);

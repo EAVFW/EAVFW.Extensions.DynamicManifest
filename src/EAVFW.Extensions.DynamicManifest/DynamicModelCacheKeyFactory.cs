@@ -37,9 +37,10 @@ using WorkflowEngine.Core;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
-    public class DynamicModelCacheKeyFactory<TDynamicContext,TDynamicManifestContextFeature, TModel, TDocument> : IModelCacheKeyFactory
-        where TDynamicManifestContextFeature : IExtendedFormContextFeature<TModel>
-        where TDynamicContext : DynamicManifestContext<TModel, TDocument>
+    public class DynamicModelCacheKeyFactory<TStaticContext,TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument> : IModelCacheKeyFactory
+        where TDynamicManifestContextFeature : IExtendedFormContextFeature<TStaticContext,TModel>
+        where TStaticContext : DynamicContext
+        where TDynamicContext : DynamicManifestContext<TStaticContext,TModel, TDocument>
         where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
     {
