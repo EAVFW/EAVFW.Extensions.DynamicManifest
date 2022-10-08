@@ -87,7 +87,7 @@ namespace EAVFW.Extensions.DynamicManifest
                             ["recordId"] = "@triggerBody()?['recordId']",
                             ["dynamicManifestEntityCollectionSchemaName"] = typeof(TModel).GetCustomAttribute<EntityAttribute>().CollectionSchemaName,
                             ["documentEntityCollectionSchemaName"] = typeof(TDocument).GetCustomAttribute<EntityAttribute>().CollectionSchemaName,
-                            ["enrichManifest"] = "@triggerBody()?['enrichManifest']",
+                            ["enrichManifest"] = "@triggerBody()?['data']?['enrichManifest']",
                         }
                     },
 
