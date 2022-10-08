@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using WorkflowEngine;
 using WorkflowEngine.Core;
+using EAVFW.Extensions.Manifest.SDK;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -188,7 +189,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<TDynamicManifestContextFeature>();
             services.AddScoped<IExtendedFormContextFeature<TStaticContext, TModel>>(sp => sp.GetService<TDynamicManifestContextFeature>());
             services.AddScoped<IFormContextFeature<TDynamicContext>>(sp => sp.GetService<TDynamicManifestContextFeature>());
-
+          
+            services.AddManifestEnricher();
             services
                 .TryAddSingleton<IDynamicManifestContextOptionFactory<TStaticContext, TDynamicContext, TModel, TDocument>,
                     DefaultDynamicManifestContextOptionFactory<TStaticContext, TDynamicContext, TModel, TDocument>>();
@@ -207,7 +209,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 optionsBuilder.EnableSensitiveDataLogging();
                 optionsBuilder.EnableDetailedErrors();
                 optionsBuilder.ReplaceService<IMigrationsAssembly, DbSchemaAwareMigrationAssembly>();
-                optionsBuilder.ReplaceService<IModelCacheKeyFactory, DynamicModelCacheKeyFactory< TStaticContext, TDynamicContext,TDynamicManifestContextFeature, TModel, TDocument>>();
+                optionsBuilder.ReplaceService<IModelCacheKeyFactory, DynamicContextModelCacheKeyFactory>();
 
 
 

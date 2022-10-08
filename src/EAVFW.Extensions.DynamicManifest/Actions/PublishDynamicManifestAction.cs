@@ -50,11 +50,11 @@ namespace EAVFW.Extensions.DynamicManifest
             var (feat, context) = await _serviceProvider.GetDynamicManifestContext<TStaticContext,TDynamicContext,TDynamicManifestContextFeature,TModel, TDocument>(id, true);
 
             var manifest = enrich ?
-                JToken.Parse((await _serviceProvider.GetRequiredService<IManifestEnricher>().LoadJsonDocumentAsync(feat.Manifest, "", _logger)).ToString())
+                JToken.Parse((await _serviceProvider.GetRequiredService<IManifestEnricher>().LoadJsonDocumentAsync(feat.Manifest, "", _logger)).RootElement.ToString())
                 : feat.Manifest;
 
 
-            var latest_version = feat.Manifests.Skip(1).FirstOrDefault();  //await _database.Set<TDocument>().Where(d => d.Path.StartsWith($"/{feat.EntityId}/manifests/manifest."))
+            var latest_version = feat.Manifests.FirstOrDefault();  //await _database.Set<TDocument>().Where(d => d.Path.StartsWith($"/{feat.EntityId}/manifests/manifest."))
                // .OrderByDescending(c => c.CreatedOn).FirstOrDefaultAsync();
 
             if (latest_version != null)
@@ -70,10 +70,7 @@ namespace EAVFW.Extensions.DynamicManifest
                 }
             }
 
-
-            var migrator = context.Context.Database.GetInfrastructure().GetRequiredService<IMigrator>();
-            var sqlscript = migrator.GenerateScript(options: MigrationsSqlGenerationOptions.Idempotent);
-
+               
             using var conn = context.Context.Database.GetDbConnection();
             await conn.OpenAsync();
 
@@ -95,20 +92,26 @@ namespace EAVFW.Extensions.DynamicManifest
                 //Swallow for none existing 
             }
 
-            foreach (var sql in sqlscript.Split("GO"))
-            {
-                using var cmd = conn.CreateCommand();
-                cmd.CommandText = sql;
-                //  await context.Context.Database.ExecuteSqlRawAsync(sql);
 
+            feat.AddNewManifest(manifest);
+            context.ResetMigrationsContext();
+            await context.MigrateAsync();
 
-                var r = await cmd.ExecuteNonQueryAsync();
-            }
-
-            // await context.MigrateAsync();
-
-          
+            var migrator = context.Context.Database.GetInfrastructure().GetRequiredService<IMigrator>();
+            var sqlscript = migrator.GenerateScript(options: MigrationsSqlGenerationOptions.Idempotent);
+             
             var version = feat.Version;
+
+            var sqldoc = new TDocument
+            {
+                Name = $"manifest.{version.ToString()}.sql",
+                Path = $"/{feat.EntityId}/manifests/migration.{version.ToString()}.sql",
+                Container = "manifests",
+                Compressed = true,
+                ContentType = "application/json",
+            };
+            await sqldoc.SaveTextAsync(sqlscript);
+            _database.Set<TDocument>().Add(sqldoc);
 
             var doc = new TDocument
             {

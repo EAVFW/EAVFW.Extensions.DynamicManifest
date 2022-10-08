@@ -22,12 +22,14 @@ using System.Data.SqlClient;
 using System.Security.Claims;
 using ExpressionEngine;
 using EAVFramework.Endpoints;
+using EAVFW.Extensions.Manifest.SDK;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace EAVFW.Extensions.DynamicManifest.UnitTests
 {
     [Serializable()]
     [Entity(LogicalName = "document", SchemaName = "Document", CollectionSchemaName = "Documents", IsBaseClass = false)]
-    [EntityDTO(LogicalName = "document", Schema = "KFST")]
+    [EntityDTO(LogicalName = "document", Schema = "dbo")]
     public partial class Document : BaseOwnerEntity<Identity>, IDocumentEntity, IAuditFields
     {
         public Document()
@@ -81,7 +83,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
 
     [Serializable()]
     [Entity(LogicalName = "identity", SchemaName = "Identity", CollectionSchemaName = "Identities", IsBaseClass = true)]
-    [EntityDTO(LogicalName = "identity", Schema = "KFST")]
+    [EntityDTO(LogicalName = "identity", Schema = "dbo")]
     public partial class Identity : BaseOwnerEntity<Identity>, IAuditFields, IIdentity
     {
         public Identity()
@@ -147,7 +149,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
 
     [Serializable()]
     [Entity(LogicalName = "form", SchemaName = "Form", CollectionSchemaName = "Forms", IsBaseClass = false)]
-    [EntityDTO(LogicalName = "form", Schema = "KFST")]
+    [EntityDTO(LogicalName = "form", Schema = "dbo")]
     public partial class Form : BaseOwnerEntity<Identity>, IDynamicManifestEntity<Document>, IAuditFields
     {
         public Form()
@@ -212,6 +214,36 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
     [TestClass]
     public class UnitTest1
     {
+        private static async Task ExecuteCommand(SqlConnection connection, string cmd)
+        {
+            try
+            {
+
+
+                var command = new SqlCommand(cmd, connection);
+
+
+                SqlDataReader reader = await command.ExecuteReaderAsync();
+                try
+                {
+                    while (reader.Read())
+                    {
+
+
+                    }
+                }
+                finally
+                {
+                    // Always call Close when done reading.
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
 
         public async Task<(IServiceProvider, Guid, ClaimsPrincipal)> Setup()
         {
@@ -245,7 +277,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
                 {
                    JToken.Parse(System.IO.File.ReadAllText("specs/dynamicmodelmanifest.json"))
                 };
-                o.PublisherPrefix = "KFST";
+                o.PublisherPrefix = "dbo";
 
                 o.EnableDynamicMigrations = true;
                 o.Namespace = "DummyNamespace";
@@ -257,13 +289,13 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
             services.AddDbContext<DynamicContext>((sp, optionsBuilder) =>
             {
 
-                optionsBuilder.UseSqlServer("Name=ApplicationDB", x => x.MigrationsHistoryTable("__MigrationsHistory", "KFST"));
+                optionsBuilder.UseSqlServer("Name=ApplicationDB", x => x.MigrationsHistoryTable("__MigrationsHistory", "dbo"));
                 optionsBuilder.EnableSensitiveDataLogging();
                 optionsBuilder.EnableDetailedErrors();
 
                 optionsBuilder.ReplaceService<IMigrationsAssembly, DbSchemaAwareMigrationAssembly>();
 
-
+                optionsBuilder.ReplaceService<IModelCacheKeyFactory, DynamicContextModelCacheKeyFactory>();
             });
             services.AddDynamicManifest<Form, Document>();
 
@@ -271,42 +303,21 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
 
             using (var scope = rootServiceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                try
+
+
+                using (SqlConnection connection =
+                    new SqlConnection(configuration.GetConnectionString("ApplicationDBMaster")))
                 {
 
-                    using (SqlConnection connection =
-                        new SqlConnection(configuration.GetConnectionString("ApplicationDBMaster")))
-                    {
+                    connection.Open();
 
+                    await ExecuteCommand(connection, "DROP DATABASE [DynManifest]");
 
-
-                        var command = new SqlCommand("DROP DATABASE [DynManifest]", connection);
-
-                        connection.Open();
-                        SqlDataReader reader = await command.ExecuteReaderAsync();
-                        try
-                        {
-                            while (reader.Read())
-                            {
-
-
-                            }
-                        }
-                        finally
-                        {
-                            // Always call Close when done reading.
-                            reader.Close();
-                        }
-
-                    }
-
-
+                    await ExecuteCommand(connection, "CREATE DATABASE [DynManifest];ALTER DATABASE [DynManifest] SET RECOVERY SIMPLE;");
 
                 }
-                catch (Exception ex)
-                {
 
-                }
+
 
             }
 
@@ -319,12 +330,18 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
             {
                 var sp = scope.ServiceProvider;
                 var ctx = sp.GetRequiredService<EAVFramework.Endpoints.EAVDBContext<DynamicContext>>();
-
-                var migrator = ctx.Context.Database.GetInfrastructure().GetRequiredService<IMigrator>();
-                var sql = migrator.GenerateScript(options: MigrationsSqlGenerationOptions.Idempotent);
-
+                 
                 await ctx.MigrateAsync();
 
+               
+            }
+
+            using (var scope = rootServiceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var sp = scope.ServiceProvider;
+                var ctx = sp.GetRequiredService<EAVFramework.Endpoints.EAVDBContext<DynamicContext>>();
+
+                
                 ctx.Context.Add(new Identity
                 {
                     Id = principalId,
@@ -333,12 +350,46 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
 
                 });
                 await ctx.SaveChangesAsync(prinpal);
+
             }
 
+
+           
 
             return (rootServiceProvider, principalId, prinpal);
         }
 
+        [TestMethod]
+        [DeploymentItem(@"specs/manifest.cdm.json")]
+        public async Task TestCMDFile()
+        {
+            var (rootServiceProvider, principalId, prinpal) = await Setup();
+
+
+            var test = JToken.Parse(File.ReadAllText("specs/manifest.cdm.json"));
+            var enrich = rootServiceProvider.GetService<IManifestEnricher>();
+
+            var a = await enrich.LoadJsonDocumentAsync(test,"",NullLogger.Instance);
+            var b = a.ToString();
+
+            Guid? formid = await CreateFormAsync(rootServiceProvider, prinpal, new Form
+            {
+                Schema = "BK-001",
+                Name = "Test Form",
+
+                Manifest = new Document
+                {
+                    Name = "manifest.json",
+                    Container = "manifests",
+                    Compressed = false,
+                    Data = File.ReadAllBytes("specs/manifest.cdm.json")
+                }
+            });
+
+            await PublishAsync(rootServiceProvider, formid,true);
+
+        }
+           
         [TestMethod]
         [DeploymentItem(@"specs/dynamicmodelmanifest.sql")]
         [DeploymentItem(@"specs/dyn_form_manifest_1_0_0.json")]
@@ -399,7 +450,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
             }
         }
 
-        private static async Task PublishAsync(IServiceProvider rootServiceProvider, Guid? formid)
+        private static async Task PublishAsync(IServiceProvider rootServiceProvider, Guid? formid,bool enrich=false)
         {
             using (var scope = rootServiceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
@@ -409,7 +460,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
                  
                 var publisher = sp.GetRequiredService<PublishDynamicManifestAction<DynamicContext, DynamicManifestContext<DynamicContext,Form, Document>, DynamicManifestContextFeature<DynamicContext,DynamicManifestContext<DynamicContext,Form, Document>, Form, Document>, Form, Document>>();
 
-                await publisher.PublishAsync(formid.Value, null,false);
+                await publisher.PublishAsync(formid.Value, null, enrich);
 
             }
         }

@@ -14,7 +14,7 @@ namespace EAVFW.Extensions.DynamicManifest
     {
 
         private readonly IExtendedFormContextFeature<TStaticContext,TModel> _feature;
-        public string ModelCacheKey => _feature.EntityId.ToString() + _feature.SchemaName;
+      //  public string ModelCacheKey => _feature.EntityId.ToString() + _feature.SchemaName;
 
         public DynamicManifestContext(
             DbContextOptions<DynamicManifestContext<TStaticContext,TModel, TDocument>> options,
@@ -23,7 +23,7 @@ namespace EAVFW.Extensions.DynamicManifest
             : base(options, feature.CreateOptions(), feature.CreateMigrationManager(), logger)
         {
             _feature = feature;
-
+            ModelCacheKey = _feature.EntityId.ToString() + _feature.SchemaName +_feature.Version.ToString();
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
@@ -34,7 +34,7 @@ namespace EAVFW.Extensions.DynamicManifest
           : base(options, feature.CreateOptions(), feature.CreateMigrationManager(), logger)
         {
             _feature = feature;
-
+            ModelCacheKey = _feature.EntityId.ToString() + _feature.SchemaName + _feature.Version.ToString();
             ChangeTracker.LazyLoadingEnabled = false;
         }
 

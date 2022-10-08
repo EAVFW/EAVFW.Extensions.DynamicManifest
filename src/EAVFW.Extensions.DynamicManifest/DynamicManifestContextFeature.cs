@@ -60,6 +60,7 @@ namespace EAVFW.Extensions.DynamicManifest
         IOptions<DynamicContextOptions> CreateOptions();
         IMigrationManager CreateMigrationManager();
         Guid EntityId { get; }
+        SemVersion Version { get;}
         string SchemaName { get; }
         string ConnectionString { get; }
         Task LoadAsync(EAVDBContext<TStaticContext> database, Guid entityid, bool loadAllVersions = false);
@@ -179,9 +180,19 @@ namespace EAVFW.Extensions.DynamicManifest
                     }
                     Manifests = manifests.ToArray();
 
-                    Manifests = new[]
-                          { Manifest
-                        }.Concat(Manifests).ToArray();
+                    if (!Manifests.Any())
+                    {
+                        Manifests = new[]
+                        {
+                           
+                           JToken.FromObject(new {entities = new { }, version = "0.0.0" }),
+                         
+                        };
+                    }
+
+                    //Manifests = new[]
+                    //      { Manifest
+                    //    }.Concat(Manifests).ToArray();
                 }
                 catch (Exception ex)
                 {
@@ -191,7 +202,7 @@ namespace EAVFW.Extensions.DynamicManifest
             else
             {
 
-                var latest = await _memoryCache.GetOrCreateAsync($"{entityid}{record.GetVersion()}", async cachekey =>
+                var latest = await _memoryCache.GetOrCreateAsync($"{entityid}{document.GetVersion()}", async cachekey =>
                 {
                     cachekey.SetSize(1);
 
@@ -235,6 +246,11 @@ namespace EAVFW.Extensions.DynamicManifest
         public ValueTask<JToken> GetManifestAsync()
         {
             return new ValueTask<JToken>(Manifest);
+        }
+
+        internal void AddNewManifest(JToken manifest)
+        {
+            Manifests = new[] { manifest }.Concat(Manifests).ToArray();
         }
     }
 }
