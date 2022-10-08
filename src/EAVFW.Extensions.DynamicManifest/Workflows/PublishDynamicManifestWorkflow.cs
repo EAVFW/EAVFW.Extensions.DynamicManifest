@@ -10,12 +10,12 @@ using WorkflowEngine.Core;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
-    public class PublishDynamicManifestWorkflow<TStaticContext, TDynamicContext, TDynamicManifestContextFeature,TModel, TDocument> : Workflow
+    public class PublishDynamicManifestWorkflow<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument> : Workflow
         where TStaticContext : DynamicContext
         where TDynamicManifestContextFeature : DynamicManifestContextFeature<TStaticContext, TDynamicContext, TModel, TDocument>
-        where TDynamicContext : DynamicManifestContext<TStaticContext,TModel, TDocument>
+        where TDynamicContext : DynamicManifestContext<TStaticContext, TModel, TDocument>
         where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>, IAuditFields
-        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields,new()
+        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields, new()
     {
         public static Guid CalculateId()
         {
@@ -55,12 +55,18 @@ namespace EAVFW.Extensions.DynamicManifest
                                         type="string",
                                         description= "Please pick your entity type",
                                     },
-                                    ["enrichManifest"] = new
-                                    {
-                                        title="Should run manifest enrichment",
-                                        type="boolean",
-                                        description= "Should run manifest enrichment",
-                                        @default = false
+                                    ["data"] =new{
+                                        type = "object",
+                                        properties = new Dictionary<string,object>
+                                        {
+                                            ["enrichManifest"] = new
+                                            {
+                                                title="Should run manifest enrichment",
+                                                type="boolean",
+                                                description= "Should run manifest enrichment",
+                                                @default = false
+                                            }
+                                        }
                                     }
                                 }
                             }
