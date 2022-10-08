@@ -1,0 +1,450 @@
+{
+	"version": "1.0.0",
+	"entities": {
+		"Identity": {
+			"pluralName": "Identities",
+			"external": true,
+			"schema": "KFST",
+			"attributes": {
+				"Name": {
+					"isPrimaryField": true,
+					"displayName": "Name",
+					"schemaName": "Name",
+					"logicalName": "name",
+					"type": {
+						"type": "string"
+					},
+					"locale": {
+						"1030": {
+							"displayName": "Navn"
+						}
+					}
+				},
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id",
+					"locale": {
+						"1030": {
+							"displayName": "Id"
+						}
+					}
+				},
+				"Modified On": {
+					"locale": {
+						"1030": {
+							"displayName": "Ændret"
+						},
+						"1033": {
+							"displayName": "Modified On"
+						}
+					},
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Modified On",
+					"schemaName": "ModifiedOn",
+					"logicalName": "modifiedon"
+				},
+				"Created On": {
+					"locale": {
+						"1030": {
+							"displayName": "Oprettet"
+						},
+						"1033": {
+							"displayName": "Created On"
+						}
+					},
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Created On",
+					"schemaName": "CreatedOn",
+					"logicalName": "createdon"
+				},
+				"Owner": {
+					"locale": {
+						"1030": {
+							"displayName": "Ejer"
+						},
+						"1033": {
+							"displayName": "Owner"
+						}
+					},
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "owner"
+						}
+					},
+					"displayName": "Owner",
+					"schemaName": "OwnerId",
+					"logicalName": "ownerid"
+				},
+				"Modified By": {
+					"locale": {
+						"1030": {
+							"displayName": "Ændret af"
+						},
+						"1033": {
+							"displayName": "Modified By"
+						}
+					},
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "modifiedby"
+						}
+					},
+					"displayName": "Modified By",
+					"schemaName": "ModifiedById",
+					"logicalName": "modifiedbyid"
+				},
+				"Created By": {
+					"locale": {
+						"1030": {
+							"displayName": "Oprettet af"
+						},
+						"1033": {
+							"displayName": "Created By"
+						}
+					},
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "createdby"
+						}
+					},
+					"displayName": "Created By",
+					"schemaName": "CreatedById",
+					"logicalName": "createdbyid"
+				},
+				"Row Version": {
+					"type": {
+						"type": "binary"
+					},
+					"isRowVersion": true,
+					"displayName": "Row Version",
+					"schemaName": "RowVersion",
+					"logicalName": "rowversion",
+					"locale": {
+						"1033": {
+							"displayName": "Row Version"
+						}
+					}
+				}
+			},
+			"displayName": "Identity",
+			"schemaName": "Identity",
+			"logicalName": "identity",
+			"collectionSchemaName": "Identities",
+			"locale": {
+				"1030": {
+					"displayName": "Identitet",
+					"pluralName": "Identiteter"
+				}
+			}
+		},
+		"Form Submission": {
+			"pluralName": "Form Submissions",
+			"logicalName": "formsubmission",
+			"schemaName": "FormSubmission",
+			"collectionSchemaName": "FormSubmissions",
+			"readonly": true,
+			"attributes": {
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"readonly": true,
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id"
+				},
+				"Name": {
+					"displayName": "Name",
+					"schemaName": "Name",
+					"logicalName": "name",
+					"type": {
+						"type": "string",
+						"options": null
+					},
+					"validation": {},
+					"locale": {
+						"1030": {
+							"displayName": "Navn"
+						}
+					},
+					"x-purpose": "DataControlField"
+				}
+			}
+		},
+		"Document": {
+			"external": true,
+			"schema": "KFST",
+			"pluralName": "Documents",
+			"locale": {
+				"1030": {
+					"pluralName": "Dokumenter",
+					"displayName": "Dokument"
+				},
+				"1033": {
+					"displayName": "Document",
+					"pluralName": "Documents"
+				}
+			},
+			"sitemap": {
+				"app": "Vanddata",
+				"area": "Administration",
+				"group": "Administration"
+			},
+			"attributes": {
+				"Name": {
+					"isPrimaryField": true,
+					"locale": {
+						"1030": {
+							"displayName": "Navn"
+						},
+						"1033": {
+							"displayName": "Name"
+						}
+					},
+					"displayName": "Name",
+					"schemaName": "Name",
+					"logicalName": "name",
+					"type": {
+						"type": "string"
+					}
+				},
+				"Size": {
+					"type": {
+						"type": "integer"
+					},
+					"displayName": "Size",
+					"schemaName": "Size",
+					"logicalName": "size",
+					"locale": {
+						"1033": {
+							"displayName": "Size"
+						}
+					}
+				},
+				"Container": {
+					"type": {
+						"type": "Text",
+						"maxLength": 100
+					},
+					"displayName": "Container",
+					"schemaName": "Container",
+					"logicalName": "container",
+					"locale": {
+						"1033": {
+							"displayName": "Container"
+						}
+					}
+				},
+				"Path": {
+					"type": {
+						"type": "Text",
+						"maxLength": 512
+					},
+					"displayName": "Path",
+					"schemaName": "Path",
+					"logicalName": "path",
+					"locale": {
+						"1033": {
+							"displayName": "Path"
+						}
+					}
+				},
+				"ContentType": {
+					"type": {
+						"type": "Text"
+					},
+					"displayName": "ContentType",
+					"schemaName": "ContentType",
+					"logicalName": "contenttype",
+					"locale": {
+						"1033": {
+							"displayName": "ContentType"
+						}
+					}
+				},
+				"Data": {
+					"type": {
+						"type": "binary",
+						"format": "File"
+					},
+					"displayName": "Data",
+					"schemaName": "Data",
+					"logicalName": "data",
+					"locale": {
+						"1033": {
+							"displayName": "Data"
+						}
+					}
+				},
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id",
+					"locale": {
+						"1033": {
+							"displayName": "Id"
+						}
+					}
+				},
+				"Modified On": {
+					"locale": {
+						"1030": {
+							"displayName": "Ændret"
+						},
+						"1033": {
+							"displayName": "Modified On"
+						}
+					},
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Modified On",
+					"schemaName": "ModifiedOn",
+					"logicalName": "modifiedon"
+				},
+				"Created On": {
+					"locale": {
+						"1030": {
+							"displayName": "Oprettet"
+						},
+						"1033": {
+							"displayName": "Created On"
+						}
+					},
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Created On",
+					"schemaName": "CreatedOn",
+					"logicalName": "createdon"
+				},
+				"Owner": {
+					"locale": {
+						"1030": {
+							"displayName": "Ejer"
+						},
+						"1033": {
+							"displayName": "Owner"
+						}
+					},
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "owner"
+						}
+					},
+					"displayName": "Owner",
+					"schemaName": "OwnerId",
+					"logicalName": "ownerid"
+				},
+				"Modified By": {
+					"locale": {
+						"1030": {
+							"displayName": "Ændret af"
+						},
+						"1033": {
+							"displayName": "Modified By"
+						}
+					},
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "modifiedby"
+						}
+					},
+					"displayName": "Modified By",
+					"schemaName": "ModifiedById",
+					"logicalName": "modifiedbyid"
+				},
+				"Created By": {
+					"locale": {
+						"1030": {
+							"displayName": "Oprettet af"
+						},
+						"1033": {
+							"displayName": "Created By"
+						}
+					},
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "createdby"
+						}
+					},
+					"displayName": "Created By",
+					"schemaName": "CreatedById",
+					"logicalName": "createdbyid"
+				},
+				"Row Version": {
+					"type": {
+						"type": "binary"
+					},
+					"isRowVersion": true,
+					"displayName": "Row Version",
+					"schemaName": "RowVersion",
+					"logicalName": "rowversion",
+					"locale": {
+						"1033": {
+							"displayName": "Row Version"
+						}
+					}
+				}
+			},
+			"displayName": "Document",
+			"schemaName": "Document",
+			"logicalName": "document",
+			"collectionSchemaName": "Documents"
+		}
+	}
+}

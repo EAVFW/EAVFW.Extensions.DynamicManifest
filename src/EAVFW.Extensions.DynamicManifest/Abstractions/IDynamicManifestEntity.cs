@@ -14,5 +14,6 @@ namespace EAVFW.Extensions.DynamicManifest
         public T Manifest { get; set; }
 
         public DateTime? CreatedOn { get; set; }
+        public byte[] RowVersion { get; set; }
     }
 }
