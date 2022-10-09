@@ -123,9 +123,8 @@ namespace EAVFW.Extensions.DynamicManifest
             if (runscript)
             {
 
-                try
-                {
-                    ///Fix old
+                
+                ///Fix old
                     {
                         var entry = await _database.FindAsync<TModel>(id);
 
@@ -182,11 +181,6 @@ namespace EAVFW.Extensions.DynamicManifest
                             if (conn.State != System.Data.ConnectionState.Open)
                                 await conn.OpenAsync();
 
-
-
-
-                            var r = await cmd.ExecuteNonQueryAsync();
-
                             var sqlinit = new TDocument
                             {
                                 Name = $"manifest.{version.ToString()}.sql",
@@ -198,14 +192,15 @@ namespace EAVFW.Extensions.DynamicManifest
                             await sqlinit.SaveTextAsync(sqlscript);
                             _database.Set<TDocument>().Add(sqlinit);
 
+
+                            var r = await cmd.ExecuteNonQueryAsync();
+
+                            
+
                         }
 
                     }
-                }
-                catch (Exception ex)
-                {
-                    //Swallow for none existing 
-                }
+               
 
 
             }
