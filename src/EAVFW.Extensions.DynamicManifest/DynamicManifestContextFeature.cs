@@ -116,9 +116,9 @@ namespace EAVFW.Extensions.DynamicManifest
             _memoryCache = memoryCache;
             _dynamicManifestContextOptionFactory = dynamicManifestContextOptionFactory;
         }
-        public virtual void OnDataLoaded(TModel data)
+        public virtual Task OnDataLoadedAsync(EAVDBContext<TStaticContext> database, Guid entityid,TModel data)
         {
-
+            return Task.CompletedTask;
         }
         public virtual async Task LoadAsync(EAVDBContext<TStaticContext> database, Guid entityid, bool loadAllVersions = false)
         {
@@ -217,7 +217,7 @@ namespace EAVFW.Extensions.DynamicManifest
                 Manifests = new[] { await latest.LoadJsonAsync() };
             }
 
-            OnDataLoaded(record);
+            await OnDataLoadedAsync(database, entityid, record);
 
         }
         public IOptions<DynamicContextOptions> CreateOptions()
