@@ -269,7 +269,8 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
             services.AddLogging();
             services.AddManifestSDK<DataClientParameterGenerator>();
 
-            services.AddSingleton<IMigrationManager, MigrationManager>();
+            services.AddCodeServices();
+
             services.AddEAVFramework<DynamicContext>()
                 .AddDocumentPlugins<DynamicContext, Document>()
                 .WithAuditFieldsPlugins<DynamicContext, Identity>();
@@ -282,7 +283,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
                 {
                    JToken.Parse(System.IO.File.ReadAllText("specs/dynamicmodelmanifest.json"))
                 };
-                o.PublisherPrefix = "dbo";
+                o.Schema = "dbo";
 
                 o.EnableDynamicMigrations = true;
                 o.Namespace = "DummyNamespace";

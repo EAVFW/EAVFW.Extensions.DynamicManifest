@@ -1,5 +1,6 @@
 ﻿using EAVFramework;
 using EAVFramework.Endpoints;
+using EAVFramework.Shared.V2;
 using EAVFramework.Validation;
 using EAVFW.Extensions.Documents;
 using EAVFW.Extensions.SecurityModel;
@@ -41,14 +42,12 @@ namespace EAVFW.Extensions.DynamicManifest
                 return new DynamicContextOptions
                 {
                     Manifests = feature.Manifests,
-                    PublisherPrefix = feature.SchemaName,
+                    Schema = feature.SchemaName,
                     EnableDynamicMigrations = true,
                     Namespace = $"EAVFW.Extensions.DynamicManifest.{feature.SchemaName?.Replace("-", "_")}.Model",
-                    UseOnlyExpliciteExternalDTOClases = true,
-                    DTOAssembly = typeof(TModel).Assembly,
-                    DTOBaseClasses = new[] { typeof(BaseOwnerEntity<>), typeof(BaseIdEntity<>) },
+                   // UseOnlyExpliciteExternalDTOClases = true,                   
                     DisabledPlugins = new[] { typeof(RequiredPlugin) },
-                    DTOBaseInterfaces = new[] {typeof(IAuditFields),typeof(IHasAdminEmail) } 
+                
                    
                 };
             }
@@ -106,14 +105,16 @@ namespace EAVFW.Extensions.DynamicManifest
         private readonly ILogger<DynamicManifestContextFeature<TStaticContext, TDynamicContext, TModel, TDocument>> _logger;
         private readonly ILoggerFactory _loggerFactory;
         private readonly IMemoryCache _memoryCache;
+        private readonly IDynamicCodeServiceFactory _dynamicCodeServiceFactory;
         private readonly IDynamicManifestContextOptionFactory<TStaticContext, TDynamicContext, TModel, TDocument> _dynamicManifestContextOptionFactory;
 
-        public DynamicManifestContextFeature(ILoggerFactory loggerFactory, IMemoryCache memoryCache,
+        public DynamicManifestContextFeature(ILoggerFactory loggerFactory, IMemoryCache memoryCache, IDynamicCodeServiceFactory dynamicCodeServiceFactory,
             IDynamicManifestContextOptionFactory<TStaticContext, TDynamicContext, TModel, TDocument> dynamicManifestContextOptionFactory)
         {
             _logger = loggerFactory.CreateLogger<DynamicManifestContextFeature<TStaticContext, TDynamicContext, TModel, TDocument>>();
             _loggerFactory = loggerFactory;
             _memoryCache = memoryCache;
+            _dynamicCodeServiceFactory = dynamicCodeServiceFactory;
             _dynamicManifestContextOptionFactory = dynamicManifestContextOptionFactory;
         }
         public virtual Task OnDataLoadedAsync(EAVDBContext<TStaticContext> database, Guid entityid,TModel data)
@@ -238,10 +239,14 @@ namespace EAVFW.Extensions.DynamicManifest
                 return new MigrationManager(_loggerFactory.CreateLogger<MigrationManager>(),
                     Options.Create(new MigrationManagerOptions
                     {
+                        
                         SkipValidateSchemaNameForRemoteTypes = false,
-                        RequiredSupport = false,
-                       
-                    }));
+                        RequiredSupport = false, 
+                        Schema = SchemaName,
+                        DTOBaseInterfaces = new[] { typeof(IAuditFields), typeof(IHasAdminEmail) },
+                         DTOAssembly = typeof(TModel).Assembly,
+                        DTOBaseClasses = new[] { typeof(BaseOwnerEntity<>), typeof(BaseIdEntity<>) },
+                    }),_dynamicCodeServiceFactory);
             });
         }
 
