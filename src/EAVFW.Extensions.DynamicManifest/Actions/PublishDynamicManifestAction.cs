@@ -151,13 +151,13 @@ namespace EAVFW.Extensions.DynamicManifest
 
                             using (MD5 md5 = MD5.Create())
                             {
-                                byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(feat.SchemaName+ adminemailRecord.AdminEmail.ToLower()));
-                                Guid result = new Guid(hash);
+                              //  byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(feat.SchemaName+ entry.Id.ToString().ToLower()));
+                              //  Guid result = new Guid(hash);
 
 
                                 var userGuid = cmd.CreateParameter();
                                 userGuid.ParameterName = "@UserGuid";
-                                userGuid.Value = result;
+                                userGuid.Value = entry.Id;
                                 cmd.Parameters.Add(userGuid);
 
 
