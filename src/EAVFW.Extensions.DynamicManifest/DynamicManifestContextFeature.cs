@@ -45,10 +45,12 @@ namespace EAVFW.Extensions.DynamicManifest
                     Schema = feature.SchemaName,
                     EnableDynamicMigrations = true,
                     Namespace = $"EAVFW.Extensions.DynamicManifest.{feature.SchemaName?.Replace("-", "_")}.Model",
-                   // UseOnlyExpliciteExternalDTOClases = true,                   
+                  //  UseOnlyExpliciteExternalDTOClases = true,
+                    DTOAssembly = typeof(TModel).Assembly,
+                    DTOBaseClasses = new[] { typeof(BaseOwnerEntity<>), typeof(BaseIdEntity<>) },
                     DisabledPlugins = new[] { typeof(RequiredPlugin) },
-                
-                   
+                    DTOBaseInterfaces = new[] { typeof(IAuditFields), typeof(IHasAdminEmail) }
+
                 };
             }
         }
