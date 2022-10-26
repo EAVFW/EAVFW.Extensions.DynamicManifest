@@ -234,19 +234,20 @@ namespace EAVFW.Extensions.DynamicManifest
             return _managers.GetOrAdd(EntityId.ToString() + SchemaName, (entry) =>
             {
 
+                var o = _dynamicManifestContextOptionFactory.CreateOptions(this);
                 //entry.Size = 1;
                 // entry.(TimeSpan.FromHours(1));
                 return new MigrationManager(_loggerFactory.CreateLogger<MigrationManager>(),
                     Options.Create(new MigrationManagerOptions
                     {
-                        
+                        Namespace = o.Namespace,
                         SkipValidateSchemaNameForRemoteTypes = false,
-                        RequiredSupport = false, 
+                        RequiredSupport = o.RequiredSupport,// false,
                         Schema = SchemaName,
-                        DTOBaseInterfaces = new[] { typeof(IAuditFields), typeof(IHasAdminEmail) },
-                         DTOAssembly = typeof(TModel).Assembly,
-                        DTOBaseClasses = new[] { typeof(BaseOwnerEntity<>), typeof(BaseIdEntity<>) },
-                    }),_dynamicCodeServiceFactory);
+                        DTOBaseInterfaces = o.DTOBaseInterfaces,// new[] { typeof(IAuditFields), typeof(IHasAdminEmail) },
+                        DTOAssembly = o.DTOAssembly ?? typeof(TModel).Assembly,
+                        DTOBaseClasses = o.DTOBaseClasses ?? new[] { typeof(BaseOwnerEntity<>), typeof(BaseIdEntity<>) }
+                    }), _dynamicCodeServiceFactory); 
             });
         }
 
