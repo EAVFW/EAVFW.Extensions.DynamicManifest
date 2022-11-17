@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
+		<TargetFrameworks>net6.0</TargetFrameworks>
 
 		<Title>EAVFW.Extensions.DynamicManifest</Title>
 		<Authors>Poul Kjeldager</Authors>
@@ -18,11 +18,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EAVFramework" Version="2.2.0-dev.4" />
 		<PackageReference Include="EAVFW.Extensions.Documents" Version="2.1.0" />
 		<PackageReference Include="EAVFW.Extensions.Manifest.SDK" Version="3.0.0-dev.7" />
 		<PackageReference Include="EAVFW.Extensions.SecurityModel" Version="2.0.2-dev.1" />
-		<PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="2.0.2-dev.1" />
+		<PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="3.0.0-dev.3" />
 		<PackageReference Include="Semver" Version="2.2.0" />
 	</ItemGroup>
 
