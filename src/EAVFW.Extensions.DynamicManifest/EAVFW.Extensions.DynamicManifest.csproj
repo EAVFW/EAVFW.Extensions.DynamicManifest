@@ -8,7 +8,7 @@
 		<Description>Dynamic Manifest Support for runtime models</Description>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/EAVFW/EAVFW.Extensions.DynamicManifest</RepositoryUrl>
-
+    <RemoteEAVFramework>$(UseEAVFromNuget)</RemoteEAVFramework>
 	</PropertyGroup>
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
@@ -18,12 +18,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EAVFramework" Version="2.1.1-dev.4" />
-		<PackageReference Include="EAVFW.Extensions.Documents" Version="2.0.0" />
-		<PackageReference Include="EAVFW.Extensions.Manifest.SDK" Version="3.0.0-dev.3" />
-		<PackageReference Include="EAVFW.Extensions.SecurityModel" Version="2.0.1" />
-		<PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="2.0.1" />
+ 
+		
 		<PackageReference Include="Semver" Version="2.2.0" />
 	</ItemGroup>
+  
+  <ItemGroup Condition="$(RemoteEAVFramework) == 'false'">
+    <ProjectReference Include="$(LocalEAVFrameworkPath)\src\EAVFramework.csproj" />
+    <ProjectReference Include="C:\dev\eavfw\EAVFW.Extensions.Documents\src\EAVFW.Extensions.Documents\EAVFW.Extensions.Documents.csproj" />
+    <ProjectReference Include="C:\dev2\EAVFW.Extensions.SecurityModel\src\EAVFW.Extensions.SecurityModel\EAVFW.Extensions.SecurityModel.csproj" />
+    <ProjectReference Include="C:\dev2\EAVFW.Extensions.Manifest.ManifestEnricherTool\src\EAVFW.Extensions.Manifest.SDK\EAVFW.Extensions.Manifest.SDK.csproj" />
+    <ProjectReference Include="C:\dev\eavfw\EAVFW.Extensions.WorkflowEngine\src\EAVFW.Extensions.WorkflowEngine\EAVFW.Extensions.WorkflowEngine.csproj" />
 
+  </ItemGroup>
+  <ItemGroup Condition="$(RemoteEAVFramework) != 'false'">
+    <PackageReference Include="EAVFramework" Version="2.3.0" />
+    <PackageReference Include="EAVFW.Extensions.Documents" Version="2.0.0" />
+    <PackageReference Include="EAVFW.Extensions.Manifest.SDK" Version="3.0.0-dev.3" />
+    <PackageReference Include="EAVFW.Extensions.SecurityModel" Version="2.0.1" />
+    <PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="2.0.1" />
+    </ItemGroup>
+  
 </Project>
