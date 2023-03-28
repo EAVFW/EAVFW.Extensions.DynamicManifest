@@ -198,6 +198,22 @@
 						}
 					},
 					"x-purpose": "DataControlField"
+				},
+				"Email": {
+					"displayName": "Email",
+					"schemaName": "Email",
+					"logicalName": "email",
+					"type": {
+						"type": "string",
+						"options": null
+					},
+					"validation": {},
+					"locale": {
+						"1030": {
+							"displayName": "Email"
+						}
+					},
+					"x-purpose": "DataControlField"
 				}
 			}
 		},
@@ -303,6 +319,20 @@
 					"locale": {
 						"1033": {
 							"displayName": "Data"
+						}
+					}
+				},
+				"Hash": {
+					"type": {
+						"type": "Text"
+					},
+					"description": "Hash of uncompressed document data",
+					"displayName": "Hash",
+					"schemaName": "Hash",
+					"logicalName": "hash",
+					"locale": {
+						"1033": {
+							"displayName": "Hash"
 						}
 					}
 				},

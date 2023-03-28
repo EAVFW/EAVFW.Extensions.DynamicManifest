@@ -1,0 +1,1536 @@
+{
+	"version": "1.0.2",
+	"entities": {
+		"Migration Entity": {
+			"external": true,
+			"schema": "maas",
+			"pluralName": "Migration Entities",
+			"attributes": {
+				"Source Name": {
+					"type": {
+						"type": "Text"
+					},
+					"description": "Name of source table",
+					"isPrimaryField": true,
+					"displayName": "Source Name",
+					"schemaName": "SourceName",
+					"logicalName": "sourcename",
+					"locale": {
+						"1033": {
+							"displayName": "Source Name"
+						}
+					}
+				}
+			}
+		},
+		"Source AvailibleChecker": {
+			"x-entity-type": "AvailibleChecker",
+			"pluralName": "Source AvailibleCheckers",
+			"attributes": {
+				"DHid": {
+					"isPrimaryField": true,
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true
+				},
+				"Search code": {
+					"type": {
+						"type": "string",
+						"maxLength": 32
+					},
+					"x-includeInMigration": true
+				},
+				"Zipcode": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true
+				},
+				"House nr.": {
+					"type": {
+						"type": "string",
+						"maxLength": 5
+					},
+					"x-includeInMigration": true
+				},
+				"Extension": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true
+				},
+				"Room": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true
+				},
+				"Street": {
+					"type": {
+						"type": "string",
+						"maxLength": 42
+					},
+					"x-includeInMigration": true
+				},
+				"City": {
+					"type": {
+						"type": "string",
+						"maxLength": 26
+					},
+					"x-includeInMigration": true
+				},
+				"Country": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true
+				},
+				"Longitude/Latitude": {
+					"type": {
+						"type": "string",
+						"maxLength": 37
+					},
+					"x-includeInMigration": true
+				},
+				"X": {
+					"type": {
+						"type": "string",
+						"maxLength": 18
+					},
+					"x-includeInMigration": true
+				},
+				"Y": {
+					"type": {
+						"type": "string",
+						"maxLength": 18
+					},
+					"x-includeInMigration": true
+				},
+				"Adres id": {
+					"type": {
+						"type": "string",
+						"maxLength": 7
+					},
+					"x-includeInMigration": true
+				},
+				"Network owner": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true
+				},
+				"Data source": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true
+				},
+				"Created": {
+					"type": {
+						"type": "string",
+						"maxLength": 10
+					},
+					"x-includeInMigration": true
+				},
+				"Updated": {
+					"type": {
+						"type": "string",
+						"maxLength": 10
+					},
+					"x-includeInMigration": true
+				},
+				"Status": {
+					"type": {
+						"type": "string",
+						"maxLength": 10
+					},
+					"x-includeInMigration": true
+				},
+				"Dataset": {
+					"type": {
+						"type": "string",
+						"maxLength": 13
+					},
+					"x-includeInMigration": true
+				},
+				"Projectcode (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 13
+					},
+					"x-includeInMigration": true
+				},
+				"Gebiedsnummer (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 10
+					},
+					"x-includeInMigration": true
+				},
+				"Contractgebied (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 57
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Huurder geregistreerd op POP gekoppeld aan adres (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 44
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Huurder geregistreerd op onderliggende gebied bij adres (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 24
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Beheerder geregistreerd op POP gekoppeld aan adres (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 33
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Beheerder geregistreerd op onderliggende gebied bij adres (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 33
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Huurder geregistreerd op POP gekoppeld aan adres (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Huurder geregistreerd op onderliggende gebied bij adres (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Beheerder geregistreerd op POP gekoppeld aan adres (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 40
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Beheerder geregistreerd op onderliggende gebied bij adres (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 38
+					},
+					"x-includeInMigration": true
+				},
+				"Bouwbestandstatus (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true
+				},
+				"Aansluitstatus (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 15
+					},
+					"x-includeInMigration": true
+				},
+				"Commentaar bij bouwbestandstatus (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 176
+					},
+					"x-includeInMigration": true
+				},
+				"HASdatum (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 22
+					},
+					"x-includeInMigration": true
+				},
+				"FTU Type (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 25
+					},
+					"x-includeInMigration": true
+				},
+				"Adres gebiedscode (G) (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 7
+					},
+					"x-includeInMigration": true
+				},
+				"Adres eenmalige code (E) (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 20
+					},
+					"x-includeInMigration": true
+				},
+				"Adres afkoop code (A) (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 17
+					},
+					"x-includeInMigration": true
+				},
+				"Afgekocht Ja/Nee (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 15
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: POP (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Rij (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Kast (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 8
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Lade (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 11
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Positie (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Apparatuurpoort (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 117
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Ordertype (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Actieve operator (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: OrderId (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 29
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Ordertype gepland (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Actieve operator gepland (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 11
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: OrderId gepland (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 13
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: POP (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Rij (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Kast (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 8
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Lade (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 13
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Positie (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Apparatuurpoort (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 55
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Ordertype (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Actieve operator (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: OrderId (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Ordertype gepland (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Actieve operator gepland (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: OrderId gepland (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true
+				},
+				"Passief aansluitscenario (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 4
+					},
+					"x-includeInMigration": true
+				},
+				"Bouw (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true
+				},
+				"Gebouwtype (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true
+				},
+				"Toestemming FTU (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true
+				},
+				"Niet aangesloten reden code (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true
+				},
+				"Niet aangesloten reden omschrijving (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 28
+					},
+					"x-includeInMigration": true
+				},
+				"AP gebied id (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 4
+					},
+					"x-includeInMigration": true
+				},
+				"AP gebied Pop (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Floortile (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 2: Floortile (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true
+				},
+				"Opleverdatum (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true
+				},
+				"Civiel gepland (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true
+				},
+				"Laatste wijziging (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true
+				},
+				"Financial Customer (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true
+				},
+				"Financial Administration Number (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true
+				},
+				"Financial Administration Name (GENERIC COCON)": {
+					"type": {
+						"type": "string",
+						"maxLength": 20
+					},
+					"x-includeInMigration": true
+				},
+				"Klemid (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 7
+					},
+					"x-includeInMigration": true
+				},
+				"Mtaand (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true
+				},
+				"Mtklemnr (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true
+				},
+				"Orig_status (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 25
+					},
+					"x-includeInMigration": true
+				},
+				"Lhnr (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 11
+					},
+					"x-includeInMigration": true
+				},
+				"Wcnr (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 4
+					},
+					"x-includeInMigration": true
+				},
+				"Gvnr (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true
+				},
+				"Evnr (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true
+				},
+				"Lokatie (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 48
+					},
+					"x-includeInMigration": true
+				},
+				"Trajectnr (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 23
+					},
+					"x-includeInMigration": true
+				},
+				"Stpnr (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 7
+					},
+					"x-includeInMigration": true
+				},
+				"Bouwnummer (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 10
+					},
+					"x-includeInMigration": true
+				},
+				"Aansldatum (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true
+				},
+				"Revisiedatum (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true
+				},
+				"Isfouten (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true
+				},
+				"Isrevisie (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true
+				},
+				"Pernr (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 7
+					},
+					"x-includeInMigration": true
+				},
+				"Nwsregion (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 22
+					},
+					"x-includeInMigration": true
+				},
+				"Legalregion (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 22
+					},
+					"x-includeInMigration": true
+				},
+				"Opmerking (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 128
+					},
+					"x-includeInMigration": true
+				},
+				"Patch status (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 20
+					},
+					"x-includeInMigration": true
+				},
+				"Active operator Planned (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 4
+					},
+					"x-includeInMigration": true
+				},
+				"Active operator (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 11
+					},
+					"x-includeInMigration": true
+				},
+				"Active operator order ID planned (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true
+				},
+				"Active operator order ID (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true
+				},
+				"Bouwbestandstatus (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Huurder geregistreerd op POP gekoppeld aan adres (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 4
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Huurder geregistreerd op onderliggende gebied bij adres (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 4
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Beheerder geregistreerd op POP gekoppeld aan adres (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true
+				},
+				"Vezel 1: Beheerder geregistreerd op onderliggende gebied bij adres (CIF-CATVENGIN)": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true
+				},
+				"Migration Entity": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Migration Entity",
+						"forms": {
+							"Main": {
+								"type": "Main",
+								"name": "Main Information",
+								"tab": "TAB_Sources",
+								"column": "COLUMN_First",
+								"section": "SECTION_General"
+							}
+						}
+					},
+					"x-includeInMigration": false
+				}
+			}
+		},
+		"Target Connection": {
+			"x-entity-type": "df_connection",
+			"attributes": {
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"x-includeInMigration": false
+				},
+				"Target Id": {
+					"isPrimaryField": true,
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "connectionid",
+					"x-includeInMigration": false
+				},
+				"Source": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Source AvailibleChecker",
+						"x-idField": "Id"
+					},
+					"x-includeInMigration": false
+				},
+				"Migration Entity": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Migration Entity",
+						"forms": {
+							"Main": {
+								"type": "Main",
+								"name": "Main Information",
+								"tab": "TAB_Targets",
+								"column": "COLUMN_First",
+								"section": "SECTION_General"
+							}
+						}
+					},
+					"x-includeInMigration": false
+				},
+				"df_Name": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_name",
+					"x-includeInMigration": true
+				},
+				"df_Zipcode": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_zipcode",
+					"x-includeInMigration": true
+				},
+				"df_Street": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_street",
+					"x-includeInMigration": true
+				},
+				"df_City": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_city",
+					"x-includeInMigration": true
+				},
+				"df_Country": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_country",
+					"x-includeInMigration": true
+				},
+				"df_Housenumber": {
+					"type": {
+						"type": "integer"
+					},
+					"logicalName": "df_housenumber",
+					"x-includeInMigration": true
+				},
+				"df_Housenumberaddition": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_housenumberaddition",
+					"x-includeInMigration": true
+				},
+				"df_LocationDescription": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_locationdescription",
+					"x-includeInMigration": true
+				},
+				"df_Comments": {
+					"type": {
+						"type": "MultilineText"
+					},
+					"logicalName": "df_comments",
+					"x-includeInMigration": true
+				},
+				"df_Projectcode": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_projectcode",
+					"x-includeInMigration": true
+				},
+				"df_Deliverystatus": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_deliverystatus",
+					"x-includeInMigration": true
+				},
+				"df_Hasdate": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "df_hasdate",
+					"x-includeInMigration": true
+				},
+				"df_GCode": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Target Portfolio",
+						"x-idField": "Id"
+					},
+					"logicalName": "df_gcode",
+					"x-includeInMigration": true
+				},
+				"df_ECode": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Target Portfolio",
+						"x-idField": "Id"
+					},
+					"logicalName": "df_ecode",
+					"x-includeInMigration": true
+				},
+				"df_ACode": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Target Portfolio",
+						"x-idField": "Id"
+					},
+					"logicalName": "df_acode",
+					"x-includeInMigration": true
+				},
+				"df_PatchStatus": {
+					"type": {
+						"name": "Connectiondf_patchstatuschoice",
+						"type": "Choice",
+						"options": {
+							"P": 121780001,
+							"D": 121780002
+						}
+					},
+					"logicalName": "df_patchstatus",
+					"x-includeInMigration": true
+				},
+				"df_CivilPlanned": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "df_civilplanned",
+					"x-includeInMigration": true
+				},
+				"df_Deliverydate": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "df_deliverydate",
+					"x-includeInMigration": true
+				},
+				"df_Lastupdate": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "df_lastupdate",
+					"x-includeInMigration": true
+				},
+				"df_Passiveconnectionscenario": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_passiveconnectionscenario",
+					"x-includeInMigration": true
+				},
+				"df_PermissionFtu": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_permissionftu",
+					"x-includeInMigration": true
+				},
+				"df_Reasoncode": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_reasoncode",
+					"x-includeInMigration": true
+				},
+				"df_Reasoncodenote": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_reasoncodenote",
+					"x-includeInMigration": true
+				},
+				"df_Administrators": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_administrators",
+					"x-includeInMigration": true
+				},
+				"df_Activeoperators": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperators",
+					"x-includeInMigration": true
+				},
+				"df_AreaActiveoperators": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_areaactiveoperators",
+					"x-includeInMigration": true
+				},
+				"df_Areaadministrators": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_areaadministrators",
+					"x-includeInMigration": true
+				},
+				"df_administrators2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_administrators2",
+					"x-includeInMigration": true
+				},
+				"df_Activeoperators2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperators2",
+					"x-includeInMigration": true
+				},
+				"df_areaactiveoperators2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_areaactiveoperators2",
+					"x-includeInMigration": true
+				},
+				"df_areaadministrators2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_areaadministrators2",
+					"x-includeInMigration": true
+				},
+				"df_floortile": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_floortile",
+					"x-includeInMigration": true
+				},
+				"df_Floortile2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_floortile2",
+					"x-includeInMigration": true
+				},
+				"df_Poplocation": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_poplocation",
+					"x-includeInMigration": true
+				},
+				"df_poplocation2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_poplocation2",
+					"x-includeInMigration": true
+				},
+				"df_poprow": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_poprow",
+					"x-includeInMigration": true
+				},
+				"df_Poprow2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_poprow2",
+					"x-includeInMigration": true
+				},
+				"df_popframe": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popframe",
+					"x-includeInMigration": true
+				},
+				"df_popframe2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popframe2",
+					"x-includeInMigration": true
+				},
+				"df_popshelf": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popshelf",
+					"x-includeInMigration": true
+				},
+				"df_Popshelf2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popshelf2",
+					"x-includeInMigration": true
+				},
+				"df_popposition": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popposition",
+					"x-includeInMigration": true
+				},
+				"df_popposition2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popposition2",
+					"x-includeInMigration": true
+				},
+				"df_activeport": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeport",
+					"x-includeInMigration": true
+				},
+				"df_Activeport2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeport2",
+					"x-includeInMigration": true
+				},
+				"df_activeordertype": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeordertype",
+					"x-includeInMigration": true
+				},
+				"df_Activeordertype2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeordertype2",
+					"x-includeInMigration": true
+				},
+				"df_activeoperator": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperator",
+					"x-includeInMigration": true
+				},
+				"df_activeoperator2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperator2",
+					"x-includeInMigration": true
+				},
+				"df_activeoperatororder": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperatororderid",
+					"x-includeInMigration": true
+				},
+				"df_Activeoperatororderid2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperatororderid2",
+					"x-includeInMigration": true
+				},
+				"df_activeordertypeplanned": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeordertypeplanned",
+					"x-includeInMigration": true
+				},
+				"df_Activeordertypeplanned2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeordertypeplanned2",
+					"x-includeInMigration": true
+				},
+				"df_Activeoperatorplanned": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperatorplanned",
+					"x-includeInMigration": true
+				},
+				"df_Activeoperatorplanned2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperatorplanned2",
+					"x-includeInMigration": true
+				},
+				"df_Activeoperatororderidplanned": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperatororderidplanned",
+					"x-includeInMigration": true
+				},
+				"df_Activeoperatororderidplanned2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperatororderidplanned2",
+					"x-includeInMigration": true
+				},
+				"statecode": {
+					"type": {
+						"name": "Connectionstatecodechoice",
+						"type": "Choice",
+						"options": {
+							"Active": 0,
+							"Inactive": 1
+						}
+					},
+					"logicalName": "statecode",
+					"x-includeInMigration": true
+				},
+				"df_DataSource": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_datasource",
+					"x-includeInMigration": true
+				},
+				"df_Dataprovider": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_dataprovider",
+					"x-includeInMigration": true
+				},
+				"df_DataSet": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_dataset",
+					"x-includeInMigration": true
+				},
+				"df_NetAreaname": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_netareaname",
+					"x-includeInMigration": true
+				},
+				"df_NetAreaShortname": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_netareashortname",
+					"x-includeInMigration": true
+				},
+				"df_ApArea": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_apareaid",
+					"x-includeInMigration": true
+				},
+				"df_ApAreapop": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_apareapop",
+					"x-includeInMigration": true
+				},
+				"df_IsBoughtOff": {
+					"type": {
+						"type": "boolean"
+					},
+					"logicalName": "df_isboughtoff",
+					"x-includeInMigration": true
+				}
+			},
+			"pluralName": "Target Connections"
+		},
+		"Target Portfolio": {
+			"x-entity-type": "df_portfolio",
+			"attributes": {
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"x-includeInMigration": false
+				},
+				"Target Id": {
+					"isPrimaryField": true,
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "portfolioid",
+					"x-includeInMigration": false
+				},
+				"Source": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Source EOLItem",
+						"x-idField": "Id"
+					},
+					"x-includeInMigration": false
+				},
+				"Migration Entity": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Migration Entity",
+						"forms": {
+							"Main": {
+								"type": "Main",
+								"name": "Main Information",
+								"tab": "TAB_Targets",
+								"column": "COLUMN_First",
+								"section": "SECTION_General"
+							}
+						}
+					},
+					"x-includeInMigration": false
+				},
+				"df_Description": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_description",
+					"x-includeInMigration": true
+				},
+				"df_Price": {
+					"type": {
+						"type": "decimal"
+					},
+					"logicalName": "df_price",
+					"x-includeInMigration": true
+				},
+				"df_Type": {
+					"type": {
+						"name": "Portfoliodf_typechoice",
+						"type": "Choice",
+						"options": {
+							"G": 121780000,
+							"E": 121780001,
+							"A": 121780002
+						}
+					},
+					"logicalName": "df_type",
+					"x-includeInMigration": true
+				}
+			},
+			"pluralName": "Target Portfolios"
+		},
+		"Source EOLItem": {
+			"x-entity-type": "EOLItem",
+			"pluralName": "Source EOLItems",
+			"attributes": {
+				"Source Id": {
+					"isPrimaryField": true,
+					"type": {
+						"type": "string",
+						"maxLength": 36
+					},
+					"x-includeInMigration": true
+				},
+				"CODE": {
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true
+				},
+				"ADMINISTRATIE_NR": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true
+				},
+				"DESCRIPTION": {
+					"type": {
+						"type": "string",
+						"maxLength": 52
+					},
+					"x-includeInMigration": true
+				},
+				"STARTDATE": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true
+				},
+				"ENDDATE": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true
+				},
+				"UNITPRICE": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true
+				},
+				"PRICESTARTDATE": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true
+				},
+				"PRICEENDDATE": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true
+				},
+				"VATCODE": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true
+				},
+				"SEARCHCODE": {
+					"type": {
+						"type": "string",
+						"maxLength": 8
+					},
+					"x-includeInMigration": true
+				},
+				"ITEMGROUPCODE": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true
+				},
+				"ITEMGROUPDESCRIPTION": {
+					"type": {
+						"type": "string",
+						"maxLength": 30
+					},
+					"x-includeInMigration": true
+				},
+				"BESTANDSNAAM": {
+					"type": {
+						"type": "string",
+						"maxLength": 22
+					},
+					"x-includeInMigration": true
+				},
+				"MD_EXNID": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true
+				},
+				"Migration Entity": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Migration Entity",
+						"forms": {
+							"Main": {
+								"type": "Main",
+								"name": "Main Information",
+								"tab": "TAB_Sources",
+								"column": "COLUMN_First",
+								"section": "SECTION_General"
+							}
+						}
+					},
+					"x-includeInMigration": false
+				}
+			}
+		}
+	}
+}

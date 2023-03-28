@@ -1,5 +1,6 @@
 ﻿using EAVFramework;
 using EAVFramework.Endpoints;
+using EAVFW.Extensions.DynamicManifest.UnitTests.Models;
 using ExpressionEngine;
 using Microsoft.Azure.Documents;
 using Microsoft.EntityFrameworkCore;
@@ -13,14 +14,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace EAVFW.Extensions.DynamicManifest.UnitTests
 {
+  
 
-    using TStaticContext = EAVFramework.DynamicContext;
-    using TDynamicContext =  DynamicManifestContext<DynamicContext, Form, Document>;
-    using TDynamicManifestContextFeature = DynamicManifestContextFeature<DynamicContext,DynamicManifestContext<DynamicContext,Form, Document>, Form, Document>;
-    using TModel = Form;
-    using TDocument = Document;
     [TestClass]
     public class WorkFlowTests
     {

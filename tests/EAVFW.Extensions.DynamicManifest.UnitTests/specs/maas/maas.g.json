@@ -1,0 +1,886 @@
+{
+	"entities": {
+		"Document": {
+			"pluralName": "Documents",
+			"attributes": {
+				"Name": {
+					"isPrimaryField": true,
+					"displayName": "Name",
+					"schemaName": "Name",
+					"logicalName": "name",
+					"type": {
+						"type": "string"
+					},
+					"locale": {
+						"1033": {
+							"displayName": "Name"
+						}
+					}
+				},
+				"Size": {
+					"type": {
+						"type": "integer"
+					},
+					"displayName": "Size",
+					"schemaName": "Size",
+					"logicalName": "size",
+					"locale": {
+						"1033": {
+							"displayName": "Size"
+						}
+					}
+				},
+				"Container": {
+					"type": {
+						"type": "Text",
+						"maxLength": 100
+					},
+					"displayName": "Container",
+					"schemaName": "Container",
+					"logicalName": "container",
+					"locale": {
+						"1033": {
+							"displayName": "Container"
+						}
+					}
+				},
+				"Path": {
+					"type": {
+						"type": "Text",
+						"maxLength": 512
+					},
+					"displayName": "Path",
+					"schemaName": "Path",
+					"logicalName": "path",
+					"locale": {
+						"1033": {
+							"displayName": "Path"
+						}
+					}
+				},
+				"ContentType": {
+					"type": {
+						"type": "Text"
+					},
+					"displayName": "ContentType",
+					"schemaName": "ContentType",
+					"logicalName": "contenttype",
+					"locale": {
+						"1033": {
+							"displayName": "ContentType"
+						}
+					}
+				},
+				"Compressed": {
+					"type": {
+						"type": "boolean"
+					},
+					"displayName": "Compressed",
+					"schemaName": "Compressed",
+					"logicalName": "compressed",
+					"locale": {
+						"1033": {
+							"displayName": "Compressed"
+						}
+					}
+				},
+				"Data": {
+					"type": {
+						"type": "binary",
+						"format": "File"
+					},
+					"displayName": "Data",
+					"schemaName": "Data",
+					"logicalName": "data",
+					"locale": {
+						"1033": {
+							"displayName": "Data"
+						}
+					}
+				},
+				"Hash": {
+					"type": {
+						"type": "Text"
+					},
+					"description": "Hash of uncompressed document data",
+					"displayName": "Hash",
+					"schemaName": "Hash",
+					"logicalName": "hash",
+					"locale": {
+						"1033": {
+							"displayName": "Hash"
+						}
+					}
+				},
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id",
+					"locale": {
+						"1033": {
+							"displayName": "Id"
+						}
+					}
+				},
+				"Modified On": {
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Modified On",
+					"schemaName": "ModifiedOn",
+					"logicalName": "modifiedon",
+					"locale": {
+						"1033": {
+							"displayName": "Modified On"
+						}
+					}
+				},
+				"Created On": {
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Created On",
+					"schemaName": "CreatedOn",
+					"logicalName": "createdon",
+					"locale": {
+						"1033": {
+							"displayName": "Created On"
+						}
+					}
+				},
+				"Owner": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "owner"
+						}
+					},
+					"displayName": "Owner",
+					"schemaName": "OwnerId",
+					"logicalName": "ownerid",
+					"locale": {
+						"1033": {
+							"displayName": "Owner"
+						}
+					}
+				},
+				"Modified By": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "modifiedby"
+						}
+					},
+					"displayName": "Modified By",
+					"schemaName": "ModifiedById",
+					"logicalName": "modifiedbyid",
+					"locale": {
+						"1033": {
+							"displayName": "Modified By"
+						}
+					}
+				},
+				"Created By": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "createdby"
+						}
+					},
+					"displayName": "Created By",
+					"schemaName": "CreatedById",
+					"logicalName": "createdbyid",
+					"locale": {
+						"1033": {
+							"displayName": "Created By"
+						}
+					}
+				},
+				"Row Version": {
+					"type": {
+						"type": "binary"
+					},
+					"isRowVersion": true,
+					"displayName": "Row Version",
+					"schemaName": "RowVersion",
+					"logicalName": "rowversion",
+					"locale": {
+						"1033": {
+							"displayName": "Row Version"
+						}
+					}
+				}
+			},
+			"displayName": "Document",
+			"schemaName": "Document",
+			"logicalName": "document",
+			"collectionSchemaName": "Documents",
+			"locale": {
+				"1033": {
+					"displayName": "Document",
+					"pluralName": "Documents"
+				}
+			}
+		},
+		"Identity": {
+			"pluralName": "Identities",
+			"abstract": true,
+			"attributes": {
+				"Name": {
+					"isPrimaryField": true,
+					"displayName": "Name",
+					"schemaName": "Name",
+					"logicalName": "name",
+					"type": {
+						"type": "string"
+					},
+					"locale": {
+						"1033": {
+							"displayName": "Name"
+						}
+					}
+				},
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id",
+					"locale": {
+						"1033": {
+							"displayName": "Id"
+						}
+					}
+				},
+				"Modified On": {
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Modified On",
+					"schemaName": "ModifiedOn",
+					"logicalName": "modifiedon",
+					"locale": {
+						"1033": {
+							"displayName": "Modified On"
+						}
+					}
+				},
+				"Created On": {
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Created On",
+					"schemaName": "CreatedOn",
+					"logicalName": "createdon",
+					"locale": {
+						"1033": {
+							"displayName": "Created On"
+						}
+					}
+				},
+				"Owner": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "owner"
+						}
+					},
+					"displayName": "Owner",
+					"schemaName": "OwnerId",
+					"logicalName": "ownerid",
+					"locale": {
+						"1033": {
+							"displayName": "Owner"
+						}
+					}
+				},
+				"Modified By": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "modifiedby"
+						}
+					},
+					"displayName": "Modified By",
+					"schemaName": "ModifiedById",
+					"logicalName": "modifiedbyid",
+					"locale": {
+						"1033": {
+							"displayName": "Modified By"
+						}
+					}
+				},
+				"Created By": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "createdby"
+						}
+					},
+					"displayName": "Created By",
+					"schemaName": "CreatedById",
+					"logicalName": "createdbyid",
+					"locale": {
+						"1033": {
+							"displayName": "Created By"
+						}
+					}
+				},
+				"Row Version": {
+					"type": {
+						"type": "binary"
+					},
+					"isRowVersion": true,
+					"displayName": "Row Version",
+					"schemaName": "RowVersion",
+					"logicalName": "rowversion",
+					"locale": {
+						"1033": {
+							"displayName": "Row Version"
+						}
+					}
+				}
+			},
+			"displayName": "Identity",
+			"schemaName": "Identity",
+			"logicalName": "identity",
+			"collectionSchemaName": "Identities",
+			"locale": {
+				"1033": {
+					"displayName": "Identity",
+					"pluralName": "Identities"
+				}
+			}
+		},
+		"Migration Project": {
+			"pluralName": "Migration Projects",
+			"attributes": {
+				"Name": {
+					"isPrimaryField": true,
+					"displayName": "Name",
+					"schemaName": "Name",
+					"logicalName": "name",
+					"type": {
+						"type": "string"
+					},
+					"locale": {
+						"1033": {
+							"displayName": "Name"
+						}
+					}
+				},
+				"Schema": {
+					"type": {
+						"type": "Text"
+					},
+					"displayName": "Schema",
+					"schemaName": "Schema",
+					"logicalName": "schema",
+					"locale": {
+						"1033": {
+							"displayName": "Schema"
+						}
+					}
+				},
+				"Version": {
+					"type": {
+						"type": "Text"
+					},
+					"displayName": "Version",
+					"schemaName": "Version",
+					"logicalName": "version",
+					"locale": {
+						"1033": {
+							"displayName": "Version"
+						}
+					}
+				},
+				"Manifest": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Document",
+						"foreignKey": {
+							"principalTable": "document",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "manifest"
+						}
+					},
+					"displayName": "Manifest",
+					"schemaName": "ManifestId",
+					"logicalName": "manifestid",
+					"locale": {
+						"1033": {
+							"displayName": "Manifest"
+						}
+					}
+				},
+				"Target Credentials": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Document",
+						"foreignKey": {
+							"principalTable": "document",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "targetcredentials"
+						}
+					},
+					"displayName": "Target Credentials",
+					"schemaName": "TargetCredentialsId",
+					"logicalName": "targetcredentialsid",
+					"locale": {
+						"1033": {
+							"displayName": "Target Credentials"
+						}
+					}
+				},
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id",
+					"locale": {
+						"1033": {
+							"displayName": "Id"
+						}
+					}
+				},
+				"Modified On": {
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Modified On",
+					"schemaName": "ModifiedOn",
+					"logicalName": "modifiedon",
+					"locale": {
+						"1033": {
+							"displayName": "Modified On"
+						}
+					}
+				},
+				"Created On": {
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Created On",
+					"schemaName": "CreatedOn",
+					"logicalName": "createdon",
+					"locale": {
+						"1033": {
+							"displayName": "Created On"
+						}
+					}
+				},
+				"Owner": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "owner"
+						}
+					},
+					"displayName": "Owner",
+					"schemaName": "OwnerId",
+					"logicalName": "ownerid",
+					"locale": {
+						"1033": {
+							"displayName": "Owner"
+						}
+					}
+				},
+				"Modified By": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "modifiedby"
+						}
+					},
+					"displayName": "Modified By",
+					"schemaName": "ModifiedById",
+					"logicalName": "modifiedbyid",
+					"locale": {
+						"1033": {
+							"displayName": "Modified By"
+						}
+					}
+				},
+				"Created By": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "createdby"
+						}
+					},
+					"displayName": "Created By",
+					"schemaName": "CreatedById",
+					"logicalName": "createdbyid",
+					"locale": {
+						"1033": {
+							"displayName": "Created By"
+						}
+					}
+				},
+				"Row Version": {
+					"type": {
+						"type": "binary"
+					},
+					"isRowVersion": true,
+					"displayName": "Row Version",
+					"schemaName": "RowVersion",
+					"logicalName": "rowversion",
+					"locale": {
+						"1033": {
+							"displayName": "Row Version"
+						}
+					}
+				}
+			},
+			"displayName": "Migration Project",
+			"schemaName": "MigrationProject",
+			"logicalName": "migrationproject",
+			"collectionSchemaName": "MigrationProjects",
+			"locale": {
+				"1033": {
+					"displayName": "Migration Project",
+					"pluralName": "Migration Projects"
+				}
+			}
+		},
+		"Migration Entity": {
+			"pluralName": "Migration Entities",
+			"attributes": {
+				"Source Name": {
+					"type": {
+						"type": "Text"
+					},
+					"description": "Name of source table",
+					"isPrimaryField": true,
+					"displayName": "Source Name",
+					"schemaName": "SourceName",
+					"logicalName": "sourcename",
+					"locale": {
+						"1033": {
+							"displayName": "Source Name"
+						}
+					}
+				},
+				"Migration Project": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Migration Project",
+						"forms": {
+							"Main": {
+								"type": "Main",
+								"name": "Main Information",
+								"tab": "TAB_Entities",
+								"column": "COLUMN_First",
+								"section": "SECTION_General"
+							}
+						},
+						"required": true,
+						"foreignKey": {
+							"principalTable": "migrationproject",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "migrationproject"
+						}
+					},
+					"description": "The project in which the Entity belongs",
+					"displayName": "Migration Project",
+					"schemaName": "MigrationProjectId",
+					"logicalName": "migrationprojectid",
+					"locale": {
+						"1033": {
+							"displayName": "Migration Project"
+						}
+					}
+				},
+				"Source Data": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Document",
+						"foreignKey": {
+							"principalTable": "document",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "sourcedata"
+						}
+					},
+					"displayName": "Source Data",
+					"schemaName": "SourceDataId",
+					"logicalName": "sourcedataid",
+					"locale": {
+						"1033": {
+							"displayName": "Source Data"
+						}
+					}
+				},
+				"Source Metadata": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Document",
+						"foreignKey": {
+							"principalTable": "document",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "sourcemetadata"
+						}
+					},
+					"description": "Metadata for source data",
+					"displayName": "Source Metadata",
+					"schemaName": "SourceMetadataId",
+					"logicalName": "sourcemetadataid",
+					"locale": {
+						"1033": {
+							"displayName": "Source Metadata"
+						}
+					}
+				},
+				"Target Name": {
+					"type": {
+						"type": "Text"
+					},
+					"description": "Name of target table",
+					"displayName": "Target Name",
+					"schemaName": "TargetName",
+					"logicalName": "targetname",
+					"locale": {
+						"1033": {
+							"displayName": "Target Name"
+						}
+					}
+				},
+				"Target Metadata": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Document",
+						"foreignKey": {
+							"principalTable": "document",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "targetmetadata"
+						}
+					},
+					"description": "Metadata of the target system",
+					"displayName": "Target Metadata",
+					"schemaName": "TargetMetadataId",
+					"logicalName": "targetmetadataid",
+					"locale": {
+						"1033": {
+							"displayName": "Target Metadata"
+						}
+					}
+				},
+				"Mapping": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Document",
+						"foreignKey": {
+							"principalTable": "document",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "mapping"
+						}
+					},
+					"displayName": "Mapping",
+					"schemaName": "MappingId",
+					"logicalName": "mappingid",
+					"locale": {
+						"1033": {
+							"displayName": "Mapping"
+						}
+					}
+				},
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id",
+					"locale": {
+						"1033": {
+							"displayName": "Id"
+						}
+					}
+				},
+				"Modified On": {
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Modified On",
+					"schemaName": "ModifiedOn",
+					"logicalName": "modifiedon",
+					"locale": {
+						"1033": {
+							"displayName": "Modified On"
+						}
+					}
+				},
+				"Created On": {
+					"type": {
+						"type": "DateTime",
+						"required": true
+					},
+					"displayName": "Created On",
+					"schemaName": "CreatedOn",
+					"logicalName": "createdon",
+					"locale": {
+						"1033": {
+							"displayName": "Created On"
+						}
+					}
+				},
+				"Owner": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "owner"
+						}
+					},
+					"displayName": "Owner",
+					"schemaName": "OwnerId",
+					"logicalName": "ownerid",
+					"locale": {
+						"1033": {
+							"displayName": "Owner"
+						}
+					}
+				},
+				"Modified By": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "modifiedby"
+						}
+					},
+					"displayName": "Modified By",
+					"schemaName": "ModifiedById",
+					"logicalName": "modifiedbyid",
+					"locale": {
+						"1033": {
+							"displayName": "Modified By"
+						}
+					}
+				},
+				"Created By": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Identity",
+						"required": true,
+						"foreignKey": {
+							"principalTable": "identity",
+							"principalColumn": "id",
+							"principalNameColumn": "name",
+							"name": "createdby"
+						}
+					},
+					"displayName": "Created By",
+					"schemaName": "CreatedById",
+					"logicalName": "createdbyid",
+					"locale": {
+						"1033": {
+							"displayName": "Created By"
+						}
+					}
+				},
+				"Row Version": {
+					"type": {
+						"type": "binary"
+					},
+					"isRowVersion": true,
+					"displayName": "Row Version",
+					"schemaName": "RowVersion",
+					"logicalName": "rowversion",
+					"locale": {
+						"1033": {
+							"displayName": "Row Version"
+						}
+					}
+				}
+			},
+			"displayName": "Migration Entity",
+			"schemaName": "MigrationEntity",
+			"logicalName": "migrationentity",
+			"collectionSchemaName": "MigrationEntities",
+			"locale": {
+				"1033": {
+					"displayName": "Migration Entity",
+					"pluralName": "Migration Entities"
+				}
+			}
+		}
+	}
+}
