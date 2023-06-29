@@ -1,28 +1,17 @@
 ﻿using EAVFramework;
 using EAVFramework.Endpoints;
-using EAVFramework.Extensions;
 using EAVFW.Extensions.Documents;
 using EAVFW.Extensions.DynamicManifest;
-using Hangfire;
-using Microsoft.AspNetCore.Builder;
+using EAVFW.Extensions.Manifest.SDK;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using WorkflowEngine;
+using System;
+using System.Threading.Tasks;
 using WorkflowEngine.Core;
-using EAVFW.Extensions.Manifest.SDK;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -203,7 +192,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
                 optionsBuilder.UseSqlServer(feature.ConnectionString ?? connStr,
                     x => x.MigrationsHistoryTable("__MigrationsHistory", feature.SchemaName).EnableRetryOnFailure()
-                        .CommandTimeout(180));
+                        .CommandTimeout(600));
 
 
                 optionsBuilder.EnableSensitiveDataLogging();

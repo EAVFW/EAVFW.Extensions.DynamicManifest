@@ -1,6 +1,3283 @@
 {
-	"version": "1.0.2",
+	"version": "1.0.1",
 	"entities": {
+		"Source EOLItems": {
+			"x-entity-type": "EOLItems",
+			"pluralName": "Source EOLItemss",
+			"attributes": {
+				"Source Id": {
+					"isPrimaryField": true,
+					"type": {
+						"type": "string",
+						"maxLength": 36
+					},
+					"x-includeInMigration": true,
+					"displayName": "Source Id",
+					"schemaName": "SourceId",
+					"logicalName": "sourceid",
+					"locale": {
+						"1033": {
+							"displayName": "Source Id"
+						}
+					}
+				},
+				"CODE": {
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true,
+					"displayName": "CODE",
+					"schemaName": "CODE",
+					"logicalName": "code",
+					"locale": {
+						"1033": {
+							"displayName": "CODE"
+						}
+					}
+				},
+				"ADMINISTRATIE_NR": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "ADMINISTRATIE_NR",
+					"schemaName": "ADMINISTRATIE_NR",
+					"logicalName": "administratie_nr",
+					"locale": {
+						"1033": {
+							"displayName": "ADMINISTRATIE_NR"
+						}
+					}
+				},
+				"DESCRIPTION": {
+					"type": {
+						"type": "string",
+						"maxLength": 52
+					},
+					"x-includeInMigration": true,
+					"displayName": "DESCRIPTION",
+					"schemaName": "DESCRIPTION",
+					"logicalName": "description",
+					"locale": {
+						"1033": {
+							"displayName": "DESCRIPTION"
+						}
+					}
+				},
+				"STARTDATE": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true,
+					"displayName": "STARTDATE",
+					"schemaName": "STARTDATE",
+					"logicalName": "startdate",
+					"locale": {
+						"1033": {
+							"displayName": "STARTDATE"
+						}
+					}
+				},
+				"ENDDATE": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true,
+					"displayName": "ENDDATE",
+					"schemaName": "ENDDATE",
+					"logicalName": "enddate",
+					"locale": {
+						"1033": {
+							"displayName": "ENDDATE"
+						}
+					}
+				},
+				"UNITPRICE": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true,
+					"displayName": "UNITPRICE",
+					"schemaName": "UNITPRICE",
+					"logicalName": "unitprice",
+					"locale": {
+						"1033": {
+							"displayName": "UNITPRICE"
+						}
+					}
+				},
+				"PRICESTARTDATE": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true,
+					"displayName": "PRICESTARTDATE",
+					"schemaName": "PRICESTARTDATE",
+					"logicalName": "pricestartdate",
+					"locale": {
+						"1033": {
+							"displayName": "PRICESTARTDATE"
+						}
+					}
+				},
+				"PRICEENDDATE": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true,
+					"displayName": "PRICEENDDATE",
+					"schemaName": "PRICEENDDATE",
+					"logicalName": "priceenddate",
+					"locale": {
+						"1033": {
+							"displayName": "PRICEENDDATE"
+						}
+					}
+				},
+				"VATCODE": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true,
+					"displayName": "VATCODE",
+					"schemaName": "VATCODE",
+					"logicalName": "vatcode",
+					"locale": {
+						"1033": {
+							"displayName": "VATCODE"
+						}
+					}
+				},
+				"SEARCHCODE": {
+					"type": {
+						"type": "string",
+						"maxLength": 8
+					},
+					"x-includeInMigration": true,
+					"displayName": "SEARCHCODE",
+					"schemaName": "SEARCHCODE",
+					"logicalName": "searchcode",
+					"locale": {
+						"1033": {
+							"displayName": "SEARCHCODE"
+						}
+					}
+				},
+				"ITEMGROUPCODE": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true,
+					"displayName": "ITEMGROUPCODE",
+					"schemaName": "ITEMGROUPCODE",
+					"logicalName": "itemgroupcode",
+					"locale": {
+						"1033": {
+							"displayName": "ITEMGROUPCODE"
+						}
+					}
+				},
+				"ITEMGROUPDESCRIPTION": {
+					"type": {
+						"type": "string",
+						"maxLength": 30
+					},
+					"x-includeInMigration": true,
+					"displayName": "ITEMGROUPDESCRIPTION",
+					"schemaName": "ITEMGROUPDESCRIPTION",
+					"logicalName": "itemgroupdescription",
+					"locale": {
+						"1033": {
+							"displayName": "ITEMGROUPDESCRIPTION"
+						}
+					}
+				},
+				"BESTANDSNAAM": {
+					"type": {
+						"type": "string",
+						"maxLength": 22
+					},
+					"x-includeInMigration": true,
+					"displayName": "BESTANDSNAAM",
+					"schemaName": "BESTANDSNAAM",
+					"logicalName": "bestandsnaam",
+					"locale": {
+						"1033": {
+							"displayName": "BESTANDSNAAM"
+						}
+					}
+				},
+				"MD_EXNID": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true,
+					"displayName": "MD_EXNID",
+					"schemaName": "MD_EXNID",
+					"logicalName": "md_exnid",
+					"locale": {
+						"1033": {
+							"displayName": "MD_EXNID"
+						}
+					}
+				},
+				"Migration Entity": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Migration Entity",
+						"forms": {
+							"Main": {
+								"type": "Main",
+								"name": "Main Information",
+								"tab": "TAB_Sources",
+								"column": "COLUMN_First",
+								"section": "SECTION_General"
+							}
+						},
+						"foreignKey": {
+							"principalTable": "migrationentity",
+							"principalColumn": "id",
+							"principalNameColumn": "sourcename",
+							"name": "migrationentity"
+						}
+					},
+					"x-includeInMigration": false,
+					"displayName": "Migration Entity",
+					"schemaName": "MigrationEntityId",
+					"logicalName": "migrationentityid",
+					"locale": {
+						"1033": {
+							"displayName": "Migration Entity"
+						}
+					}
+				},
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id",
+					"locale": {
+						"1033": {
+							"displayName": "Id"
+						}
+					}
+				}
+			},
+			"displayName": "Source EOLItems",
+			"schemaName": "SourceEOLItems",
+			"logicalName": "sourceeolitems",
+			"collectionSchemaName": "SourceEOLItemss",
+			"locale": {
+				"1033": {
+					"displayName": "Source EOLItems",
+					"pluralName": "Source EOLItemss"
+				}
+			}
+		},
+		"Target Portfolio": {
+			"x-entity-type": "df_portfolio",
+			"attributes": {
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"x-includeInMigration": false,
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id",
+					"locale": {
+						"1033": {
+							"displayName": "Id"
+						}
+					}
+				},
+				"Target Id": {
+					"isPrimaryField": true,
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "portfolioid",
+					"x-includeInMigration": false,
+					"displayName": "Target Id",
+					"schemaName": "TargetId",
+					"locale": {
+						"1033": {
+							"displayName": "Target Id"
+						}
+					}
+				},
+				"Source": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Source EOLItems",
+						"x-idField": "Id",
+						"foreignKey": {
+							"principalTable": "sourceeolitems",
+							"principalColumn": "id",
+							"principalNameColumn": "sourceid",
+							"name": "source"
+						}
+					},
+					"x-includeInMigration": false,
+					"displayName": "Source",
+					"schemaName": "SourceId",
+					"logicalName": "sourceid",
+					"locale": {
+						"1033": {
+							"displayName": "Source"
+						}
+					}
+				},
+				"Migration Entity": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Migration Entity",
+						"forms": {
+							"Main": {
+								"type": "Main",
+								"name": "Main Information",
+								"tab": "TAB_Targets",
+								"column": "COLUMN_First",
+								"section": "SECTION_General"
+							}
+						},
+						"foreignKey": {
+							"principalTable": "migrationentity",
+							"principalColumn": "id",
+							"principalNameColumn": "sourcename",
+							"name": "migrationentity"
+						}
+					},
+					"x-includeInMigration": false,
+					"displayName": "Migration Entity",
+					"schemaName": "MigrationEntityId",
+					"logicalName": "migrationentityid",
+					"locale": {
+						"1033": {
+							"displayName": "Migration Entity"
+						}
+					}
+				},
+				"df_Name": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_name",
+					"x-includeInMigration": true,
+					"displayName": "df_Name",
+					"schemaName": "df_Name",
+					"locale": {
+						"1033": {
+							"displayName": "df_Name"
+						}
+					}
+				},
+				"df_Description": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_description",
+					"x-includeInMigration": true,
+					"displayName": "df_Description",
+					"schemaName": "df_Description",
+					"locale": {
+						"1033": {
+							"displayName": "df_Description"
+						}
+					}
+				},
+				"df_Price": {
+					"type": {
+						"type": "decimal",
+						"sql": {
+							"precision": 18,
+							"scale": 4
+						}
+					},
+					"logicalName": "df_price",
+					"x-includeInMigration": true,
+					"displayName": "df_Price",
+					"schemaName": "df_Price",
+					"locale": {
+						"1033": {
+							"displayName": "df_Price"
+						}
+					}
+				},
+				"df_EOLItemID": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_eolitemid",
+					"x-includeInMigration": true,
+					"displayName": "df_EOLItemID",
+					"schemaName": "df_EOLItemID",
+					"locale": {
+						"1033": {
+							"displayName": "df_EOLItemID"
+						}
+					}
+				},
+				"df_Number": {
+					"type": {
+						"type": "integer"
+					},
+					"logicalName": "df_number",
+					"x-includeInMigration": true,
+					"displayName": "df_Number",
+					"schemaName": "df_Number",
+					"locale": {
+						"1033": {
+							"displayName": "df_Number"
+						}
+					}
+				},
+				"df_Type": {
+					"type": {
+						"name": "Portfoliodf_typechoice",
+						"type": "Choice",
+						"options": {
+							"G": 121780000,
+							"E": 121780001,
+							"A": 121780002
+						}
+					},
+					"logicalName": "df_type",
+					"x-includeInMigration": true,
+					"displayName": "df_Type",
+					"schemaName": "df_Type",
+					"locale": {
+						"1033": {
+							"displayName": "df_Type"
+						}
+					}
+				}
+			},
+			"pluralName": "Target Portfolios",
+			"displayName": "Target Portfolio",
+			"schemaName": "TargetPortfolio",
+			"logicalName": "targetportfolio",
+			"collectionSchemaName": "TargetPortfolios",
+			"locale": {
+				"1033": {
+					"displayName": "Target Portfolio",
+					"pluralName": "Target Portfolios"
+				}
+			}
+		},
+		"Source AvailibleChecker": {
+			"x-entity-type": "AvailibleChecker",
+			"pluralName": "Source AvailibleCheckers",
+			"attributes": {
+				"_self": {
+					"type": {
+						"type": "string",
+						"maxLength": 26
+					},
+					"x-includeInMigration": true,
+					"displayName": "_self",
+					"schemaName": "_self",
+					"logicalName": "_self",
+					"locale": {
+						"1033": {
+							"displayName": "_self"
+						}
+					}
+				},
+				"core.address.address_id": {
+					"type": {
+						"type": "string",
+						"maxLength": 7
+					},
+					"x-includeInMigration": true,
+					"displayName": "core.address.address_id",
+					"schemaName": "coreaddressaddress_id",
+					"logicalName": "coreaddressaddress_id",
+					"locale": {
+						"1033": {
+							"displayName": "core.address.address_id"
+						}
+					}
+				},
+				"core.address.city": {
+					"type": {
+						"type": "string",
+						"maxLength": 28
+					},
+					"x-includeInMigration": true,
+					"displayName": "core.address.city",
+					"schemaName": "coreaddresscity",
+					"logicalName": "coreaddresscity",
+					"locale": {
+						"1033": {
+							"displayName": "core.address.city"
+						}
+					}
+				},
+				"core.address.country": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true,
+					"displayName": "core.address.country",
+					"schemaName": "coreaddresscountry",
+					"logicalName": "coreaddresscountry",
+					"locale": {
+						"1033": {
+							"displayName": "core.address.country"
+						}
+					}
+				},
+				"core.address.housenr": {
+					"type": {
+						"type": "string",
+						"maxLength": 5
+					},
+					"x-includeInMigration": true,
+					"displayName": "core.address.housenr",
+					"schemaName": "coreaddresshousenr",
+					"logicalName": "coreaddresshousenr",
+					"locale": {
+						"1033": {
+							"displayName": "core.address.housenr"
+						}
+					}
+				},
+				"core.address.housenr_suffix": {
+					"type": {
+						"type": "string",
+						"maxLength": 12
+					},
+					"x-includeInMigration": true,
+					"displayName": "core.address.housenr_suffix",
+					"schemaName": "coreaddresshousenr_suffix",
+					"logicalName": "coreaddresshousenr_suffix",
+					"locale": {
+						"1033": {
+							"displayName": "core.address.housenr_suffix"
+						}
+					}
+				},
+				"core.address.room": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true,
+					"displayName": "core.address.room",
+					"schemaName": "coreaddressroom",
+					"logicalName": "coreaddressroom",
+					"locale": {
+						"1033": {
+							"displayName": "core.address.room"
+						}
+					}
+				},
+				"core.address.street": {
+					"type": {
+						"type": "string",
+						"maxLength": 55
+					},
+					"x-includeInMigration": true,
+					"displayName": "core.address.street",
+					"schemaName": "coreaddressstreet",
+					"logicalName": "coreaddressstreet",
+					"locale": {
+						"1033": {
+							"displayName": "core.address.street"
+						}
+					}
+				},
+				"core.address.xcoord": {
+					"type": {
+						"type": "string",
+						"maxLength": 18
+					},
+					"x-includeInMigration": true,
+					"displayName": "core.address.xcoord",
+					"schemaName": "coreaddressxcoord",
+					"logicalName": "coreaddressxcoord",
+					"locale": {
+						"1033": {
+							"displayName": "core.address.xcoord"
+						}
+					}
+				},
+				"core.address.ycoord": {
+					"type": {
+						"type": "string",
+						"maxLength": 18
+					},
+					"x-includeInMigration": true,
+					"displayName": "core.address.ycoord",
+					"schemaName": "coreaddressycoord",
+					"logicalName": "coreaddressycoord",
+					"locale": {
+						"1033": {
+							"displayName": "core.address.ycoord"
+						}
+					}
+				},
+				"core.address.zipcode": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true,
+					"displayName": "core.address.zipcode",
+					"schemaName": "coreaddresszipcode",
+					"logicalName": "coreaddresszipcode",
+					"locale": {
+						"1033": {
+							"displayName": "core.address.zipcode"
+						}
+					}
+				},
+				"Source Id": {
+					"isPrimaryField": true,
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true,
+					"displayName": "Source Id",
+					"schemaName": "SourceId",
+					"logicalName": "sourceid",
+					"locale": {
+						"1033": {
+							"displayName": "Source Id"
+						}
+					}
+				},
+				"networkdata.address.build": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.build",
+					"schemaName": "networkdataaddressbuild",
+					"logicalName": "networkdataaddressbuild",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.build"
+						}
+					}
+				},
+				"networkdata.address.civil_planned": {
+					"type": {
+						"type": "string",
+						"maxLength": 26
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.civil_planned",
+					"schemaName": "networkdataaddresscivil_planned",
+					"logicalName": "networkdataaddresscivil_planned",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.civil_planned"
+						}
+					}
+				},
+				"networkdata.address.comments": {
+					"type": {
+						"type": "string",
+						"maxLength": 176
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.comments",
+					"schemaName": "networkdataaddresscomments",
+					"logicalName": "networkdataaddresscomments",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.comments"
+						}
+					}
+				},
+				"networkdata.address.delivery_date": {
+					"type": {
+						"type": "string",
+						"maxLength": 26
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.delivery_date",
+					"schemaName": "networkdataaddressdelivery_date",
+					"logicalName": "networkdataaddressdelivery_date",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.delivery_date"
+						}
+					}
+				},
+				"networkdata.address.deliverystatus": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.deliverystatus",
+					"schemaName": "networkdataaddressdeliverystatus",
+					"logicalName": "networkdataaddressdeliverystatus",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.deliverystatus"
+						}
+					}
+				},
+				"networkdata.address.forecast_connected": {
+					"type": {
+						"type": "string",
+						"maxLength": 26
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.forecast_connected",
+					"schemaName": "networkdataaddressforecast_connected",
+					"logicalName": "networkdataaddressforecast_connected",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.forecast_connected"
+						}
+					}
+				},
+				"networkdata.address.frame": {
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.frame",
+					"schemaName": "networkdataaddressframe",
+					"logicalName": "networkdataaddressframe",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.frame"
+						}
+					}
+				},
+				"networkdata.address.ftutype": {
+					"type": {
+						"type": "string",
+						"maxLength": 25
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.ftutype",
+					"schemaName": "networkdataaddressftutype",
+					"logicalName": "networkdataaddressftutype",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.ftutype"
+						}
+					}
+				},
+				"networkdata.address.hasdate": {
+					"type": {
+						"type": "string",
+						"maxLength": 26
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.hasdate",
+					"schemaName": "networkdataaddresshasdate",
+					"logicalName": "networkdataaddresshasdate",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.hasdate"
+						}
+					}
+				},
+				"networkdata.address.monthlycode": {
+					"type": {
+						"type": "string",
+						"maxLength": 4
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.monthlycode",
+					"schemaName": "networkdataaddressmonthlycode",
+					"logicalName": "networkdataaddressmonthlycode",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.monthlycode"
+						}
+					}
+				},
+				"networkdata.address.onceonlycode": {
+					"type": {
+						"type": "string",
+						"maxLength": 20
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.onceonlycode",
+					"schemaName": "networkdataaddressonceonlycode",
+					"logicalName": "networkdataaddressonceonlycode",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.onceonlycode"
+						}
+					}
+				},
+				"networkdata.address.passive_connection_scenario": {
+					"type": {
+						"type": "string",
+						"maxLength": 4
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.passive_connection_scenario",
+					"schemaName": "networkdataaddresspassive_connection_scenario",
+					"logicalName": "networkdataaddresspassive_connection_scenario",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.passive_connection_scenario"
+						}
+					}
+				},
+				"networkdata.address.permission_ftu": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.permission_ftu",
+					"schemaName": "networkdataaddresspermission_ftu",
+					"logicalName": "networkdataaddresspermission_ftu",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.permission_ftu"
+						}
+					}
+				},
+				"networkdata.address.redemptioncode": {
+					"type": {
+						"type": "string",
+						"maxLength": 17
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.redemptioncode",
+					"schemaName": "networkdataaddressredemptioncode",
+					"logicalName": "networkdataaddressredemptioncode",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.redemptioncode"
+						}
+					}
+				},
+				"networkdata.address.rfs_date": {
+					"type": {
+						"type": "string",
+						"maxLength": 26
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.rfs_date",
+					"schemaName": "networkdataaddressrfs_date",
+					"logicalName": "networkdataaddressrfs_date",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.rfs_date"
+						}
+					}
+				},
+				"networkdata.address.target_rfs_date": {
+					"type": {
+						"type": "string",
+						"maxLength": 26
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.target_rfs_date",
+					"schemaName": "networkdataaddresstarget_rfs_date",
+					"logicalName": "networkdataaddresstarget_rfs_date",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.target_rfs_date"
+						}
+					}
+				},
+				"networkdata.aggr.active_operators": {
+					"type": {
+						"type": "string",
+						"maxLength": 44
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.aggr.active_operators",
+					"schemaName": "networkdataaggractive_operators",
+					"logicalName": "networkdataaggractive_operators",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.aggr.active_operators"
+						}
+					}
+				},
+				"networkdata.aggr.administrators": {
+					"type": {
+						"type": "string",
+						"maxLength": 33
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.aggr.administrators",
+					"schemaName": "networkdataaggradministrators",
+					"logicalName": "networkdataaggradministrators",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.aggr.administrators"
+						}
+					}
+				},
+				"networkdata.aggr.area_active_operators": {
+					"type": {
+						"type": "string",
+						"maxLength": 24
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.aggr.area_active_operators",
+					"schemaName": "networkdataaggrarea_active_operators",
+					"logicalName": "networkdataaggrarea_active_operators",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.aggr.area_active_operators"
+						}
+					}
+				},
+				"networkdata.aggr.area_administrators": {
+					"type": {
+						"type": "string",
+						"maxLength": 33
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.aggr.area_administrators",
+					"schemaName": "networkdataaggrarea_administrators",
+					"logicalName": "networkdataaggrarea_administrators",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.aggr.area_administrators"
+						}
+					}
+				},
+				"networkdata.createdAt": {
+					"type": {
+						"type": "string",
+						"maxLength": 26
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.createdAt",
+					"schemaName": "networkdatacreatedAt",
+					"logicalName": "networkdatacreatedat",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.createdAt"
+						}
+					}
+				},
+				"networkdata.dataProvider": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.dataProvider",
+					"schemaName": "networkdatadataProvider",
+					"logicalName": "networkdatadataprovider",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.dataProvider"
+						}
+					}
+				},
+				"networkdata.dataSet": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.dataSet",
+					"schemaName": "networkdatadataSet",
+					"logicalName": "networkdatadataset",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.dataSet"
+						}
+					}
+				},
+				"networkdata.dataSource": {
+					"type": {
+						"type": "string",
+						"maxLength": 10
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.dataSource",
+					"schemaName": "networkdatadataSource",
+					"logicalName": "networkdatadatasource",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.dataSource"
+						}
+					}
+				},
+				"networkdata.ftthfiber.active_operator_orderid_planned": {
+					"type": {
+						"type": "string",
+						"maxLength": 12
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.active_operator_orderid_planned",
+					"schemaName": "networkdataftthfiberactive_operator_orderid_planned",
+					"logicalName": "networkdataftthfiberactive_operator_orderid_planned",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.active_operator_orderid_planned"
+						}
+					}
+				},
+				"networkdata.ftthfiber.active_operator_planned": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.active_operator_planned",
+					"schemaName": "networkdataftthfiberactive_operator_planned",
+					"logicalName": "networkdataftthfiberactive_operator_planned",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.active_operator_planned"
+						}
+					}
+				},
+				"networkdata.ftthfiber.active_ordertype_planned": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.active_ordertype_planned",
+					"schemaName": "networkdataftthfiberactive_ordertype_planned",
+					"logicalName": "networkdataftthfiberactive_ordertype_planned",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.active_ordertype_planned"
+						}
+					}
+				},
+				"networkdata.ftthfiber.pop_frame": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.pop_frame",
+					"schemaName": "networkdataftthfiberpop_frame",
+					"logicalName": "networkdataftthfiberpop_frame",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.pop_frame"
+						}
+					}
+				},
+				"networkdata.ftthfiber.pop_location": {
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.pop_location",
+					"schemaName": "networkdataftthfiberpop_location",
+					"logicalName": "networkdataftthfiberpop_location",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.pop_location"
+						}
+					}
+				},
+				"networkdata.ftthfiber.pop_position": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.pop_position",
+					"schemaName": "networkdataftthfiberpop_position",
+					"logicalName": "networkdataftthfiberpop_position",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.pop_position"
+						}
+					}
+				},
+				"networkdata.ftthfiber.pop_row": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.pop_row",
+					"schemaName": "networkdataftthfiberpop_row",
+					"logicalName": "networkdataftthfiberpop_row",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.pop_row"
+						}
+					}
+				},
+				"networkdata.ftthfiber.pop_shelf": {
+					"type": {
+						"type": "string",
+						"maxLength": 18
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.pop_shelf",
+					"schemaName": "networkdataftthfiberpop_shelf",
+					"logicalName": "networkdataftthfiberpop_shelf",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.pop_shelf"
+						}
+					}
+				},
+				"networkdata.ftthfiber2.pop_frame": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber2.pop_frame",
+					"schemaName": "networkdataftthfiber2pop_frame",
+					"logicalName": "networkdataftthfiber2pop_frame",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber2.pop_frame"
+						}
+					}
+				},
+				"networkdata.ftthfiber2.pop_location": {
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber2.pop_location",
+					"schemaName": "networkdataftthfiber2pop_location",
+					"logicalName": "networkdataftthfiber2pop_location",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber2.pop_location"
+						}
+					}
+				},
+				"networkdata.ftthfiber2.pop_position": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber2.pop_position",
+					"schemaName": "networkdataftthfiber2pop_position",
+					"logicalName": "networkdataftthfiber2pop_position",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber2.pop_position"
+						}
+					}
+				},
+				"networkdata.ftthfiber2.pop_row": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber2.pop_row",
+					"schemaName": "networkdataftthfiber2pop_row",
+					"logicalName": "networkdataftthfiber2pop_row",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber2.pop_row"
+						}
+					}
+				},
+				"networkdata.ftthfiber2.pop_shelf": {
+					"type": {
+						"type": "string",
+						"maxLength": 18
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber2.pop_shelf",
+					"schemaName": "networkdataftthfiber2pop_shelf",
+					"logicalName": "networkdataftthfiber2pop_shelf",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber2.pop_shelf"
+						}
+					}
+				},
+				"networkdata.net_area.name": {
+					"type": {
+						"type": "string",
+						"maxLength": 75
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.net_area.name",
+					"schemaName": "networkdatanet_areaname",
+					"logicalName": "networkdatanet_areaname",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.net_area.name"
+						}
+					}
+				},
+				"networkdata.net_area.shortname": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.net_area.shortname",
+					"schemaName": "networkdatanet_areashortname",
+					"logicalName": "networkdatanet_areashortname",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.net_area.shortname"
+						}
+					}
+				},
+				"networkdata.status": {
+					"type": {
+						"type": "string",
+						"maxLength": 10
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.status",
+					"schemaName": "networkdatastatus",
+					"logicalName": "networkdatastatus",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.status"
+						}
+					}
+				},
+				"networkdata.updatedAt": {
+					"type": {
+						"type": "string",
+						"maxLength": 26
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.updatedAt",
+					"schemaName": "networkdataupdatedAt",
+					"logicalName": "networkdataupdatedat",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.updatedAt"
+						}
+					}
+				},
+				"networkdata.address.financial_customer": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.financial_customer",
+					"schemaName": "networkdataaddressfinancial_customer",
+					"logicalName": "networkdataaddressfinancial_customer",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.financial_customer"
+						}
+					}
+				},
+				"networkdata.aggr2.area_administrators": {
+					"type": {
+						"type": "string",
+						"maxLength": 38
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.aggr2.area_administrators",
+					"schemaName": "networkdataaggr2area_administrators",
+					"logicalName": "networkdataaggr2area_administrators",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.aggr2.area_administrators"
+						}
+					}
+				},
+				"networkdata.ftthfiber.active_operator": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.active_operator",
+					"schemaName": "networkdataftthfiberactive_operator",
+					"logicalName": "networkdataftthfiberactive_operator",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.active_operator"
+						}
+					}
+				},
+				"networkdata.ftthfiber.active_operator_orderid": {
+					"type": {
+						"type": "string",
+						"maxLength": 29
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.active_operator_orderid",
+					"schemaName": "networkdataftthfiberactive_operator_orderid",
+					"logicalName": "networkdataftthfiberactive_operator_orderid",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.active_operator_orderid"
+						}
+					}
+				},
+				"networkdata.ftthfiber.active_ordertype": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.active_ordertype",
+					"schemaName": "networkdataftthfiberactive_ordertype",
+					"logicalName": "networkdataftthfiberactive_ordertype",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.active_ordertype"
+						}
+					}
+				},
+				"networkdata.ftthfiber.active_port": {
+					"type": {
+						"type": "string",
+						"maxLength": 117
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.active_port",
+					"schemaName": "networkdataftthfiberactive_port",
+					"logicalName": "networkdataftthfiberactive_port",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.active_port"
+						}
+					}
+				},
+				"networkdata.address.fixedcharge_status": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.fixedcharge_status",
+					"schemaName": "networkdataaddressfixedcharge_status",
+					"logicalName": "networkdataaddressfixedcharge_status",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.fixedcharge_status"
+						}
+					}
+				},
+				"networkdata.aggr2.active_operators": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.aggr2.active_operators",
+					"schemaName": "networkdataaggr2active_operators",
+					"logicalName": "networkdataaggr2active_operators",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.aggr2.active_operators"
+						}
+					}
+				},
+				"networkdata.aggr2.administrators": {
+					"type": {
+						"type": "string",
+						"maxLength": 40
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.aggr2.administrators",
+					"schemaName": "networkdataaggr2administrators",
+					"logicalName": "networkdataaggr2administrators",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.aggr2.administrators"
+						}
+					}
+				},
+				"networkdata.aggr2.area_active_operators": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.aggr2.area_active_operators",
+					"schemaName": "networkdataaggr2area_active_operators",
+					"logicalName": "networkdataaggr2area_active_operators",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.aggr2.area_active_operators"
+						}
+					}
+				},
+				"networkdata.address.financial_administration_name": {
+					"type": {
+						"type": "string",
+						"maxLength": 20
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.financial_administration_name",
+					"schemaName": "networkdataaddressfinancial_administration_name",
+					"logicalName": "networkdataaddressfinancial_administration_name",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.financial_administration_name"
+						}
+					}
+				},
+				"networkdata.address.financial_administration_number": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.financial_administration_number",
+					"schemaName": "networkdataaddressfinancial_administration_number",
+					"logicalName": "networkdataaddressfinancial_administration_number",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.financial_administration_number"
+						}
+					}
+				},
+				"networkdata.address.builder": {
+					"type": {
+						"type": "string",
+						"maxLength": 7
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.builder",
+					"schemaName": "networkdataaddressbuilder",
+					"logicalName": "networkdataaddressbuilder",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.builder"
+						}
+					}
+				},
+				"networkdata.address.cluster": {
+					"type": {
+						"type": "string",
+						"maxLength": 51
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.cluster",
+					"schemaName": "networkdataaddresscluster",
+					"logicalName": "networkdataaddresscluster",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.cluster"
+						}
+					}
+				},
+				"networkdata.address.co_code": {
+					"type": {
+						"type": "string",
+						"maxLength": 7
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.co_code",
+					"schemaName": "networkdataaddressco_code",
+					"logicalName": "networkdataaddressco_code",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.co_code"
+						}
+					}
+				},
+				"networkdata.address.co_name": {
+					"type": {
+						"type": "string",
+						"maxLength": 120
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.co_name",
+					"schemaName": "networkdataaddressco_name",
+					"logicalName": "networkdataaddressco_name",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.co_name"
+						}
+					}
+				},
+				"networkdata.address.co_statusid": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.co_statusid",
+					"schemaName": "networkdataaddressco_statusid",
+					"logicalName": "networkdataaddressco_statusid",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.co_statusid"
+						}
+					}
+				},
+				"networkdata.address.co_statusname": {
+					"type": {
+						"type": "string",
+						"maxLength": 13
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.co_statusname",
+					"schemaName": "networkdataaddressco_statusname",
+					"logicalName": "networkdataaddressco_statusname",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.co_statusname"
+						}
+					}
+				},
+				"networkdata.address.creation_date": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.creation_date",
+					"schemaName": "networkdataaddresscreation_date",
+					"logicalName": "networkdataaddresscreation_date",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.creation_date"
+						}
+					}
+				},
+				"networkdata.address.evp_code": {
+					"type": {
+						"type": "string",
+						"maxLength": 22
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.evp_code",
+					"schemaName": "networkdataaddressevp_code",
+					"logicalName": "networkdataaddressevp_code",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.evp_code"
+						}
+					}
+				},
+				"networkdata.address.hasdate_completed": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.hasdate_completed",
+					"schemaName": "networkdataaddresshasdate_completed",
+					"logicalName": "networkdataaddresshasdate_completed",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.hasdate_completed"
+						}
+					}
+				},
+				"networkdata.address.hpplastic_donedate": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.hpplastic_donedate",
+					"schemaName": "networkdataaddresshpplastic_donedate",
+					"logicalName": "networkdataaddresshpplastic_donedate",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.hpplastic_donedate"
+						}
+					}
+				},
+				"networkdata.address.hpplastic_estimated": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.hpplastic_estimated",
+					"schemaName": "networkdataaddresshpplastic_estimated",
+					"logicalName": "networkdataaddresshpplastic_estimated",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.hpplastic_estimated"
+						}
+					}
+				},
+				"networkdata.address.hpplastic_startdate": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.hpplastic_startdate",
+					"schemaName": "networkdataaddresshpplastic_startdate",
+					"logicalName": "networkdataaddresshpplastic_startdate",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.hpplastic_startdate"
+						}
+					}
+				},
+				"networkdata.address.indication_hasdate": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.indication_hasdate",
+					"schemaName": "networkdataaddressindication_hasdate",
+					"logicalName": "networkdataaddressindication_hasdate",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.indication_hasdate"
+						}
+					}
+				},
+				"networkdata.address.isp_name": {
+					"type": {
+						"type": "string",
+						"maxLength": 14
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.isp_name",
+					"schemaName": "networkdataaddressisp_name",
+					"logicalName": "networkdataaddressisp_name",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.isp_name"
+						}
+					}
+				},
+				"networkdata.address.lc": {
+					"type": {
+						"type": "string",
+						"maxLength": 9
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.lc",
+					"schemaName": "networkdataaddresslc",
+					"logicalName": "networkdataaddresslc",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.lc"
+						}
+					}
+				},
+				"networkdata.address.orderable": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.orderable",
+					"schemaName": "networkdataaddressorderable",
+					"logicalName": "networkdataaddressorderable",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.orderable"
+						}
+					}
+				},
+				"networkdata.address.permission_customer": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.permission_customer",
+					"schemaName": "networkdataaddresspermission_customer",
+					"logicalName": "networkdataaddresspermission_customer",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.permission_customer"
+						}
+					}
+				},
+				"networkdata.address.post_construction": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.post_construction",
+					"schemaName": "networkdataaddresspost_construction",
+					"logicalName": "networkdataaddresspost_construction",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.post_construction"
+						}
+					}
+				},
+				"networkdata.address.remaining_issue": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.remaining_issue",
+					"schemaName": "networkdataaddressremaining_issue",
+					"logicalName": "networkdataaddressremaining_issue",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.remaining_issue"
+						}
+					}
+				},
+				"networkdata.address.target_delivery": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.target_delivery",
+					"schemaName": "networkdataaddresstarget_delivery",
+					"logicalName": "networkdataaddresstarget_delivery",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.target_delivery"
+						}
+					}
+				},
+				"networkdata.bag.bag_id": {
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.bag.bag_id",
+					"schemaName": "networkdatabagbag_id",
+					"logicalName": "networkdatabagbag_id",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.bag.bag_id"
+						}
+					}
+				},
+				"networkdata.bag.bag_purpose": {
+					"type": {
+						"type": "string",
+						"maxLength": 110
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.bag.bag_purpose",
+					"schemaName": "networkdatabagbag_purpose",
+					"logicalName": "networkdatabagbag_purpose",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.bag.bag_purpose"
+						}
+					}
+				},
+				"networkdata.ftthfiber.pop_fibervalue": {
+					"type": {
+						"type": "string",
+						"maxLength": 21
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.pop_fibervalue",
+					"schemaName": "networkdataftthfiberpop_fibervalue",
+					"logicalName": "networkdataftthfiberpop_fibervalue",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.pop_fibervalue"
+						}
+					}
+				},
+				"networkdata.ftthfiber2.pop_fibervalue": {
+					"type": {
+						"type": "string",
+						"maxLength": 21
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber2.pop_fibervalue",
+					"schemaName": "networkdataftthfiber2pop_fibervalue",
+					"logicalName": "networkdataftthfiber2pop_fibervalue",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber2.pop_fibervalue"
+						}
+					}
+				},
+				"networkdata.net_area.status": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.net_area.status",
+					"schemaName": "networkdatanet_areastatus",
+					"logicalName": "networkdatanet_areastatus",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.net_area.status"
+						}
+					}
+				},
+				"networkdata.net_area.status_name": {
+					"type": {
+						"type": "string",
+						"maxLength": 28
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.net_area.status_name",
+					"schemaName": "networkdatanet_areastatus_name",
+					"logicalName": "networkdatanet_areastatus_name",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.net_area.status_name"
+						}
+					}
+				},
+				"networkdata.net_area.target_delivery": {
+					"type": {
+						"type": "string",
+						"maxLength": 2
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.net_area.target_delivery",
+					"schemaName": "networkdatanet_areatarget_delivery",
+					"logicalName": "networkdatanet_areatarget_delivery",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.net_area.target_delivery"
+						}
+					}
+				},
+				"networkdata.net_area.urban_rural": {
+					"type": {
+						"type": "string",
+						"maxLength": 12
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.net_area.urban_rural",
+					"schemaName": "networkdatanet_areaurban_rural",
+					"logicalName": "networkdatanet_areaurban_rural",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.net_area.urban_rural"
+						}
+					}
+				},
+				"networkdata.address.builder_comment": {
+					"type": {
+						"type": "string",
+						"maxLength": 200
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.builder_comment",
+					"schemaName": "networkdataaddressbuilder_comment",
+					"logicalName": "networkdataaddressbuilder_comment",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.builder_comment"
+						}
+					}
+				},
+				"networkdata.address.deliverystatus_reason": {
+					"type": {
+						"type": "string",
+						"maxLength": 127
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.deliverystatus_reason",
+					"schemaName": "networkdataaddressdeliverystatus_reason",
+					"logicalName": "networkdataaddressdeliverystatus_reason",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.deliverystatus_reason"
+						}
+					}
+				},
+				"networkdata.address.last_update": {
+					"type": {
+						"type": "string",
+						"maxLength": 20
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.last_update",
+					"schemaName": "networkdataaddresslast_update",
+					"logicalName": "networkdataaddresslast_update",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.last_update"
+						}
+					}
+				},
+				"networkdata.address.projectcode": {
+					"type": {
+						"type": "string",
+						"maxLength": 7
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.projectcode",
+					"schemaName": "networkdataaddressprojectcode",
+					"logicalName": "networkdataaddressprojectcode",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.projectcode"
+						}
+					}
+				},
+				"networkdata.address.reason_code": {
+					"type": {
+						"type": "string",
+						"maxLength": 3
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.reason_code",
+					"schemaName": "networkdataaddressreason_code",
+					"logicalName": "networkdataaddressreason_code",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.reason_code"
+						}
+					}
+				},
+				"networkdata.address.reason_code_note": {
+					"type": {
+						"type": "string",
+						"maxLength": 28
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.reason_code_note",
+					"schemaName": "networkdataaddressreason_code_note",
+					"logicalName": "networkdataaddressreason_code_note",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.reason_code_note"
+						}
+					}
+				},
+				"networkdata.net_area.ap_area_id": {
+					"type": {
+						"type": "string",
+						"maxLength": 4
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.net_area.ap_area_id",
+					"schemaName": "networkdatanet_areaap_area_id",
+					"logicalName": "networkdatanet_areaap_area_id",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.net_area.ap_area_id"
+						}
+					}
+				},
+				"networkdata.ftthfiber.lastUpdated": {
+					"type": {
+						"type": "string",
+						"maxLength": 19
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber.lastUpdated",
+					"schemaName": "networkdataftthfiberlastUpdated",
+					"logicalName": "networkdataftthfiberlastupdated",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber.lastUpdated"
+						}
+					}
+				},
+				"networkdata.address.collectivity": {
+					"type": {
+						"type": "string",
+						"maxLength": 10
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.collectivity",
+					"schemaName": "networkdataaddresscollectivity",
+					"logicalName": "networkdataaddresscollectivity",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.collectivity"
+						}
+					}
+				},
+				"networkdata.address.collectivity_comment": {
+					"type": {
+						"type": "string",
+						"maxLength": 222
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.address.collectivity_comment",
+					"schemaName": "networkdataaddresscollectivity_comment",
+					"logicalName": "networkdataaddresscollectivity_comment",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.address.collectivity_comment"
+						}
+					}
+				},
+				"networkdata.ftthfiber2.active_operator": {
+					"type": {
+						"type": "string",
+						"maxLength": 6
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber2.active_operator",
+					"schemaName": "networkdataftthfiber2active_operator",
+					"logicalName": "networkdataftthfiber2active_operator",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber2.active_operator"
+						}
+					}
+				},
+				"networkdata.ftthfiber2.active_operator_orderid": {
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber2.active_operator_orderid",
+					"schemaName": "networkdataftthfiber2active_operator_orderid",
+					"logicalName": "networkdataftthfiber2active_operator_orderid",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber2.active_operator_orderid"
+						}
+					}
+				},
+				"networkdata.ftthfiber2.active_ordertype": {
+					"type": {
+						"type": "string",
+						"maxLength": 1
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber2.active_ordertype",
+					"schemaName": "networkdataftthfiber2active_ordertype",
+					"logicalName": "networkdataftthfiber2active_ordertype",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber2.active_ordertype"
+						}
+					}
+				},
+				"core.address.dhId": {
+					"type": {
+						"type": "string",
+						"maxLength": 16
+					},
+					"x-includeInMigration": true,
+					"displayName": "core.address.dhId",
+					"schemaName": "coreaddressdhId",
+					"logicalName": "coreaddressdhid",
+					"locale": {
+						"1033": {
+							"displayName": "core.address.dhId"
+						}
+					}
+				},
+				"networkdata.ftthfiber2.active_port": {
+					"type": {
+						"type": "string",
+						"maxLength": 55
+					},
+					"x-includeInMigration": true,
+					"displayName": "networkdata.ftthfiber2.active_port",
+					"schemaName": "networkdataftthfiber2active_port",
+					"logicalName": "networkdataftthfiber2active_port",
+					"locale": {
+						"1033": {
+							"displayName": "networkdata.ftthfiber2.active_port"
+						}
+					}
+				},
+				"Migration Entity": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Migration Entity",
+						"forms": {
+							"Main": {
+								"type": "Main",
+								"name": "Main Information",
+								"tab": "TAB_Sources",
+								"column": "COLUMN_First",
+								"section": "SECTION_General"
+							}
+						},
+						"foreignKey": {
+							"principalTable": "migrationentity",
+							"principalColumn": "id",
+							"principalNameColumn": "sourcename",
+							"name": "migrationentity"
+						}
+					},
+					"x-includeInMigration": false,
+					"displayName": "Migration Entity",
+					"schemaName": "MigrationEntityId",
+					"logicalName": "migrationentityid",
+					"locale": {
+						"1033": {
+							"displayName": "Migration Entity"
+						}
+					}
+				},
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id",
+					"locale": {
+						"1033": {
+							"displayName": "Id"
+						}
+					}
+				}
+			},
+			"displayName": "Source AvailibleChecker",
+			"schemaName": "SourceAvailibleChecker",
+			"logicalName": "sourceavailiblechecker",
+			"collectionSchemaName": "SourceAvailibleCheckers",
+			"locale": {
+				"1033": {
+					"displayName": "Source AvailibleChecker",
+					"pluralName": "Source AvailibleCheckers"
+				}
+			}
+		},
+		"Target Connection": {
+			"x-entity-type": "df_connection",
+			"attributes": {
+				"Id": {
+					"isPrimaryKey": true,
+					"type": {
+						"type": "guid"
+					},
+					"x-includeInMigration": false,
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id",
+					"locale": {
+						"1033": {
+							"displayName": "Id"
+						}
+					}
+				},
+				"Target Id": {
+					"isPrimaryField": true,
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "connectionid",
+					"x-includeInMigration": false,
+					"displayName": "Target Id",
+					"schemaName": "TargetId",
+					"locale": {
+						"1033": {
+							"displayName": "Target Id"
+						}
+					}
+				},
+				"Source": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Source AvailibleChecker",
+						"x-idField": "Id",
+						"foreignKey": {
+							"principalTable": "sourceavailiblechecker",
+							"principalColumn": "id",
+							"principalNameColumn": "sourceid",
+							"name": "source"
+						}
+					},
+					"x-includeInMigration": false,
+					"displayName": "Source",
+					"schemaName": "SourceId",
+					"logicalName": "sourceid",
+					"locale": {
+						"1033": {
+							"displayName": "Source"
+						}
+					}
+				},
+				"Migration Entity": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Migration Entity",
+						"forms": {
+							"Main": {
+								"type": "Main",
+								"name": "Main Information",
+								"tab": "TAB_Targets",
+								"column": "COLUMN_First",
+								"section": "SECTION_General"
+							}
+						},
+						"foreignKey": {
+							"principalTable": "migrationentity",
+							"principalColumn": "id",
+							"principalNameColumn": "sourcename",
+							"name": "migrationentity"
+						}
+					},
+					"x-includeInMigration": false,
+					"displayName": "Migration Entity",
+					"schemaName": "MigrationEntityId",
+					"logicalName": "migrationentityid",
+					"locale": {
+						"1033": {
+							"displayName": "Migration Entity"
+						}
+					}
+				},
+				"df_activeordertypeplanned": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeordertypeplanned",
+					"x-includeInMigration": true,
+					"displayName": "df_activeordertypeplanned",
+					"schemaName": "df_activeordertypeplanned",
+					"locale": {
+						"1033": {
+							"displayName": "df_activeordertypeplanned"
+						}
+					}
+				},
+				"OverriddenCreatedOn": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "overriddencreatedon",
+					"x-includeInMigration": true,
+					"displayName": "OverriddenCreatedOn",
+					"schemaName": "OverriddenCreatedOn",
+					"locale": {
+						"1033": {
+							"displayName": "OverriddenCreatedOn"
+						}
+					}
+				},
+				"df_Financialadministrationname": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_financialadministrationname",
+					"x-includeInMigration": true,
+					"displayName": "df_Financialadministrationname",
+					"schemaName": "df_Financialadministrationname",
+					"locale": {
+						"1033": {
+							"displayName": "df_Financialadministrationname"
+						}
+					}
+				},
+				"df_Activeoperators": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperators",
+					"x-includeInMigration": true,
+					"displayName": "df_Activeoperators",
+					"schemaName": "df_Activeoperators",
+					"locale": {
+						"1033": {
+							"displayName": "df_Activeoperators"
+						}
+					}
+				},
+				"df_Activeordertype2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeordertype2",
+					"x-includeInMigration": true,
+					"displayName": "df_Activeordertype2",
+					"schemaName": "df_Activeordertype2",
+					"locale": {
+						"1033": {
+							"displayName": "df_Activeordertype2"
+						}
+					}
+				},
+				"df_IsBoughtOff": {
+					"type": {
+						"type": "boolean"
+					},
+					"logicalName": "df_isboughtoff",
+					"x-includeInMigration": true,
+					"displayName": "df_IsBoughtOff",
+					"schemaName": "df_IsBoughtOff",
+					"locale": {
+						"1033": {
+							"displayName": "df_IsBoughtOff"
+						}
+					}
+				},
+				"ModifiedOn": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "modifiedon",
+					"x-includeInMigration": true,
+					"displayName": "ModifiedOn",
+					"schemaName": "ModifiedOn",
+					"locale": {
+						"1033": {
+							"displayName": "ModifiedOn"
+						}
+					}
+				},
+				"df_Street": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_street",
+					"x-includeInMigration": true,
+					"displayName": "df_Street",
+					"schemaName": "df_Street",
+					"locale": {
+						"1033": {
+							"displayName": "df_Street"
+						}
+					}
+				},
+				"df_areaadministrators2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_areaadministrators2",
+					"x-includeInMigration": true,
+					"displayName": "df_areaadministrators2",
+					"schemaName": "df_areaadministrators2",
+					"locale": {
+						"1033": {
+							"displayName": "df_areaadministrators2"
+						}
+					}
+				},
+				"df_activeoperator": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperator",
+					"x-includeInMigration": true,
+					"displayName": "df_activeoperator",
+					"schemaName": "df_activeoperator",
+					"locale": {
+						"1033": {
+							"displayName": "df_activeoperator"
+						}
+					}
+				},
+				"df_NetAreaname": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_netareaname",
+					"x-includeInMigration": true,
+					"displayName": "df_NetAreaname",
+					"schemaName": "df_NetAreaname",
+					"locale": {
+						"1033": {
+							"displayName": "df_NetAreaname"
+						}
+					}
+				},
+				"df_PermissionFtu": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_permissionftu",
+					"x-includeInMigration": true,
+					"displayName": "df_PermissionFtu",
+					"schemaName": "df_PermissionFtu",
+					"locale": {
+						"1033": {
+							"displayName": "df_PermissionFtu"
+						}
+					}
+				},
+				"df_DataSet": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_dataset",
+					"x-includeInMigration": true,
+					"displayName": "df_DataSet",
+					"schemaName": "df_DataSet",
+					"locale": {
+						"1033": {
+							"displayName": "df_DataSet"
+						}
+					}
+				},
+				"df_popframe": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popframe",
+					"x-includeInMigration": true,
+					"displayName": "df_popframe",
+					"schemaName": "df_popframe",
+					"locale": {
+						"1033": {
+							"displayName": "df_popframe"
+						}
+					}
+				},
+				"df_Hasdate": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "df_hasdate",
+					"x-includeInMigration": true,
+					"displayName": "df_Hasdate",
+					"schemaName": "df_Hasdate",
+					"locale": {
+						"1033": {
+							"displayName": "df_Hasdate"
+						}
+					}
+				},
+				"df_Poplocation": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_poplocation",
+					"x-includeInMigration": true,
+					"displayName": "df_Poplocation",
+					"schemaName": "df_Poplocation",
+					"locale": {
+						"1033": {
+							"displayName": "df_Poplocation"
+						}
+					}
+				},
+				"df_Financialadministrationnumber": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_financialadministrationnumber",
+					"x-includeInMigration": true,
+					"displayName": "df_Financialadministrationnumber",
+					"schemaName": "df_Financialadministrationnumber",
+					"locale": {
+						"1033": {
+							"displayName": "df_Financialadministrationnumber"
+						}
+					}
+				},
+				"df_DataSource": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_datasource",
+					"x-includeInMigration": true,
+					"displayName": "df_DataSource",
+					"schemaName": "df_DataSource",
+					"locale": {
+						"1033": {
+							"displayName": "df_DataSource"
+						}
+					}
+				},
+				"df_Areaadministrators": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_areaadministrators",
+					"x-includeInMigration": true,
+					"displayName": "df_Areaadministrators",
+					"schemaName": "df_Areaadministrators",
+					"locale": {
+						"1033": {
+							"displayName": "df_Areaadministrators"
+						}
+					}
+				},
+				"statuscode": {
+					"type": {
+						"name": "Connectionstatuscodechoice",
+						"type": "Choice",
+						"options": {
+							"Active": 1,
+							"Inactive": 2
+						}
+					},
+					"logicalName": "statuscode",
+					"x-includeInMigration": true,
+					"displayName": "statuscode",
+					"schemaName": "statuscode",
+					"locale": {
+						"1033": {
+							"displayName": "statuscode"
+						}
+					}
+				},
+				"df_Lastupdate": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "df_lastupdate",
+					"x-includeInMigration": true,
+					"displayName": "df_Lastupdate",
+					"schemaName": "df_Lastupdate",
+					"locale": {
+						"1033": {
+							"displayName": "df_Lastupdate"
+						}
+					}
+				},
+				"df_DHID": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_dhid",
+					"x-includeInMigration": true,
+					"displayName": "df_DHID",
+					"schemaName": "df_DHID",
+					"locale": {
+						"1033": {
+							"displayName": "df_DHID"
+						}
+					}
+				},
+				"df_Room": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_room",
+					"x-includeInMigration": true,
+					"displayName": "df_Room",
+					"schemaName": "df_Room",
+					"locale": {
+						"1033": {
+							"displayName": "df_Room"
+						}
+					}
+				},
+				"df_Dataprovider": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_dataprovider",
+					"x-includeInMigration": true,
+					"displayName": "df_Dataprovider",
+					"schemaName": "df_Dataprovider",
+					"locale": {
+						"1033": {
+							"displayName": "df_Dataprovider"
+						}
+					}
+				},
+				"df_Reasoncode": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_reasoncode",
+					"x-includeInMigration": true,
+					"displayName": "df_Reasoncode",
+					"schemaName": "df_Reasoncode",
+					"locale": {
+						"1033": {
+							"displayName": "df_Reasoncode"
+						}
+					}
+				},
+				"df_Reasoncodenote": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_reasoncodenote",
+					"x-includeInMigration": true,
+					"displayName": "df_Reasoncodenote",
+					"schemaName": "df_Reasoncodenote",
+					"locale": {
+						"1033": {
+							"displayName": "df_Reasoncodenote"
+						}
+					}
+				},
+				"df_NetAreaShortname": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_netareashortname",
+					"x-includeInMigration": true,
+					"displayName": "df_NetAreaShortname",
+					"schemaName": "df_NetAreaShortname",
+					"locale": {
+						"1033": {
+							"displayName": "df_NetAreaShortname"
+						}
+					}
+				},
+				"df_popframe2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popframe2",
+					"x-includeInMigration": true,
+					"displayName": "df_popframe2",
+					"schemaName": "df_popframe2",
+					"locale": {
+						"1033": {
+							"displayName": "df_popframe2"
+						}
+					}
+				},
+				"df_Activeoperators2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperators2",
+					"x-includeInMigration": true,
+					"displayName": "df_Activeoperators2",
+					"schemaName": "df_Activeoperators2",
+					"locale": {
+						"1033": {
+							"displayName": "df_Activeoperators2"
+						}
+					}
+				},
+				"df_popposition2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popposition2",
+					"x-includeInMigration": true,
+					"displayName": "df_popposition2",
+					"schemaName": "df_popposition2",
+					"locale": {
+						"1033": {
+							"displayName": "df_popposition2"
+						}
+					}
+				},
+				"df_activeport": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeport",
+					"x-includeInMigration": true,
+					"displayName": "df_activeport",
+					"schemaName": "df_activeport",
+					"locale": {
+						"1033": {
+							"displayName": "df_activeport"
+						}
+					}
+				},
+				"df_popshelf": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popshelf",
+					"x-includeInMigration": true,
+					"displayName": "df_popshelf",
+					"schemaName": "df_popshelf",
+					"locale": {
+						"1033": {
+							"displayName": "df_popshelf"
+						}
+					}
+				},
+				"df_City": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_city",
+					"x-includeInMigration": true,
+					"displayName": "df_City",
+					"schemaName": "df_City",
+					"locale": {
+						"1033": {
+							"displayName": "df_City"
+						}
+					}
+				},
+				"df_Activeoperatorplanned": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperatorplanned",
+					"x-includeInMigration": true,
+					"displayName": "df_Activeoperatorplanned",
+					"schemaName": "df_Activeoperatorplanned",
+					"locale": {
+						"1033": {
+							"displayName": "df_Activeoperatorplanned"
+						}
+					}
+				},
+				"df_rfsdate": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "df_rfsdate",
+					"x-includeInMigration": true,
+					"displayName": "df_rfsdate",
+					"schemaName": "df_rfsdate",
+					"locale": {
+						"1033": {
+							"displayName": "df_rfsdate"
+						}
+					}
+				},
+				"df_Targetrfsdate": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "df_targetrfsdate",
+					"x-includeInMigration": true,
+					"displayName": "df_Targetrfsdate",
+					"schemaName": "df_Targetrfsdate",
+					"locale": {
+						"1033": {
+							"displayName": "df_Targetrfsdate"
+						}
+					}
+				},
+				"df_popposition": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popposition",
+					"x-includeInMigration": true,
+					"displayName": "df_popposition",
+					"schemaName": "df_popposition",
+					"locale": {
+						"1033": {
+							"displayName": "df_popposition"
+						}
+					}
+				},
+				"df_AreaActiveoperators": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_areaactiveoperators",
+					"x-includeInMigration": true,
+					"displayName": "df_AreaActiveoperators",
+					"schemaName": "df_AreaActiveoperators",
+					"locale": {
+						"1033": {
+							"displayName": "df_AreaActiveoperators"
+						}
+					}
+				},
+				"df_administrators2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_administrators2",
+					"x-includeInMigration": true,
+					"displayName": "df_administrators2",
+					"schemaName": "df_administrators2",
+					"locale": {
+						"1033": {
+							"displayName": "df_administrators2"
+						}
+					}
+				},
+				"df_Housenumber": {
+					"type": {
+						"type": "integer"
+					},
+					"logicalName": "df_housenumber",
+					"x-includeInMigration": true,
+					"displayName": "df_Housenumber",
+					"schemaName": "df_Housenumber",
+					"locale": {
+						"1033": {
+							"displayName": "df_Housenumber"
+						}
+					}
+				},
+				"df_Projectcode": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_projectcode",
+					"x-includeInMigration": true,
+					"displayName": "df_Projectcode",
+					"schemaName": "df_Projectcode",
+					"locale": {
+						"1033": {
+							"displayName": "df_Projectcode"
+						}
+					}
+				},
+				"df_Activeport2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeport2",
+					"x-includeInMigration": true,
+					"displayName": "df_Activeport2",
+					"schemaName": "df_Activeport2",
+					"locale": {
+						"1033": {
+							"displayName": "df_Activeport2"
+						}
+					}
+				},
+				"df_areaactiveoperators2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_areaactiveoperators2",
+					"x-includeInMigration": true,
+					"displayName": "df_areaactiveoperators2",
+					"schemaName": "df_areaactiveoperators2",
+					"locale": {
+						"1033": {
+							"displayName": "df_areaactiveoperators2"
+						}
+					}
+				},
+				"df_Passiveconnectionscenario": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_passiveconnectionscenario",
+					"x-includeInMigration": true,
+					"displayName": "df_Passiveconnectionscenario",
+					"schemaName": "df_Passiveconnectionscenario",
+					"locale": {
+						"1033": {
+							"displayName": "df_Passiveconnectionscenario"
+						}
+					}
+				},
+				"df_Activeoperatororderidplanned": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperatororderidplanned",
+					"x-includeInMigration": true,
+					"displayName": "df_Activeoperatororderidplanned",
+					"schemaName": "df_Activeoperatororderidplanned",
+					"locale": {
+						"1033": {
+							"displayName": "df_Activeoperatororderidplanned"
+						}
+					}
+				},
+				"df_Activeoperatororderid2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperatororderid2",
+					"x-includeInMigration": true,
+					"displayName": "df_Activeoperatororderid2",
+					"schemaName": "df_Activeoperatororderid2",
+					"locale": {
+						"1033": {
+							"displayName": "df_Activeoperatororderid2"
+						}
+					}
+				},
+				"df_activeoperatororder": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperatororderid",
+					"x-includeInMigration": true,
+					"displayName": "df_activeoperatororder",
+					"schemaName": "df_activeoperatororder",
+					"locale": {
+						"1033": {
+							"displayName": "df_activeoperatororder"
+						}
+					}
+				},
+				"df_LocationDescription": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_locationdescription",
+					"x-includeInMigration": true,
+					"displayName": "df_LocationDescription",
+					"schemaName": "df_LocationDescription",
+					"locale": {
+						"1033": {
+							"displayName": "df_LocationDescription"
+						}
+					}
+				},
+				"df_activeordertype": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeordertype",
+					"x-includeInMigration": true,
+					"displayName": "df_activeordertype",
+					"schemaName": "df_activeordertype",
+					"locale": {
+						"1033": {
+							"displayName": "df_activeordertype"
+						}
+					}
+				},
+				"df_poplocation2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_poplocation2",
+					"x-includeInMigration": true,
+					"displayName": "df_poplocation2",
+					"schemaName": "df_poplocation2",
+					"locale": {
+						"1033": {
+							"displayName": "df_poplocation2"
+						}
+					}
+				},
+				"df_Deliverystatus": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_deliverystatus",
+					"x-includeInMigration": true,
+					"displayName": "df_Deliverystatus",
+					"schemaName": "df_Deliverystatus",
+					"locale": {
+						"1033": {
+							"displayName": "df_Deliverystatus"
+						}
+					}
+				},
+				"df_Financialcustomer": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_financialcustomer",
+					"x-includeInMigration": true,
+					"displayName": "df_Financialcustomer",
+					"schemaName": "df_Financialcustomer",
+					"locale": {
+						"1033": {
+							"displayName": "df_Financialcustomer"
+						}
+					}
+				},
+				"df_poprow": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_poprow",
+					"x-includeInMigration": true,
+					"displayName": "df_poprow",
+					"schemaName": "df_poprow",
+					"locale": {
+						"1033": {
+							"displayName": "df_poprow"
+						}
+					}
+				},
+				"df_Poprow2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_poprow2",
+					"x-includeInMigration": true,
+					"displayName": "df_Poprow2",
+					"schemaName": "df_Poprow2",
+					"locale": {
+						"1033": {
+							"displayName": "df_Poprow2"
+						}
+					}
+				},
+				"df_Administrators": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_administrators",
+					"x-includeInMigration": true,
+					"displayName": "df_Administrators",
+					"schemaName": "df_Administrators",
+					"locale": {
+						"1033": {
+							"displayName": "df_Administrators"
+						}
+					}
+				},
+				"df_Countrycode": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_countrycode",
+					"x-includeInMigration": true,
+					"displayName": "df_Countrycode",
+					"schemaName": "df_Countrycode",
+					"locale": {
+						"1033": {
+							"displayName": "df_Countrycode"
+						}
+					}
+				},
+				"df_Zipcode": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_zipcode",
+					"x-includeInMigration": true,
+					"displayName": "df_Zipcode",
+					"schemaName": "df_Zipcode",
+					"locale": {
+						"1033": {
+							"displayName": "df_Zipcode"
+						}
+					}
+				},
+				"df_Deliverydate": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "df_deliverydate",
+					"x-includeInMigration": true,
+					"displayName": "df_Deliverydate",
+					"schemaName": "df_Deliverydate",
+					"locale": {
+						"1033": {
+							"displayName": "df_Deliverydate"
+						}
+					}
+				},
+				"df_activeoperator2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_activeoperator2",
+					"x-includeInMigration": true,
+					"displayName": "df_activeoperator2",
+					"schemaName": "df_activeoperator2",
+					"locale": {
+						"1033": {
+							"displayName": "df_activeoperator2"
+						}
+					}
+				},
+				"df_PatchStatus": {
+					"type": {
+						"name": "Connectiondf_patchstatuschoice",
+						"type": "Choice",
+						"options": {
+							"NoPatch": 121780000,
+							"Patched": 121780001,
+							"Depatched": 121780002
+						}
+					},
+					"logicalName": "df_patchstatus",
+					"x-includeInMigration": true,
+					"displayName": "df_PatchStatus",
+					"schemaName": "df_PatchStatus",
+					"locale": {
+						"1033": {
+							"displayName": "df_PatchStatus"
+						}
+					}
+				},
+				"df_Comments": {
+					"type": {
+						"type": "MultilineText"
+					},
+					"logicalName": "df_comments",
+					"x-includeInMigration": true,
+					"displayName": "df_Comments",
+					"schemaName": "df_Comments",
+					"locale": {
+						"1033": {
+							"displayName": "df_Comments"
+						}
+					}
+				},
+				"df_ApArea": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_apareaid",
+					"x-includeInMigration": true,
+					"displayName": "df_ApArea",
+					"schemaName": "df_ApArea",
+					"locale": {
+						"1033": {
+							"displayName": "df_ApArea"
+						}
+					}
+				},
+				"df_Popshelf2": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_popshelf2",
+					"x-includeInMigration": true,
+					"displayName": "df_Popshelf2",
+					"schemaName": "df_Popshelf2",
+					"locale": {
+						"1033": {
+							"displayName": "df_Popshelf2"
+						}
+					}
+				},
+				"df_CivilPlanned": {
+					"type": {
+						"type": "DateTime"
+					},
+					"logicalName": "df_civilplanned",
+					"x-includeInMigration": true,
+					"displayName": "df_CivilPlanned",
+					"schemaName": "df_CivilPlanned",
+					"locale": {
+						"1033": {
+							"displayName": "df_CivilPlanned"
+						}
+					}
+				},
+				"df_Name": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_name",
+					"x-includeInMigration": true,
+					"displayName": "df_Name",
+					"schemaName": "df_Name",
+					"locale": {
+						"1033": {
+							"displayName": "df_Name"
+						}
+					}
+				},
+				"df_Housenumberaddition": {
+					"type": {
+						"type": "Text"
+					},
+					"logicalName": "df_housenumberaddition",
+					"x-includeInMigration": true,
+					"displayName": "df_Housenumberaddition",
+					"schemaName": "df_Housenumberaddition",
+					"locale": {
+						"1033": {
+							"displayName": "df_Housenumberaddition"
+						}
+					}
+				},
+				"statecode": {
+					"type": {
+						"name": "Connectionstatecodechoice",
+						"type": "Choice",
+						"options": {
+							"Active": 0,
+							"Inactive": 1
+						}
+					},
+					"logicalName": "statecode",
+					"x-includeInMigration": true,
+					"displayName": "statecode",
+					"schemaName": "statecode",
+					"locale": {
+						"1033": {
+							"displayName": "statecode"
+						}
+					}
+				},
+				"df_GCode": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Target Portfolio",
+						"x-idField": "Id",
+						"foreignKey": {
+							"principalTable": "targetportfolio",
+							"principalColumn": "id",
+							"principalNameColumn": "portfolioid",
+							"name": "df_gcode"
+						}
+					},
+					"logicalName": "df_gcode",
+					"x-includeInMigration": true,
+					"displayName": "df_GCode",
+					"schemaName": "df_GCodeId",
+					"locale": {
+						"1033": {
+							"displayName": "df_GCode"
+						}
+					}
+				},
+				"df_ECode": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Target Portfolio",
+						"x-idField": "Id",
+						"foreignKey": {
+							"principalTable": "targetportfolio",
+							"principalColumn": "id",
+							"principalNameColumn": "portfolioid",
+							"name": "df_ecode"
+						}
+					},
+					"logicalName": "df_ecode",
+					"x-includeInMigration": true,
+					"displayName": "df_ECode",
+					"schemaName": "df_ECodeId",
+					"locale": {
+						"1033": {
+							"displayName": "df_ECode"
+						}
+					}
+				},
+				"df_ACode": {
+					"type": {
+						"type": "lookup",
+						"referenceType": "Target Portfolio",
+						"x-idField": "Id",
+						"foreignKey": {
+							"principalTable": "targetportfolio",
+							"principalColumn": "id",
+							"principalNameColumn": "portfolioid",
+							"name": "df_acode"
+						}
+					},
+					"logicalName": "df_acode",
+					"x-includeInMigration": true,
+					"displayName": "df_ACode",
+					"schemaName": "df_ACodeId",
+					"locale": {
+						"1033": {
+							"displayName": "df_ACode"
+						}
+					}
+				}
+			},
+			"pluralName": "Target Connections",
+			"displayName": "Target Connection",
+			"schemaName": "TargetConnection",
+			"logicalName": "targetconnection",
+			"collectionSchemaName": "TargetConnections",
+			"locale": {
+				"1033": {
+					"displayName": "Target Connection",
+					"pluralName": "Target Connections"
+				}
+			}
+		},
 		"Migration Entity": {
 			"external": true,
 			"schema": "maas",
@@ -20,1515 +3297,30 @@
 							"displayName": "Source Name"
 						}
 					}
-				}
-			}
-		},
-		"Source AvailibleChecker": {
-			"x-entity-type": "AvailibleChecker",
-			"pluralName": "Source AvailibleCheckers",
-			"attributes": {
-				"DHid": {
-					"isPrimaryField": true,
-					"type": {
-						"type": "string",
-						"maxLength": 16
-					},
-					"x-includeInMigration": true
 				},
-				"Search code": {
-					"type": {
-						"type": "string",
-						"maxLength": 32
-					},
-					"x-includeInMigration": true
-				},
-				"Zipcode": {
-					"type": {
-						"type": "string",
-						"maxLength": 6
-					},
-					"x-includeInMigration": true
-				},
-				"House nr.": {
-					"type": {
-						"type": "string",
-						"maxLength": 5
-					},
-					"x-includeInMigration": true
-				},
-				"Extension": {
-					"type": {
-						"type": "string",
-						"maxLength": 9
-					},
-					"x-includeInMigration": true
-				},
-				"Room": {
-					"type": {
-						"type": "string",
-						"maxLength": 19
-					},
-					"x-includeInMigration": true
-				},
-				"Street": {
-					"type": {
-						"type": "string",
-						"maxLength": 42
-					},
-					"x-includeInMigration": true
-				},
-				"City": {
-					"type": {
-						"type": "string",
-						"maxLength": 26
-					},
-					"x-includeInMigration": true
-				},
-				"Country": {
-					"type": {
-						"type": "string",
-						"maxLength": 3
-					},
-					"x-includeInMigration": true
-				},
-				"Longitude/Latitude": {
-					"type": {
-						"type": "string",
-						"maxLength": 37
-					},
-					"x-includeInMigration": true
-				},
-				"X": {
-					"type": {
-						"type": "string",
-						"maxLength": 18
-					},
-					"x-includeInMigration": true
-				},
-				"Y": {
-					"type": {
-						"type": "string",
-						"maxLength": 18
-					},
-					"x-includeInMigration": true
-				},
-				"Adres id": {
-					"type": {
-						"type": "string",
-						"maxLength": 7
-					},
-					"x-includeInMigration": true
-				},
-				"Network owner": {
-					"type": {
-						"type": "string",
-						"maxLength": 6
-					},
-					"x-includeInMigration": true
-				},
-				"Data source": {
-					"type": {
-						"type": "string",
-						"maxLength": 9
-					},
-					"x-includeInMigration": true
-				},
-				"Created": {
-					"type": {
-						"type": "string",
-						"maxLength": 10
-					},
-					"x-includeInMigration": true
-				},
-				"Updated": {
-					"type": {
-						"type": "string",
-						"maxLength": 10
-					},
-					"x-includeInMigration": true
-				},
-				"Status": {
-					"type": {
-						"type": "string",
-						"maxLength": 10
-					},
-					"x-includeInMigration": true
-				},
-				"Dataset": {
-					"type": {
-						"type": "string",
-						"maxLength": 13
-					},
-					"x-includeInMigration": true
-				},
-				"Projectcode (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 13
-					},
-					"x-includeInMigration": true
-				},
-				"Gebiedsnummer (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 10
-					},
-					"x-includeInMigration": true
-				},
-				"Contractgebied (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 57
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Huurder geregistreerd op POP gekoppeld aan adres (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 44
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Huurder geregistreerd op onderliggende gebied bij adres (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 24
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Beheerder geregistreerd op POP gekoppeld aan adres (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 33
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Beheerder geregistreerd op onderliggende gebied bij adres (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 33
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Huurder geregistreerd op POP gekoppeld aan adres (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 14
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Huurder geregistreerd op onderliggende gebied bij adres (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 14
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Beheerder geregistreerd op POP gekoppeld aan adres (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 40
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Beheerder geregistreerd op onderliggende gebied bij adres (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 38
-					},
-					"x-includeInMigration": true
-				},
-				"Bouwbestandstatus (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 2
-					},
-					"x-includeInMigration": true
-				},
-				"Aansluitstatus (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 15
-					},
-					"x-includeInMigration": true
-				},
-				"Commentaar bij bouwbestandstatus (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 176
-					},
-					"x-includeInMigration": true
-				},
-				"HASdatum (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 22
-					},
-					"x-includeInMigration": true
-				},
-				"FTU Type (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 25
-					},
-					"x-includeInMigration": true
-				},
-				"Adres gebiedscode (G) (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 7
-					},
-					"x-includeInMigration": true
-				},
-				"Adres eenmalige code (E) (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 20
-					},
-					"x-includeInMigration": true
-				},
-				"Adres afkoop code (A) (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 17
-					},
-					"x-includeInMigration": true
-				},
-				"Afgekocht Ja/Nee (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 15
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: POP (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 16
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Rij (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 3
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Kast (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 8
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Lade (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 11
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Positie (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 3
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Apparatuurpoort (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 117
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Ordertype (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 2
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Actieve operator (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 14
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: OrderId (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 29
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Ordertype gepland (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 2
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Actieve operator gepland (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 11
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: OrderId gepland (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 13
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: POP (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 16
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Rij (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 3
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Kast (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 8
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Lade (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 13
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Positie (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 3
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Apparatuurpoort (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 55
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Ordertype (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 2
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Actieve operator (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 6
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: OrderId (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 16
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Ordertype gepland (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 2
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Actieve operator gepland (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 3
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: OrderId gepland (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 9
-					},
-					"x-includeInMigration": true
-				},
-				"Passief aansluitscenario (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 4
-					},
-					"x-includeInMigration": true
-				},
-				"Bouw (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 1
-					},
-					"x-includeInMigration": true
-				},
-				"Gebouwtype (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 3
-					},
-					"x-includeInMigration": true
-				},
-				"Toestemming FTU (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 1
-					},
-					"x-includeInMigration": true
-				},
-				"Niet aangesloten reden code (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 3
-					},
-					"x-includeInMigration": true
-				},
-				"Niet aangesloten reden omschrijving (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 28
-					},
-					"x-includeInMigration": true
-				},
-				"AP gebied id (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 4
-					},
-					"x-includeInMigration": true
-				},
-				"AP gebied Pop (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 6
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Floortile (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 3
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 2: Floortile (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 3
-					},
-					"x-includeInMigration": true
-				},
-				"Opleverdatum (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 19
-					},
-					"x-includeInMigration": true
-				},
-				"Civiel gepland (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 19
-					},
-					"x-includeInMigration": true
-				},
-				"Laatste wijziging (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 19
-					},
-					"x-includeInMigration": true
-				},
-				"Financial Customer (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 1
-					},
-					"x-includeInMigration": true
-				},
-				"Financial Administration Number (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 1
-					},
-					"x-includeInMigration": true
-				},
-				"Financial Administration Name (GENERIC COCON)": {
-					"type": {
-						"type": "string",
-						"maxLength": 20
-					},
-					"x-includeInMigration": true
-				},
-				"Klemid (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 7
-					},
-					"x-includeInMigration": true
-				},
-				"Mtaand (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 2
-					},
-					"x-includeInMigration": true
-				},
-				"Mtklemnr (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 2
-					},
-					"x-includeInMigration": true
-				},
-				"Orig_status (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 25
-					},
-					"x-includeInMigration": true
-				},
-				"Lhnr (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 11
-					},
-					"x-includeInMigration": true
-				},
-				"Wcnr (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 4
-					},
-					"x-includeInMigration": true
-				},
-				"Gvnr (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 2
-					},
-					"x-includeInMigration": true
-				},
-				"Evnr (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 2
-					},
-					"x-includeInMigration": true
-				},
-				"Lokatie (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 48
-					},
-					"x-includeInMigration": true
-				},
-				"Trajectnr (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 23
-					},
-					"x-includeInMigration": true
-				},
-				"Stpnr (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 7
-					},
-					"x-includeInMigration": true
-				},
-				"Bouwnummer (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 10
-					},
-					"x-includeInMigration": true
-				},
-				"Aansldatum (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 19
-					},
-					"x-includeInMigration": true
-				},
-				"Revisiedatum (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 19
-					},
-					"x-includeInMigration": true
-				},
-				"Isfouten (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 1
-					},
-					"x-includeInMigration": true
-				},
-				"Isrevisie (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 1
-					},
-					"x-includeInMigration": true
-				},
-				"Pernr (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 7
-					},
-					"x-includeInMigration": true
-				},
-				"Nwsregion (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 22
-					},
-					"x-includeInMigration": true
-				},
-				"Legalregion (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 22
-					},
-					"x-includeInMigration": true
-				},
-				"Opmerking (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 128
-					},
-					"x-includeInMigration": true
-				},
-				"Patch status (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 20
-					},
-					"x-includeInMigration": true
-				},
-				"Active operator Planned (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 4
-					},
-					"x-includeInMigration": true
-				},
-				"Active operator (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 11
-					},
-					"x-includeInMigration": true
-				},
-				"Active operator order ID planned (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 6
-					},
-					"x-includeInMigration": true
-				},
-				"Active operator order ID (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 14
-					},
-					"x-includeInMigration": true
-				},
-				"Bouwbestandstatus (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 2
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Huurder geregistreerd op POP gekoppeld aan adres (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 4
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Huurder geregistreerd op onderliggende gebied bij adres (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 4
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Beheerder geregistreerd op POP gekoppeld aan adres (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 6
-					},
-					"x-includeInMigration": true
-				},
-				"Vezel 1: Beheerder geregistreerd op onderliggende gebied bij adres (CIF-CATVENGIN)": {
-					"type": {
-						"type": "string",
-						"maxLength": 6
-					},
-					"x-includeInMigration": true
-				},
-				"Migration Entity": {
-					"type": {
-						"type": "lookup",
-						"referenceType": "Migration Entity",
-						"forms": {
-							"Main": {
-								"type": "Main",
-								"name": "Main Information",
-								"tab": "TAB_Sources",
-								"column": "COLUMN_First",
-								"section": "SECTION_General"
-							}
-						}
-					},
-					"x-includeInMigration": false
-				}
-			}
-		},
-		"Target Connection": {
-			"x-entity-type": "df_connection",
-			"attributes": {
 				"Id": {
 					"isPrimaryKey": true,
 					"type": {
 						"type": "guid"
 					},
-					"x-includeInMigration": false
-				},
-				"Target Id": {
-					"isPrimaryField": true,
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "connectionid",
-					"x-includeInMigration": false
-				},
-				"Source": {
-					"type": {
-						"type": "lookup",
-						"referenceType": "Source AvailibleChecker",
-						"x-idField": "Id"
-					},
-					"x-includeInMigration": false
-				},
-				"Migration Entity": {
-					"type": {
-						"type": "lookup",
-						"referenceType": "Migration Entity",
-						"forms": {
-							"Main": {
-								"type": "Main",
-								"name": "Main Information",
-								"tab": "TAB_Targets",
-								"column": "COLUMN_First",
-								"section": "SECTION_General"
-							}
+					"displayName": "Id",
+					"schemaName": "Id",
+					"logicalName": "id",
+					"locale": {
+						"1033": {
+							"displayName": "Id"
 						}
-					},
-					"x-includeInMigration": false
-				},
-				"df_Name": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_name",
-					"x-includeInMigration": true
-				},
-				"df_Zipcode": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_zipcode",
-					"x-includeInMigration": true
-				},
-				"df_Street": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_street",
-					"x-includeInMigration": true
-				},
-				"df_City": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_city",
-					"x-includeInMigration": true
-				},
-				"df_Country": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_country",
-					"x-includeInMigration": true
-				},
-				"df_Housenumber": {
-					"type": {
-						"type": "integer"
-					},
-					"logicalName": "df_housenumber",
-					"x-includeInMigration": true
-				},
-				"df_Housenumberaddition": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_housenumberaddition",
-					"x-includeInMigration": true
-				},
-				"df_LocationDescription": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_locationdescription",
-					"x-includeInMigration": true
-				},
-				"df_Comments": {
-					"type": {
-						"type": "MultilineText"
-					},
-					"logicalName": "df_comments",
-					"x-includeInMigration": true
-				},
-				"df_Projectcode": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_projectcode",
-					"x-includeInMigration": true
-				},
-				"df_Deliverystatus": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_deliverystatus",
-					"x-includeInMigration": true
-				},
-				"df_Hasdate": {
-					"type": {
-						"type": "DateTime"
-					},
-					"logicalName": "df_hasdate",
-					"x-includeInMigration": true
-				},
-				"df_GCode": {
-					"type": {
-						"type": "lookup",
-						"referenceType": "Target Portfolio",
-						"x-idField": "Id"
-					},
-					"logicalName": "df_gcode",
-					"x-includeInMigration": true
-				},
-				"df_ECode": {
-					"type": {
-						"type": "lookup",
-						"referenceType": "Target Portfolio",
-						"x-idField": "Id"
-					},
-					"logicalName": "df_ecode",
-					"x-includeInMigration": true
-				},
-				"df_ACode": {
-					"type": {
-						"type": "lookup",
-						"referenceType": "Target Portfolio",
-						"x-idField": "Id"
-					},
-					"logicalName": "df_acode",
-					"x-includeInMigration": true
-				},
-				"df_PatchStatus": {
-					"type": {
-						"name": "Connectiondf_patchstatuschoice",
-						"type": "Choice",
-						"options": {
-							"P": 121780001,
-							"D": 121780002
-						}
-					},
-					"logicalName": "df_patchstatus",
-					"x-includeInMigration": true
-				},
-				"df_CivilPlanned": {
-					"type": {
-						"type": "DateTime"
-					},
-					"logicalName": "df_civilplanned",
-					"x-includeInMigration": true
-				},
-				"df_Deliverydate": {
-					"type": {
-						"type": "DateTime"
-					},
-					"logicalName": "df_deliverydate",
-					"x-includeInMigration": true
-				},
-				"df_Lastupdate": {
-					"type": {
-						"type": "DateTime"
-					},
-					"logicalName": "df_lastupdate",
-					"x-includeInMigration": true
-				},
-				"df_Passiveconnectionscenario": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_passiveconnectionscenario",
-					"x-includeInMigration": true
-				},
-				"df_PermissionFtu": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_permissionftu",
-					"x-includeInMigration": true
-				},
-				"df_Reasoncode": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_reasoncode",
-					"x-includeInMigration": true
-				},
-				"df_Reasoncodenote": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_reasoncodenote",
-					"x-includeInMigration": true
-				},
-				"df_Administrators": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_administrators",
-					"x-includeInMigration": true
-				},
-				"df_Activeoperators": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeoperators",
-					"x-includeInMigration": true
-				},
-				"df_AreaActiveoperators": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_areaactiveoperators",
-					"x-includeInMigration": true
-				},
-				"df_Areaadministrators": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_areaadministrators",
-					"x-includeInMigration": true
-				},
-				"df_administrators2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_administrators2",
-					"x-includeInMigration": true
-				},
-				"df_Activeoperators2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeoperators2",
-					"x-includeInMigration": true
-				},
-				"df_areaactiveoperators2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_areaactiveoperators2",
-					"x-includeInMigration": true
-				},
-				"df_areaadministrators2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_areaadministrators2",
-					"x-includeInMigration": true
-				},
-				"df_floortile": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_floortile",
-					"x-includeInMigration": true
-				},
-				"df_Floortile2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_floortile2",
-					"x-includeInMigration": true
-				},
-				"df_Poplocation": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_poplocation",
-					"x-includeInMigration": true
-				},
-				"df_poplocation2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_poplocation2",
-					"x-includeInMigration": true
-				},
-				"df_poprow": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_poprow",
-					"x-includeInMigration": true
-				},
-				"df_Poprow2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_poprow2",
-					"x-includeInMigration": true
-				},
-				"df_popframe": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_popframe",
-					"x-includeInMigration": true
-				},
-				"df_popframe2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_popframe2",
-					"x-includeInMigration": true
-				},
-				"df_popshelf": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_popshelf",
-					"x-includeInMigration": true
-				},
-				"df_Popshelf2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_popshelf2",
-					"x-includeInMigration": true
-				},
-				"df_popposition": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_popposition",
-					"x-includeInMigration": true
-				},
-				"df_popposition2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_popposition2",
-					"x-includeInMigration": true
-				},
-				"df_activeport": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeport",
-					"x-includeInMigration": true
-				},
-				"df_Activeport2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeport2",
-					"x-includeInMigration": true
-				},
-				"df_activeordertype": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeordertype",
-					"x-includeInMigration": true
-				},
-				"df_Activeordertype2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeordertype2",
-					"x-includeInMigration": true
-				},
-				"df_activeoperator": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeoperator",
-					"x-includeInMigration": true
-				},
-				"df_activeoperator2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeoperator2",
-					"x-includeInMigration": true
-				},
-				"df_activeoperatororder": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeoperatororderid",
-					"x-includeInMigration": true
-				},
-				"df_Activeoperatororderid2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeoperatororderid2",
-					"x-includeInMigration": true
-				},
-				"df_activeordertypeplanned": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeordertypeplanned",
-					"x-includeInMigration": true
-				},
-				"df_Activeordertypeplanned2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeordertypeplanned2",
-					"x-includeInMigration": true
-				},
-				"df_Activeoperatorplanned": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeoperatorplanned",
-					"x-includeInMigration": true
-				},
-				"df_Activeoperatorplanned2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeoperatorplanned2",
-					"x-includeInMigration": true
-				},
-				"df_Activeoperatororderidplanned": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeoperatororderidplanned",
-					"x-includeInMigration": true
-				},
-				"df_Activeoperatororderidplanned2": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_activeoperatororderidplanned2",
-					"x-includeInMigration": true
-				},
-				"statecode": {
-					"type": {
-						"name": "Connectionstatecodechoice",
-						"type": "Choice",
-						"options": {
-							"Active": 0,
-							"Inactive": 1
-						}
-					},
-					"logicalName": "statecode",
-					"x-includeInMigration": true
-				},
-				"df_DataSource": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_datasource",
-					"x-includeInMigration": true
-				},
-				"df_Dataprovider": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_dataprovider",
-					"x-includeInMigration": true
-				},
-				"df_DataSet": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_dataset",
-					"x-includeInMigration": true
-				},
-				"df_NetAreaname": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_netareaname",
-					"x-includeInMigration": true
-				},
-				"df_NetAreaShortname": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_netareashortname",
-					"x-includeInMigration": true
-				},
-				"df_ApArea": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_apareaid",
-					"x-includeInMigration": true
-				},
-				"df_ApAreapop": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_apareapop",
-					"x-includeInMigration": true
-				},
-				"df_IsBoughtOff": {
-					"type": {
-						"type": "boolean"
-					},
-					"logicalName": "df_isboughtoff",
-					"x-includeInMigration": true
+					}
 				}
 			},
-			"pluralName": "Target Connections"
-		},
-		"Target Portfolio": {
-			"x-entity-type": "df_portfolio",
-			"attributes": {
-				"Id": {
-					"isPrimaryKey": true,
-					"type": {
-						"type": "guid"
-					},
-					"x-includeInMigration": false
-				},
-				"Target Id": {
-					"isPrimaryField": true,
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "portfolioid",
-					"x-includeInMigration": false
-				},
-				"Source": {
-					"type": {
-						"type": "lookup",
-						"referenceType": "Source EOLItem",
-						"x-idField": "Id"
-					},
-					"x-includeInMigration": false
-				},
-				"Migration Entity": {
-					"type": {
-						"type": "lookup",
-						"referenceType": "Migration Entity",
-						"forms": {
-							"Main": {
-								"type": "Main",
-								"name": "Main Information",
-								"tab": "TAB_Targets",
-								"column": "COLUMN_First",
-								"section": "SECTION_General"
-							}
-						}
-					},
-					"x-includeInMigration": false
-				},
-				"df_Description": {
-					"type": {
-						"type": "Text"
-					},
-					"logicalName": "df_description",
-					"x-includeInMigration": true
-				},
-				"df_Price": {
-					"type": {
-						"type": "decimal"
-					},
-					"logicalName": "df_price",
-					"x-includeInMigration": true
-				},
-				"df_Type": {
-					"type": {
-						"name": "Portfoliodf_typechoice",
-						"type": "Choice",
-						"options": {
-							"G": 121780000,
-							"E": 121780001,
-							"A": 121780002
-						}
-					},
-					"logicalName": "df_type",
-					"x-includeInMigration": true
-				}
-			},
-			"pluralName": "Target Portfolios"
-		},
-		"Source EOLItem": {
-			"x-entity-type": "EOLItem",
-			"pluralName": "Source EOLItems",
-			"attributes": {
-				"Source Id": {
-					"isPrimaryField": true,
-					"type": {
-						"type": "string",
-						"maxLength": 36
-					},
-					"x-includeInMigration": true
-				},
-				"CODE": {
-					"type": {
-						"type": "string",
-						"maxLength": 16
-					},
-					"x-includeInMigration": true
-				},
-				"ADMINISTRATIE_NR": {
-					"type": {
-						"type": "string",
-						"maxLength": 1
-					},
-					"x-includeInMigration": true
-				},
-				"DESCRIPTION": {
-					"type": {
-						"type": "string",
-						"maxLength": 52
-					},
-					"x-includeInMigration": true
-				},
-				"STARTDATE": {
-					"type": {
-						"type": "string",
-						"maxLength": 9
-					},
-					"x-includeInMigration": true
-				},
-				"ENDDATE": {
-					"type": {
-						"type": "string",
-						"maxLength": 9
-					},
-					"x-includeInMigration": true
-				},
-				"UNITPRICE": {
-					"type": {
-						"type": "string",
-						"maxLength": 6
-					},
-					"x-includeInMigration": true
-				},
-				"PRICESTARTDATE": {
-					"type": {
-						"type": "string",
-						"maxLength": 9
-					},
-					"x-includeInMigration": true
-				},
-				"PRICEENDDATE": {
-					"type": {
-						"type": "string",
-						"maxLength": 9
-					},
-					"x-includeInMigration": true
-				},
-				"VATCODE": {
-					"type": {
-						"type": "string",
-						"maxLength": 3
-					},
-					"x-includeInMigration": true
-				},
-				"SEARCHCODE": {
-					"type": {
-						"type": "string",
-						"maxLength": 8
-					},
-					"x-includeInMigration": true
-				},
-				"ITEMGROUPCODE": {
-					"type": {
-						"type": "string",
-						"maxLength": 9
-					},
-					"x-includeInMigration": true
-				},
-				"ITEMGROUPDESCRIPTION": {
-					"type": {
-						"type": "string",
-						"maxLength": 30
-					},
-					"x-includeInMigration": true
-				},
-				"BESTANDSNAAM": {
-					"type": {
-						"type": "string",
-						"maxLength": 22
-					},
-					"x-includeInMigration": true
-				},
-				"MD_EXNID": {
-					"type": {
-						"type": "string",
-						"maxLength": 6
-					},
-					"x-includeInMigration": true
-				},
-				"Migration Entity": {
-					"type": {
-						"type": "lookup",
-						"referenceType": "Migration Entity",
-						"forms": {
-							"Main": {
-								"type": "Main",
-								"name": "Main Information",
-								"tab": "TAB_Sources",
-								"column": "COLUMN_First",
-								"section": "SECTION_General"
-							}
-						}
-					},
-					"x-includeInMigration": false
+			"displayName": "Migration Entity",
+			"schemaName": "MigrationEntity",
+			"logicalName": "migrationentity",
+			"collectionSchemaName": "MigrationEntities",
+			"locale": {
+				"1033": {
+					"displayName": "Migration Entity",
+					"pluralName": "Migration Entities"
 				}
 			}
 		}

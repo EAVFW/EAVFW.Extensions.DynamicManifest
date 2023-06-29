@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 namespace EAVFW.Extensions.DynamicManifest.UnitTests
 {
     [Serializable()]
@@ -23,7 +23,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
         [JsonProperty("sourcename")]
         [JsonPropertyName("sourcename")]
         [PrimaryField()]
-        
+        [Description("Name of source table")]
         public String SourceName { get; set; }
 
         [DataMember(Name = "mapping")]
@@ -48,7 +48,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
         [EntityField(AttributeKey = "Migration Project")]
         [JsonProperty("migrationprojectid")]
         [JsonPropertyName("migrationprojectid")]
-        
+        [Description("The project in which the Entity belongs")]
         public Guid? MigrationProjectId { get; set; }
 
         [DataMember(Name = "sourcedata")]
@@ -73,7 +73,7 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
         [EntityField(AttributeKey = "Source Metadata")]
         [JsonProperty("sourcemetadataid")]
         [JsonPropertyName("sourcemetadataid")]
-        
+        [Description("Metadata for source data")]
         public Guid? SourceMetadataId { get; set; }
 
         [DataMember(Name = "targetmetadata")]
@@ -86,14 +86,14 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
         [EntityField(AttributeKey = "Target Metadata")]
         [JsonProperty("targetmetadataid")]
         [JsonPropertyName("targetmetadataid")]
-        
+        [Description("Metadata of the target system")]
         public Guid? TargetMetadataId { get; set; }
 
         [DataMember(Name = "targetname")]
         [EntityField(AttributeKey = "Target Name")]
         [JsonProperty("targetname")]
         [JsonPropertyName("targetname")]
-       
+        [Description("Name of target table")]
         public String TargetName { get; set; }
 
     }

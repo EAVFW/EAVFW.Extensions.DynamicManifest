@@ -18,11 +18,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EAVFW.Extensions.Documents" Version="2.1.0" />
-		<PackageReference Include="EAVFW.Extensions.Manifest.SDK" Version="3.0.0-dev.7" />
+		<PackageReference Include="EAVFW.Extensions.Documents" Version="3.0.0-dev.1" />
+		<PackageReference Include="EAVFW.Extensions.Manifest.SDK" Version="3.0.0" />
 		<PackageReference Include="EAVFW.Extensions.SecurityModel" Version="2.0.2-dev.1" />
-		<PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="3.0.0-dev.3" />
+		<PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="3.0.1-dev.1" />
 		<PackageReference Include="Semver" Version="2.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\EAVFramework\src\EAVFramework.csproj" />
 	</ItemGroup>
 
 </Project>

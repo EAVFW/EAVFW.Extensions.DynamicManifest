@@ -18,7 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\todo.yml = .github\workflows\todo.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAVFW.Extensions.DynamicManifest.UnitTests", "tests\EAVFW.Extensions.DynamicManifest.UnitTests\EAVFW.Extensions.DynamicManifest.UnitTests.csproj", "{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EAVFW.Extensions.DynamicManifest.UnitTests", "tests\EAVFW.Extensions.DynamicManifest.UnitTests\EAVFW.Extensions.DynamicManifest.UnitTests.csproj", "{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eavfw", "eavfw", "{A70977A5-985F-4BE7-9C1B-EC5102DA7E30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EAVFramework", "..\..\EAVFramework\src\EAVFramework.csproj", "{9134B195-0734-4984-A013-E7AE38C0B50F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,12 +38,15 @@ Global
 		{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9134B195-0734-4984-A013-E7AE38C0B50F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9134B195-0734-4984-A013-E7AE38C0B50F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D32AE147-3D63-4259-B0A7-5995271FCCED} = {F2B305AF-8F24-4831-B489-21252277A864}
+		{9134B195-0734-4984-A013-E7AE38C0B50F} = {A70977A5-985F-4BE7-9C1B-EC5102DA7E30}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B5CE411A-5416-4192-AC72-13E034343F54}

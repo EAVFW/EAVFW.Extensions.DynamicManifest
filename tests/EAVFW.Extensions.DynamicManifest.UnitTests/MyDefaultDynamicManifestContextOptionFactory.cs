@@ -25,7 +25,8 @@ namespace EAVFW.Extensions.DynamicManifest.UnitTests
                     DTOAssembly = typeof(TModel).Assembly,
                     DTOBaseClasses = new[]
                     {
-                        typeof(BaseOwnerEntity<>), typeof(BaseIdEntity<>), 
+                        typeof(BaseOwnerEntity<>),
+                        typeof(BaseIdEntity<>), 
                         typeof(BaseTargetMigrationEntity),
                         typeof(BaseSourceMigrationEntity)
                     },
