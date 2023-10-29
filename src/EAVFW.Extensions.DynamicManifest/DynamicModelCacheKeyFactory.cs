@@ -37,19 +37,20 @@ using WorkflowEngine.Core;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
-    public class DynamicModelCacheKeyFactory<TDynamicContext,TDynamicManifestContextFeature, TModel, TDocument> : IModelCacheKeyFactory
-        where TDynamicManifestContextFeature : IExtendedFormContextFeature<TModel>
-        where TDynamicContext : DynamicManifestContext<TModel, TDocument>
-        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
-        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
-    {
+    //public class DynamicModelCacheKeyFactory<TStaticContext,TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument> : IModelCacheKeyFactory
+    //    where TDynamicManifestContextFeature : IExtendedFormContextFeature<TStaticContext,TModel>
+    //    where TStaticContext : DynamicContext
+    //    where TDynamicContext : DynamicManifestContext<TStaticContext,TModel, TDocument>
+    //    where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
+    //    where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
+    //{
 
-        public object Create(DbContext context, bool designTime)
-            => context is IHasModelCacheKey dynamicContext
-                ? (context.GetType(), dynamicContext.ModelCacheKey, designTime)
-                : (object)context.GetType();
+    //    public object Create(DbContext context, bool designTime)
+    //        => context is IHasModelCacheKey dynamicContext
+    //            ? (context.GetType(), dynamicContext.ModelCacheKey, designTime)
+    //            : (object)context.GetType();
 
-        public object Create(DbContext context)
-            => Create(context, false);
-    }
+    //    public object Create(DbContext context)
+    //        => Create(context, false);
+    //}
 }

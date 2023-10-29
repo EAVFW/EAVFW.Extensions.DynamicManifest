@@ -18,16 +18,21 @@ namespace EAVFW.Extensions.DynamicManifest
 
             return JToken.Parse(a);
         }
-        public static async Task SaveJsonAsync(this IDocumentEntity record, JToken manifest)
+        public static Task SaveJsonAsync(this IDocumentEntity record, JToken manifest)
         {
-            var a = System.Text.Encoding.UTF8.GetBytes(manifest.ToString());
+            
+            return record.SaveTextAsync(manifest.ToString());
+        }
+        public static async Task SaveTextAsync(this IDocumentEntity record, string text)
+        {
+            var a = System.Text.Encoding.UTF8.GetBytes(text);
 
             using (var data = new MemoryStream())
             {
                 using (var stream = new GZipStream(data, CompressionMode.Compress))
                 {
                     await stream.WriteAsync(a, 0, a.Length);
-                   
+
                 }
 
 
