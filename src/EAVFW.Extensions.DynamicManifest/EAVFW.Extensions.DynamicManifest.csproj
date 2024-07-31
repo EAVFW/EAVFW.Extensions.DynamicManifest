@@ -27,7 +27,7 @@
     <ProjectReference Include="$(LocalEAVFrameworkPath)\src\EAVFramework.csproj" />
     <ProjectReference Include="$(LocalExternalpath)\EAVFW.Extensions.Documents\src\EAVFW.Extensions.Documents\EAVFW.Extensions.Documents.csproj" />
     <ProjectReference Include="$(LocalExternalpath)\EAVFW.Extensions.SecurityModel\src\EAVFW.Extensions.SecurityModel\EAVFW.Extensions.SecurityModel.csproj" />
-    <ProjectReference Include="$(LocalEAVFrameworkPath)\sdk\EAVFW.Extensions.Manifest.SDK\EAVFW.Extensions.Manifest.SDK.csproj" />
+    <ProjectReference Include="$(LocalEAVFrameworkPath)\sdk\EAVFW.Extensions.Manifest.SDK.csproj" />
     <ProjectReference Include="$(LocalExternalpath)\EAVFW.Extensions.WorkflowEngine\src\EAVFW.Extensions.WorkflowEngine\EAVFW.Extensions.WorkflowEngine.csproj" />
 
   </ItemGroup>
