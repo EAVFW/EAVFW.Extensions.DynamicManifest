@@ -20,7 +20,7 @@
 	<ItemGroup>
  
 		
-		<PackageReference Include="Semver" Version="2.2.0" />
+		<PackageReference Include="Semver" Version="2.3.0" />
 	</ItemGroup>
   
   <ItemGroup Condition="$(RemoteEAVFramework) == 'false'">
@@ -34,8 +34,8 @@
   <ItemGroup Condition="$(RemoteEAVFramework) != 'false'">
     <PackageReference Include="EAVFramework" Version="$(EAVFrameworkVersion)" />
     <PackageReference Include="EAVFW.Extensions.Manifest.SDK" Version="$(EAVFrameworkVersion)" />
-    <PackageReference Include="EAVFW.Extensions.SecurityModel" Version="2.0.1" />
-    <PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="2.0.1" />
+    <PackageReference Include="EAVFW.Extensions.SecurityModel" Version="2.1.0" />
+    <PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="3.2.1" />
     </ItemGroup>
 
 </Project>
