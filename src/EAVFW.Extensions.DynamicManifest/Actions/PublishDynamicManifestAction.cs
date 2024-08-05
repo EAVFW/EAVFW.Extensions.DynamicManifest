@@ -1,4 +1,4 @@
-﻿using EAVFramework;
+using EAVFramework;
 using EAVFramework.Endpoints;
 using EAVFramework.Extensions;
 using EAVFW.Extensions.Documents;
@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using WorkflowEngine.Core;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -130,7 +131,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
                         if (entry is IHasAdminEmail adminemailRecord) {
                             var permis = _serviceProvider.GetRequiredService<IManifestPermissionGenerator>();
-                            var cmdTxt = await permis.CreateInitializationScript(manifest, "systemusers");
+                            var cmdTxt = await permis.CreateInitializationScript(JsonSerializer.Deserialize<ManifestDefinition>( manifest.ToString()), "systemusers");
 
                             cmdTxt = cmdTxt.Replace("@DBName", conn.Database)
                                 .Replace("@DBSchema", feat.SchemaName);
