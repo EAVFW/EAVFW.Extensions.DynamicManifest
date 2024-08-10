@@ -18,12 +18,12 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using JsonPropertyName = System.Text.Json.Serialization.JsonPropertyNameAttribute;
-using System.Data.SqlClient;
 using System.Security.Claims;
 using ExpressionEngine;
 using EAVFramework.Endpoints;
 using EAVFW.Extensions.Manifest.SDK;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Data.SqlClient;
 
 namespace EAVFW.Extensions.DynamicManifest.UnitTests
 {
