@@ -17,11 +17,6 @@
 		<None Include="..\..\README.md" Link="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
-	<ItemGroup>
- 
-		
-		<PackageReference Include="Semver" Version="2.3.0" />
-	</ItemGroup>
   
   <ItemGroup Condition="$(RemoteEAVFramework) == 'false'">
     <ProjectReference Include="$(LocalEAVFrameworkPath)\src\EAVFramework.csproj" />
