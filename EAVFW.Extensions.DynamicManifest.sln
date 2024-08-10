@@ -18,6 +18,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\todo.yml = .github\workflows\todo.yml
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EAVFW.Extensions.DynamicManifest.UnitTests", "tests\EAVFW.Extensions.DynamicManifest.UnitTests\EAVFW.Extensions.DynamicManifest.UnitTests.csproj", "{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2FD3F2D3-364D-43DA-BC6B-4439671B8198}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +35,10 @@ Global
 		{589E06AE-B7F6-4519-A1E8-6BE99123124E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{589E06AE-B7F6-4519-A1E8-6BE99123124E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{589E06AE-B7F6-4519-A1E8-6BE99123124E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

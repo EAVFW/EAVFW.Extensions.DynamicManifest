@@ -1,0 +1,10 @@
+<Project>
+    <Import Condition="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../')) != ''" Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+ <PropertyGroup>
+   <LangVersion>10.0</LangVersion>
+   <EAVFrameworkVersion Condition="'$(EAVFrameworkVersion)' == ''">4.5.0-dev.6</EAVFrameworkVersion>
+   <UseEAVFromNuget Condition="'$(UseEAVFromNuget)' == ''">true</UseEAVFromNuget>
+   <LocalEAVFrameworkPath Condition="'$(LocalEAVFrameworkPath)' == ''">$(MSBuildThisFileDirectory)/external/EAVFramework</LocalEAVFrameworkPath>
+   <LocalExternalpath Condition="'$(LocalExternalpath)' == ''">$(MSBuildThisFileDirectory)/external</LocalExternalpath>
+ </PropertyGroup>
+</Project>

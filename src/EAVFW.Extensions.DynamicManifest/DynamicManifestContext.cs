@@ -5,34 +5,36 @@ using Microsoft.Extensions.Logging;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
-    public class DynamicManifestContext<TModel, TDocument> :
+    public class DynamicManifestContext<TStaticContext,TModel, TDocument> :
+
        DynamicContext, IHasModelCacheKey
+        where TStaticContext : DynamicContext
         where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
         where TDocument : DynamicEntity, IDocumentEntity, IAuditFields
     {
 
-        private readonly IExtendedFormContextFeature<TModel> _feature;
-        public string ModelCacheKey => _feature.EntityId.ToString() + _feature.SchemaName;
+        private readonly IExtendedFormContextFeature<TStaticContext,TModel> _feature;
+      //  public string ModelCacheKey => _feature.EntityId.ToString() + _feature.SchemaName;
 
         public DynamicManifestContext(
-            DbContextOptions<DynamicManifestContext<TModel, TDocument>> options,
-            IExtendedFormContextFeature<TModel> feature,
-            Microsoft.Extensions.Logging.ILogger<DynamicManifestContext<TModel, TDocument>> logger)
+            DbContextOptions<DynamicManifestContext<TStaticContext,TModel, TDocument>> options,
+            IExtendedFormContextFeature<TStaticContext,TModel> feature,
+            Microsoft.Extensions.Logging.ILogger<DynamicManifestContext<TStaticContext,TModel, TDocument>> logger)
             : base(options, feature.CreateOptions(), feature.CreateMigrationManager(), logger)
         {
             _feature = feature;
-
+            ModelCacheKey = _feature.EntityId.ToString() + _feature.SchemaName +_feature.Version.ToString();
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
         protected DynamicManifestContext(
           DbContextOptions options,
-          IExtendedFormContextFeature<TModel> feature,
+          IExtendedFormContextFeature<TStaticContext,TModel> feature,
           ILogger logger)
           : base(options, feature.CreateOptions(), feature.CreateMigrationManager(), logger)
         {
             _feature = feature;
-
+            ModelCacheKey = _feature.EntityId.ToString() + _feature.SchemaName + _feature.Version.ToString();
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
