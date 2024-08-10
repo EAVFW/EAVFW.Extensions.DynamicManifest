@@ -10,12 +10,12 @@ using WorkflowEngine.Core;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
-    public class PublishDynamicManifestWorkflow<TStaticContext, TDynamicContext, TDynamicManifestContextFeature,TModel, TDocument> : Workflow
+    public class PublishDynamicManifestWorkflow<TStaticContext, TDynamicContext, TDynamicManifestContextFeature, TModel, TDocument> : Workflow
         where TStaticContext : DynamicContext
-        where TDynamicManifestContextFeature : DynamicManifestContextFeature<TDynamicContext, TModel, TDocument>
-        where TDynamicContext : DynamicManifestContext<TModel, TDocument>
-        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>
-        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields,new()
+        where TDynamicManifestContextFeature : DynamicManifestContextFeature<TStaticContext, TDynamicContext, TModel, TDocument>
+        where TDynamicContext : DynamicManifestContext<TStaticContext, TModel, TDocument>
+        where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>, IAuditFields
+        where TDocument : DynamicEntity, IDocumentEntity, IAuditFields, new()
     {
         public static Guid CalculateId()
         {
@@ -54,6 +54,26 @@ namespace EAVFW.Extensions.DynamicManifest
                                         title="Entity Type",
                                         type="string",
                                         description= "Please pick your entity type",
+                                    },
+                                    ["data"] =new{
+                                        type = "object",
+                                        properties = new Dictionary<string,object>
+                                        {
+                                            ["enrichManifest"] = new
+                                            {
+                                                title="Should run manifest enrichment",
+                                                type="boolean",
+                                                description= "Should run manifest enrichment",
+                                                @default = false
+                                            },
+                                            ["runSecurityModelInitializationScript"] = new
+                                            {
+                                                title="Run securitymodel intialization script",
+                                                type="boolean",
+                                                description= "Run securitymodel intialization script",
+                                                @default = false
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -79,8 +99,9 @@ namespace EAVFW.Extensions.DynamicManifest
                             ["entityName"] = "@triggerBody()?['entityName']",
                             ["recordId"] = "@triggerBody()?['recordId']",
                             ["dynamicManifestEntityCollectionSchemaName"] = typeof(TModel).GetCustomAttribute<EntityAttribute>().CollectionSchemaName,
-                            ["documentEntityCollectionSchemaName"] = typeof(TDocument).GetCustomAttribute<EntityAttribute>().CollectionSchemaName
-
+                            ["documentEntityCollectionSchemaName"] = typeof(TDocument).GetCustomAttribute<EntityAttribute>().CollectionSchemaName,
+                            ["enrichManifest"] = "@triggerBody()?['data']?['enrichManifest']",
+                            ["runSecurityModelInitializationScript"]= "@triggerBody()?['data']?['runSecurityModelInitializationScript']",
                         }
                     },
 
