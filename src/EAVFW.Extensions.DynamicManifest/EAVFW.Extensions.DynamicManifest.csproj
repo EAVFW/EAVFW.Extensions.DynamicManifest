@@ -34,8 +34,8 @@
   <ItemGroup Condition="$(RemoteEAVFramework) != 'false'">
     <PackageReference Include="EAVFramework" Version="$(EAVFrameworkVersion)" />
     <PackageReference Include="EAVFW.Extensions.Manifest.SDK" Version="$(EAVFrameworkVersion)" />
-    <PackageReference Include="EAVFW.Extensions.SecurityModel" Version="2.1.0" />
-    <PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="3.2.1" />
+    <PackageReference Include="EAVFW.Extensions.SecurityModel" Version="2.2.0" />
+    <PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="3.2.2" />
     </ItemGroup>
 
 </Project>

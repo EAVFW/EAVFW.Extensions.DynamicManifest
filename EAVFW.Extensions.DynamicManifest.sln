@@ -18,7 +18,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\todo.yml = .github\workflows\todo.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAVFW.Extensions.DynamicManifest.UnitTests", "tests\EAVFW.Extensions.DynamicManifest.UnitTests\EAVFW.Extensions.DynamicManifest.UnitTests.csproj", "{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EAVFW.Extensions.DynamicManifest.UnitTests", "tests\EAVFW.Extensions.DynamicManifest.UnitTests\EAVFW.Extensions.DynamicManifest.UnitTests.csproj", "{362829AB-C3FA-4A08-BF2E-FA986C5D2C7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2FD3F2D3-364D-43DA-BC6B-4439671B8198}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
