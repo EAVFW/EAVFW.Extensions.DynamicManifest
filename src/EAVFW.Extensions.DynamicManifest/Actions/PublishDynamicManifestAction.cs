@@ -103,9 +103,9 @@ namespace EAVFW.Extensions.DynamicManifest
                 //Swallow for none existing 
             }
 
-           
+
             context.Context.AddNewManifest(manifest);
-         //   await context.MigrateAsync();
+            //   await context.MigrateAsync();
 
 
             var migrator = context.Context.Database.GetInfrastructure().GetRequiredService<IMigrator>();
@@ -114,6 +114,7 @@ namespace EAVFW.Extensions.DynamicManifest
             foreach (var sql in sqlscript.Split("GO"))
             {
                 using var cmd = conn.CreateCommand();
+                cmd.CommandTimeout = 300;
                 cmd.CommandText = sql;
                 //  await context.Context.Database.ExecuteSqlRawAsync(sql);
 
@@ -124,91 +125,92 @@ namespace EAVFW.Extensions.DynamicManifest
             if (runscript)
             {
 
-                
+
                 ///Fix old
+                {
+                    var entry = await _database.FindAsync<TModel>(id);
+
+                    if (entry is IHasAdminEmail adminemailRecord)
                     {
-                        var entry = await _database.FindAsync<TModel>(id);
+                        var permis = _serviceProvider.GetRequiredService<IManifestPermissionGenerator>();
+                        var cmdTxt = await permis.CreateInitializationScript(JsonSerializer.Deserialize<ManifestDefinition>(manifest.ToString()), "systemusers");
 
-                        if (entry is IHasAdminEmail adminemailRecord) {
-                            var permis = _serviceProvider.GetRequiredService<IManifestPermissionGenerator>();
-                            var cmdTxt = await permis.CreateInitializationScript(JsonSerializer.Deserialize<ManifestDefinition>( manifest.ToString()), "systemusers");
+                        cmdTxt = cmdTxt.Replace("@DBName", conn.Database)
+                            .Replace("@DBSchema", feat.SchemaName);
 
-                            cmdTxt = cmdTxt.Replace("@DBName", conn.Database)
-                                .Replace("@DBSchema", feat.SchemaName);
+                        using var cmd = conn.CreateCommand();
+                        cmd.CommandText = cmdTxt;
 
-                            using var cmd = conn.CreateCommand();
-                            cmd.CommandText = cmdTxt;
+                        var dbname = cmd.CreateParameter();
+                        dbname.ParameterName = "@DBName";
+                        dbname.Value = conn.Database;
+                        cmd.Parameters.Add(dbname);
 
-                            var dbname = cmd.CreateParameter();
-                            dbname.ParameterName = "@DBName";
-                            dbname.Value = conn.Database;
-                            cmd.Parameters.Add(dbname);
-
-                            var dbschema = cmd.CreateParameter();
-                            dbschema.ParameterName = "@DBSchema";
-                            dbschema.Value = feat.SchemaName;
-                            cmd.Parameters.Add(dbschema);
+                        var dbschema = cmd.CreateParameter();
+                        dbschema.ParameterName = "@DBSchema";
+                        dbschema.Value = feat.SchemaName;
+                        cmd.Parameters.Add(dbschema);
 
 
-                            using (MD5 md5 = MD5.Create())
-                            {
-                              //  byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(feat.SchemaName+ entry.Id.ToString().ToLower()));
-                              //  Guid result = new Guid(hash);
+                        using (MD5 md5 = MD5.Create())
+                        {
+                            //  byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(feat.SchemaName+ entry.Id.ToString().ToLower()));
+                            //  Guid result = new Guid(hash);
 
 
-                                var userGuid = cmd.CreateParameter();
-                                userGuid.ParameterName = "@UserGuid";
-                                userGuid.Value = entry.Id;
-                                cmd.Parameters.Add(userGuid);
+                            var userGuid = cmd.CreateParameter();
+                            userGuid.ParameterName = "@UserGuid";
+                            userGuid.Value = entry.Id;
+                            cmd.Parameters.Add(userGuid);
 
-
-                            }
-
-                            var userEmail = cmd.CreateParameter();
-                            userEmail.ParameterName = "@UserEmail";
-                            userEmail.Value = adminemailRecord.AdminEmail;
-                            cmd.Parameters.Add(userEmail);
-                          
-                            var userName = cmd.CreateParameter();
-                            userName.ParameterName = "@UserName";
-                            userName.Value = adminemailRecord.AdminEmail;
-                            cmd.Parameters.Add(userName);
-
-                            var systemAdminSecurityGroupId = cmd.CreateParameter();
-                            systemAdminSecurityGroupId.ParameterName = "@SystemAdminSecurityGroupId";
-                            systemAdminSecurityGroupId.Value = Guid.Parse("1b714972-8d0a-4feb-b166-08d93c6ae328");
-                            cmd.Parameters.Add(systemAdminSecurityGroupId);
-
-                            if (conn.State != System.Data.ConnectionState.Open)
-                                await conn.OpenAsync();
-
-                            var sqlinit = new TDocument
-                            {
-                                Name = $"manifest.{version.ToString()}.sql",
-                                Path = $"/{feat.EntityId}/manifests/{version.ToString()}/permisions.sql",
-                                Container = "manifests",
-                                Compressed = true,
-                                ContentType = "application/json",
-                            };
-                            await sqlinit.SaveTextAsync(sqlscript);
-                            _database.Set<TDocument>().Add(sqlinit);
-
-
-                            var r = await cmd.ExecuteNonQueryAsync();
-
-                            
 
                         }
 
+                        var userEmail = cmd.CreateParameter();
+                        userEmail.ParameterName = "@UserEmail";
+                        userEmail.Value = adminemailRecord.AdminEmail;
+                        cmd.Parameters.Add(userEmail);
+
+                        var userName = cmd.CreateParameter();
+                        userName.ParameterName = "@UserName";
+                        userName.Value = adminemailRecord.AdminEmail;
+                        cmd.Parameters.Add(userName);
+
+                        var systemAdminSecurityGroupId = cmd.CreateParameter();
+                        systemAdminSecurityGroupId.ParameterName = "@SystemAdminSecurityGroupId";
+                        systemAdminSecurityGroupId.Value = Guid.Parse("1b714972-8d0a-4feb-b166-08d93c6ae328");
+                        cmd.Parameters.Add(systemAdminSecurityGroupId);
+
+                        if (conn.State != System.Data.ConnectionState.Open)
+                            await conn.OpenAsync();
+
+                        var sqlinit = new TDocument
+                        {
+                            Name = $"manifest.{version.ToString()}.sql",
+                            Path = $"/{feat.EntityId}/manifests/{version.ToString()}/permisions.sql",
+                            Container = "manifests",
+                            Compressed = true,
+                            ContentType = "application/json",
+                        };
+                        await sqlinit.SaveTextAsync(sqlscript);
+                        _database.Set<TDocument>().Add(sqlinit);
+
+                        cmd.CommandTimeout = 300;
+                        var r = await cmd.ExecuteNonQueryAsync();
+
+
+
                     }
-               
+
+                }
+
 
 
             }
 
 
-       
-         
+
+
 
             var sqldoc = new TDocument
             {
