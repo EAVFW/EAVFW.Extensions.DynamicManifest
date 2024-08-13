@@ -1,4 +1,4 @@
-﻿using EAVFramework;
+using EAVFramework;
 using EAVFramework.Endpoints;
 using EAVFramework.Shared.V2;
 using EAVFramework.Validation;
@@ -101,6 +101,7 @@ namespace EAVFW.Extensions.DynamicManifest
         public JToken[] Manifests { get; protected set; } = Array.Empty<JToken>();
         public string SchemaName { get; protected set; }
         public SemVersion Version { get; protected set; }
+        public SemVersion LatestPublishedVersion { get; protected set; }
         public string ConnectionString { get; protected set; }
         public ulong DocumentVersion { get; private set; }
 
@@ -194,7 +195,7 @@ namespace EAVFW.Extensions.DynamicManifest
                          
                         };
                     }
-
+                    LatestPublishedVersion = SemVersion.Parse(Manifests[0].SelectToken("$.version")?.ToString(), SemVersionStyles.Strict);
                     //Manifests = new[]
                     //      { Manifest
                     //    }.Concat(Manifests).ToArray();
@@ -218,6 +219,7 @@ namespace EAVFW.Extensions.DynamicManifest
                 });
 
                 Manifests = new[] { await latest.LoadJsonAsync() };
+                LatestPublishedVersion= SemVersion.Parse(Manifests[0].SelectToken("$.version")?.ToString(), SemVersionStyles.Strict);
             }
 
             await OnDataLoadedAsync(database, entityid, record);
