@@ -1,4 +1,4 @@
-﻿using EAVFramework;
+using EAVFramework;
 using EAVFramework.Endpoints;
 using EAVFramework.Extensions;
 using EAVFW.Extensions.Documents;
@@ -23,6 +23,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using WorkflowEngine;
 using WorkflowEngine.Core;
 using EAVFW.Extensions.Manifest.SDK;
+using EAVFramework.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -218,6 +219,26 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
+        public static AuthenticatedEAVFrameworkBuilder WithEAVSigninTicketStore<TStaticContext,TDynamicContext, TModel, TDocument>(this AuthenticatedEAVFrameworkBuilder builder, string entity)
+        where TStaticContext : DynamicContext
+           where TDynamicContext : DynamicManifestContext<TStaticContext, TModel, TDocument>
+           where TModel : DynamicEntity, IDynamicManifestEntity<TDocument>, IAuditFields
+           where TDocument : DynamicEntity, IDocumentEntity, IAuditFields, new()
+        {
+
+            builder.Services.AddScoped(sp => sp.GetService(typeof(PasswordLessLinkGenerator<,>)
+                .MakeGenericType(typeof(TDynamicContext), sp.GetService<TDynamicContext>().GetEntityType(entity))) as IPasswordLessLinkGenerator);
+            builder.Services.AddScoped(sp => sp.GetService(typeof(IEAVFrameworkTicketStore<,>)
+                .MakeGenericType(typeof(TDynamicContext), sp.GetService<TDynamicContext>().GetEntityType(entity))) as IEAVFrameworkTicketStore);//sp.GetRequiredService<IEAVFrameworkTicketStore<TDynamicContext, TSignin>>());
+            builder.Services.AddScoped(sp => sp.GetService(typeof(IEAVFrameworkTicketStore<,>)
+                .MakeGenericType(typeof(TDynamicContext), sp.GetService<TDynamicContext>().GetEntityType(entity))) as IEAVFrameworkTicketStore<TDynamicContext>);
+            //  Services.AddScoped<IEAVFrameworkTicketStore<TContext,TSignin>>(sp => sp.GetService<EAVFrameworkTicketStore<TContext, TSignin>>());
+
+
+
+
+            return builder;
+        }
 
     }
 }

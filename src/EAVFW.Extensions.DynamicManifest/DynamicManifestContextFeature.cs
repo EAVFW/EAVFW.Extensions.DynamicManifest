@@ -1,4 +1,5 @@
 using EAVFramework;
+using EAVFramework.Configuration;
 using EAVFramework.Endpoints;
 using EAVFramework.Shared.V2;
 using EAVFramework.Validation;
@@ -89,6 +90,8 @@ namespace EAVFW.Extensions.DynamicManifest
             return BigEndianToUInt64(auditFields.RowVersion);
         }
     }
+
+ 
     public class DynamicManifestContextFeature<TStaticContext, TDynamicContext, TModel, TDocument> : IFormContextFeature<TDynamicContext>, IExtendedFormContextFeature<TStaticContext, TModel>
         where TStaticContext : DynamicContext
         where TDynamicContext : DynamicManifestContext<TStaticContext, TModel, TDocument>
