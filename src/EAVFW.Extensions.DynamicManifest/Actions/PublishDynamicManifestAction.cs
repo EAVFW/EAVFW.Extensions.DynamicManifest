@@ -247,7 +247,7 @@ namespace EAVFW.Extensions.DynamicManifest
             //We should not save the enriched manifest
             var existingManifest = await document.LoadJsonAsync();
             existingManifest["version"] = record.Version;
-            await document.SaveJsonAsync(feat.Manifest);
+            await document.SaveJsonAsync(existingManifest);
 
             await _database.SaveChangesAsync(
                 new ClaimsPrincipal(new ClaimsIdentity(new Claim[] {
