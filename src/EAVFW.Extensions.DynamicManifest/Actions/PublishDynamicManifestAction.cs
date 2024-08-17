@@ -243,6 +243,10 @@ namespace EAVFW.Extensions.DynamicManifest
             _database.Context.Attach(document);
             record.Version = feat.Version.WithPatch(feat.Version.Patch + 1).ToString();
             feat.Manifest["version"] = record.Version;
+
+            //We should not save the enriched manifest
+            var existingManifest = await document.LoadJsonAsync();
+            existingManifest["version"] = record.Version;
             await document.SaveJsonAsync(feat.Manifest);
 
             await _database.SaveChangesAsync(
