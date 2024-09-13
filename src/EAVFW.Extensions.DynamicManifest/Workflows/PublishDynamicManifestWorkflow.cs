@@ -1,4 +1,4 @@
-﻿using EAVFramework;
+using EAVFramework;
 using EAVFramework.Shared;
 using EAVFW.Extensions.Documents;
 using System;
@@ -55,7 +55,7 @@ namespace EAVFW.Extensions.DynamicManifest
                                         type="string",
                                         description= "Please pick your entity type",
                                     },
-                                    ["data"] =new{
+                                    ["payload"] =new{
                                         type = "object",
                                         properties = new Dictionary<string,object>
                                         {
@@ -100,8 +100,8 @@ namespace EAVFW.Extensions.DynamicManifest
                             ["recordId"] = "@triggerBody()?['recordId']",
                             ["dynamicManifestEntityCollectionSchemaName"] = typeof(TModel).GetCustomAttribute<EntityAttribute>().CollectionSchemaName,
                             ["documentEntityCollectionSchemaName"] = typeof(TDocument).GetCustomAttribute<EntityAttribute>().CollectionSchemaName,
-                            ["enrichManifest"] = "@triggerBody()?['data']?['enrichManifest']",
-                            ["runSecurityModelInitializationScript"]= "@triggerBody()?['data']?['runSecurityModelInitializationScript']",
+                            ["enrichManifest"] = "@triggerPayload()?['enrichManifest']",
+                            ["runSecurityModelInitializationScript"]= "@triggerPayload()?['runSecurityModelInitializationScript']",
                         }
                     },
 
