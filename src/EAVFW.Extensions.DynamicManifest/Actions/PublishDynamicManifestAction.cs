@@ -255,6 +255,7 @@ namespace EAVFW.Extensions.DynamicManifest
                                 }, EAVFramework.Constants.DefaultCookieAuthenticationScheme)));
 
 
+            _database.Context.ResetMigrationsContext();
 
 
         }
