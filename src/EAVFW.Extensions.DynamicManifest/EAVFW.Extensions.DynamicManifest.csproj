@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
 
 		<Title>EAVFW.Extensions.DynamicManifest</Title>
 		<Authors>Poul Kjeldager</Authors>
@@ -29,8 +29,8 @@
   <ItemGroup Condition="$(RemoteEAVFramework) != 'false'">
     <PackageReference Include="EAVFramework" Version="$(EAVFrameworkVersion)" />
     <PackageReference Include="EAVFW.Extensions.Manifest.SDK" Version="$(EAVFrameworkVersion)" />
-    <PackageReference Include="EAVFW.Extensions.SecurityModel" Version="2.2.0" />
-    <PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="3.2.8" />
+    <PackageReference Include="EAVFW.Extensions.SecurityModel" Version="3.0.0" />
+    <PackageReference Include="EAVFW.Extensions.WorkflowEngine" Version="4.0.0" />
     </ItemGroup>
 
 </Project>
