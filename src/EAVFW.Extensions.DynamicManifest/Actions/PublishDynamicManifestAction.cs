@@ -109,7 +109,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
 
             var migrator = context.Context.Database.GetInfrastructure().GetRequiredService<IMigrator>();
-            var sqlscript = migrator.GenerateScript(options: MigrationsSqlGenerationOptions.Idempotent);
+            var sqlscript = migrator.GenerateScript(options: MigrationsSqlGenerationOptions.Idempotent| MigrationsSqlGenerationOptions.Default| MigrationsSqlGenerationOptions.NoTransactions);
 
             foreach (var sql in sqlscript.Split("GO"))
             {
