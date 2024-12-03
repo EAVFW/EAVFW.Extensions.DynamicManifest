@@ -1,7 +1,8 @@
-﻿using EAVFramework;
+using EAVFramework;
 using EAVFW.Extensions.Documents;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
@@ -22,7 +23,19 @@ namespace EAVFW.Extensions.DynamicManifest
             Microsoft.Extensions.Logging.ILogger<DynamicManifestContext<TStaticContext,TModel, TDocument>> logger)
             : base(options, feature.CreateOptions(), feature.CreateMigrationManager(), logger)
         {
-            _feature = feature;
+            if (options is null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
+
+            if (logger is null)
+            {
+                throw new ArgumentNullException(nameof(logger));
+            }
+
+            _feature = feature ?? throw new ArgumentNullException(nameof(feature));
+            var entityId = _feature.EntityId.ToString() ?? throw new ArgumentNullException(nameof(_feature.EntityId));
+            var version = _feature.Version?.ToString() ?? throw new ArgumentNullException(nameof(_feature.Version));
             ModelCacheKey = _feature.EntityId.ToString() + _feature.SchemaName +_feature.Version.ToString();
             ChangeTracker.LazyLoadingEnabled = false;
         }
