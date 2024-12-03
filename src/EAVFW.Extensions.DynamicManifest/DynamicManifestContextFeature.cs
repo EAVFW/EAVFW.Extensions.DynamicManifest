@@ -165,14 +165,10 @@ namespace EAVFW.Extensions.DynamicManifest
 
 
             Manifest = JToken.Parse(a);
-            SchemaName = record.Schema;
-
-            _logger.LogInformation("Loaded {SchemaName} {ManifestHashCode} at {version}", SchemaName, a.GetHashCode(), Version);
-
-
-
+            SchemaName = record.Schema; 
             EntityId = entityid;
             Version = SemVersion.Parse(Manifest.SelectToken("$.version")?.ToString(), SemVersionStyles.Strict);// SemVersion.Parse(record.Version, SemVersionStyles.Strict);
+            _logger.LogInformation("Loaded {SchemaName} {ManifestHashCode} at {version}|{parsedVersion}", SchemaName, a.GetHashCode(), Manifest.SelectToken("$.version")?.ToString(),Version);
 
             if (loadAllVersions)
             {

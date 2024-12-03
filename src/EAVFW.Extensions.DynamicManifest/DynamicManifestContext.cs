@@ -35,7 +35,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
             _feature = feature ?? throw new ArgumentNullException(nameof(feature));
             var entityId = _feature.EntityId.ToString() ?? throw new ArgumentNullException(nameof(_feature.EntityId));
-            var version = _feature.Version?.ToString() ?? throw new ArgumentNullException(nameof(_feature.Version));
+            var version = _feature.Version?.ToString() ?? throw new ArgumentNullException(nameof(_feature.Version), $"Version is null for {entityId}");
             ModelCacheKey = _feature.EntityId.ToString() + _feature.SchemaName +_feature.Version.ToString();
             ChangeTracker.LazyLoadingEnabled = false;
         }
