@@ -152,19 +152,12 @@ namespace EAVFW.Extensions.DynamicManifest
                         cmd.Parameters.Add(dbschema);
 
 
-                        using (MD5 md5 = MD5.Create())
-                        {
-                            //  byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(feat.SchemaName+ entry.Id.ToString().ToLower()));
-                            //  Guid result = new Guid(hash);
-
-
+                       
                             var userGuid = cmd.CreateParameter();
                             userGuid.ParameterName = "@UserGuid";
                             userGuid.Value = entry.Id;
                             cmd.Parameters.Add(userGuid);
-
-
-                        }
+                         
 
                         var userEmail = cmd.CreateParameter();
                         userEmail.ParameterName = "@UserEmail";
@@ -192,7 +185,7 @@ namespace EAVFW.Extensions.DynamicManifest
                             Compressed = true,
                             ContentType = "application/json",
                         };
-                        await sqlinit.SaveTextAsync(sqlscript);
+                        await sqlinit.SaveTextAsync(cmdTxt);
                         _database.Set<TDocument>().Add(sqlinit);
 
                         cmd.CommandTimeout = 300;
@@ -226,7 +219,7 @@ namespace EAVFW.Extensions.DynamicManifest
             var doc = new TDocument
             {
                 Name = $"manifest.{version.ToString()}.g.json",
-                Path = $"/{feat.EntityId}/manifests/manifest.{version.ToString()}.g.json",
+                Path = $"/{feat.EntityId}/manifests/{version.ToString()}/manifest.{version.ToString()}.g.json",
                 Container = "manifests",
                 Compressed = true,
                 ContentType = "application/json",

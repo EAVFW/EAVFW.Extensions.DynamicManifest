@@ -174,7 +174,7 @@ namespace EAVFW.Extensions.DynamicManifest
             {
                 try
                 {
-                    var latest_versions = await database.Set<TDocument>().Where(d => d.Path.StartsWith($"/{entityid}/manifests/manifest."))
+                    var latest_versions = await database.Set<TDocument>().Where(d => d.Path.StartsWith($"/{entityid}/manifests/") && d.Path.EndsWith(".g.json") )
                        .OrderByDescending(c => c.CreatedOn).ToArrayAsync();
 
                     var manifests = new List<JToken>();
