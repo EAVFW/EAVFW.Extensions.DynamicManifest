@@ -179,7 +179,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
                     var manifests = new List<JToken>();
                     foreach (var m in latest_versions.
-                        OrderByDescending(k => SemVersion.Parse(k.Name.Substring(9, k.Name.Length - 9 - 7), SemVersionStyles.Strict)))
+                        OrderByDescending(k => SemVersion.Parse(k.Name.Substring(9, k.Name.Length - 9 - 7), SemVersionStyles.Strict), SemVersion.SortOrderComparer))
                     {
                         manifests.Add(await m.LoadJsonAsync());
                     }
