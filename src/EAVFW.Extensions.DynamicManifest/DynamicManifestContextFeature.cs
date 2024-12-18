@@ -174,7 +174,7 @@ namespace EAVFW.Extensions.DynamicManifest
             {
                 try
                 {
-                    var latest_versions = await database.Set<TDocument>().Where(d => d.Path.StartsWith($"/{entityid}/manifests/") && d.Path.EndsWith(".g.json") )
+                    var latest_versions = await database.Set<TDocument>().Where(d =>  d.Path.StartsWith($"/{entityid}/manifests/") && d.Path.EndsWith(".g.json") )
                        .OrderByDescending(c => c.CreatedOn).ToArrayAsync();
 
                     var manifests = new List<JToken>();
@@ -212,7 +212,7 @@ namespace EAVFW.Extensions.DynamicManifest
                     cachekey.SetSize(1);
 
                     return await database.Set<TDocument>()
-                    .Where(x => x.Container == "manifests" && x.Path.StartsWith($"/{entityid}/manifests/manifest."))
+                    .Where(x => x.Container == "manifests" && x.Path.StartsWith($"/{entityid}/manifests/") && x.Path.EndsWith(".g.json"))
                     .OrderByDescending(c => c.CreatedOn)
                     .FirstOrDefaultAsync();
                 });
