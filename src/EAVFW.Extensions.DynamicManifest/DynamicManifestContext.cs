@@ -17,7 +17,8 @@ namespace EAVFW.Extensions.DynamicManifest
     {
 
         private readonly IExtendedFormContextFeature<TStaticContext,TModel> _feature;
-        public string ModelCacheKey => _feature.EntityId.ToString() + _feature.SchemaName + _feature.Version.ToString();
+        
+        public override string ModelCacheKey => _feature.EntityId.ToString() + _feature.SchemaName + _feature.Version.ToString();
 
         public DynamicManifestContext(
             DbContextOptions<DynamicManifestContext<TStaticContext,TModel, TDocument>> options,
@@ -59,20 +60,7 @@ namespace EAVFW.Extensions.DynamicManifest
             base.OnConfiguring(optionsBuilder);
         }
 
-        public void ResetMigrationsContext()
-        {
-            //ModelCacheKey = Guid.NewGuid().ToString();
-            if (Manager is MigrationManager man)
-            {
-                man.Reset(this.modelOptions.Value);
-            }
-            //var miassemb = Database.GetInfrastructure().GetRequiredService<IMigrationsAssembly>();
-            //if (miassemb is DbSchemaAwareMigrationAssembly mya)
-            //{ 
-            //    mya.Reset(); 
-            //}
-        }
-
+        
         public void AddNewManifest(JToken manifest)
         {
             this.modelOptions.Value.Manifests = new[] { manifest }.Concat(this.modelOptions.Value.Manifests).ToArray();
