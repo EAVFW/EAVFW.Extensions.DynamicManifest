@@ -18,7 +18,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
         private readonly IExtendedFormContextFeature<TStaticContext,TModel> _feature;
         
-        public override string ModelCacheKey => _feature.EntityId.ToString() + _feature.SchemaName + _feature.Version.ToString();
+        public string ModelCacheKey => _feature.EntityId.ToString() + _feature.SchemaName + _feature.Version.ToString();
 
         public DynamicManifestContext(
             DbContextOptions<DynamicManifestContext<TStaticContext,TModel, TDocument>> options,
