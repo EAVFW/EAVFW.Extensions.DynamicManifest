@@ -105,6 +105,7 @@ namespace EAVFW.Extensions.DynamicManifest
 
 
             context.Context.AddNewManifest(manifest);
+          //  context.Context.EnsureModelCreated();
             //   await context.MigrateAsync();
 
 
@@ -248,7 +249,8 @@ namespace EAVFW.Extensions.DynamicManifest
                                 }, EAVFramework.Constants.DefaultCookieAuthenticationScheme)));
 
 
-            _database.Context.ResetMigrationsContext();
+            //_database.Context.ResetMigrationsContext();
+           // _database.Context.EnsureModelCreated();
 
 
         }

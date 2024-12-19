@@ -2,7 +2,9 @@ using EAVFramework;
 using EAVFW.Extensions.Documents;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Linq;
 
 namespace EAVFW.Extensions.DynamicManifest
 {
@@ -15,7 +17,7 @@ namespace EAVFW.Extensions.DynamicManifest
     {
 
         private readonly IExtendedFormContextFeature<TStaticContext,TModel> _feature;
-      //  public string ModelCacheKey => _feature.EntityId.ToString() + _feature.SchemaName;
+        public string ModelCacheKey => _feature.EntityId.ToString() + _feature.SchemaName + _feature.Version.ToString();
 
         public DynamicManifestContext(
             DbContextOptions<DynamicManifestContext<TStaticContext,TModel, TDocument>> options,
@@ -36,7 +38,7 @@ namespace EAVFW.Extensions.DynamicManifest
             _feature = feature ?? throw new ArgumentNullException(nameof(feature));
             var entityId = _feature.EntityId.ToString() ?? throw new ArgumentNullException(nameof(_feature.EntityId));
             var version = _feature.Version?.ToString() ?? throw new ArgumentNullException(nameof(_feature.Version), $"Version is null for {entityId}");
-            ModelCacheKey = _feature.EntityId.ToString() + _feature.SchemaName +_feature.Version.ToString();
+         //   ModelCacheKey = _feature.EntityId.ToString() + _feature.SchemaName +_feature.Version.ToString();
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
@@ -47,7 +49,7 @@ namespace EAVFW.Extensions.DynamicManifest
           : base(options, feature.CreateOptions(), feature.CreateMigrationManager(), logger)
         {
             _feature = feature;
-            ModelCacheKey = _feature.EntityId.ToString() + _feature.SchemaName + _feature.Version.ToString();
+           // ModelCacheKey = _feature.EntityId.ToString() + _feature.SchemaName + _feature.Version.ToString();
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
@@ -55,6 +57,26 @@ namespace EAVFW.Extensions.DynamicManifest
         {
 
             base.OnConfiguring(optionsBuilder);
+        }
+
+        public void ResetMigrationsContext()
+        {
+            //ModelCacheKey = Guid.NewGuid().ToString();
+            if (Manager is MigrationManager man)
+            {
+                man.Reset(this.modelOptions.Value);
+            }
+            //var miassemb = Database.GetInfrastructure().GetRequiredService<IMigrationsAssembly>();
+            //if (miassemb is DbSchemaAwareMigrationAssembly mya)
+            //{ 
+            //    mya.Reset(); 
+            //}
+        }
+
+        public void AddNewManifest(JToken manifest)
+        {
+            this.modelOptions.Value.Manifests = new[] { manifest }.Concat(this.modelOptions.Value.Manifests).ToArray();
+            ResetMigrationsContext();
         }
 
     }
