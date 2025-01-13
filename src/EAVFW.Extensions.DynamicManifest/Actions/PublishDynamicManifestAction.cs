@@ -18,6 +18,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WorkflowEngine.Core;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -47,6 +48,49 @@ namespace EAVFW.Extensions.DynamicManifest
             _database = database ?? throw new ArgumentNullException(nameof(database));
             _logger = logger;
             _expressionEngine = expressionEngine;
+        }
+
+        public string TransformExtendedPropertyQuery(string originalSql)
+        {
+            // Updated regex to capture the description parameter
+            var regex = new Regex(@"EXEC\s+sp_addextendedproperty\s+'MS_Description',\s+([^,]+),\s+'SCHEMA',\s+N'([^']+)',\s+'TABLE',\s+N'([^']+)',\s+'COLUMN',\s+N'([^']+)'\s*;");
+
+            return regex.Replace(originalSql, match =>
+            {
+                string description = match.Groups[1].Value;  // Capture the description parameter
+                string schema = match.Groups[2].Value;
+                string tableName = match.Groups[3].Value;
+                string columnName = match.Groups[4].Value;
+
+                return $@"
+IF NOT EXISTS (
+    SELECT NULL 
+    FROM SYS.EXTENDED_PROPERTIES 
+    WHERE [major_id] = OBJECT_ID('{schema}.{tableName}') 
+    AND [name] = N'MS_Description' 
+    AND [minor_id] = (
+        SELECT [column_id] 
+        FROM SYS.COLUMNS 
+        WHERE [name] = '{columnName}' 
+        AND [object_id] = OBJECT_ID('{schema}.{tableName}')
+    )
+)
+BEGIN
+    EXEC sp_addextendedproperty 
+        'MS_Description', {description}, 
+        'SCHEMA', N'{schema}', 
+        'TABLE', N'{tableName}', 
+        'COLUMN', N'{columnName}';
+END
+ELSE
+BEGIN
+    EXEC sp_updateextendedproperty 
+        'MS_Description', {description}, 
+        'SCHEMA', N'{schema}', 
+        'TABLE', N'{tableName}', 
+        'COLUMN', N'{columnName}';
+END";
+            });
         }
 
         public async ValueTask PublishAsync(
@@ -114,9 +158,15 @@ namespace EAVFW.Extensions.DynamicManifest
 
             foreach (var sql in sqlscript.Split("GO"))
             {
+
+                //regex to parse out EXEC sp_addextendedproperty 'MS_Description', @description, 'SCHEMA', N'BK-UC-RepTable001', 'TABLE', N'FormSubmissions', 'COLUMN', N'NumberField2';
+
+              
+
+
                 using var cmd = conn.CreateCommand();
                 cmd.CommandTimeout = 300;
-                cmd.CommandText = sql;
+                cmd.CommandText = TransformExtendedPropertyQuery(sql);
                 //  await context.Context.Database.ExecuteSqlRawAsync(sql);
 
 
